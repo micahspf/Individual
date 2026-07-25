@@ -1,6 +1,8 @@
 import { requireAdmin } from "@/lib/admin";
 import { AdminNav } from "@/components/admin/admin-nav";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminLayout({
   children,
 }: {

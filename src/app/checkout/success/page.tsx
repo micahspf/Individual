@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { formatMoney } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 type Props = { searchParams: Promise<{ order?: string; session_id?: string }> };
 
 export default async function CheckoutSuccessPage({ searchParams }: Props) {

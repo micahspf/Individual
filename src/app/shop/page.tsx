@@ -3,6 +3,8 @@ import { getCatalogProducts, getCategories } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 import { ShopFilters } from "@/components/shop-filters";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Shop",
   description: "Browse and filter Individual.com custom products.",

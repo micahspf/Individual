@@ -1,13 +1,12 @@
-// Individual e-commerce schema
-// Default: SQLite for zero-config local dev
-// Production: change provider to "postgresql" and set DATABASE_URL
+// Individual.com e-commerce schema
+// Use PostgreSQL (Neon, Supabase, etc.) for local + Vercel production
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 

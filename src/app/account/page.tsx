@@ -6,6 +6,7 @@ import { formatMoney } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Account" };
 
 export default async function AccountPage() {

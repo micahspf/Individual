@@ -5,6 +5,9 @@ import { getCategories, getFeaturedProducts } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 
+// Avoid DB access during Vercel static build
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const [featured, categories] = await Promise.all([
     getFeaturedProducts(4),

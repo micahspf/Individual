@@ -4,6 +4,8 @@ import { getProductBySlug, getCatalogProducts } from "@/lib/products";
 import { ProductCustomizer } from "@/components/product-customizer";
 import { ProductCard } from "@/components/product-card";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
