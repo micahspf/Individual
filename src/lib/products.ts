@@ -92,32 +92,47 @@ export function mapProduct(
 }
 
 export async function getFeaturedProducts(limit = 8) {
-  const products = await prisma.product.findMany({
-    where: { active: true, featured: true },
-    include: { category: true, variants: true, reviews: { select: { rating: true } } },
-    take: limit,
-    orderBy: { createdAt: "desc" },
-  });
-  return products.map(mapProduct);
+  try {
+    const products = await prisma.product.findMany({
+      where: { active: true, featured: true },
+      include: { category: true, variants: true, reviews: { select: { rating: true } } },
+      take: limit,
+      orderBy: { createdAt: "desc" },
+    });
+    return products.map(mapProduct);
+  } catch (error) {
+    console.error("getFeaturedProducts failed:", error);
+    return [];
+  }
 }
 
 export async function getCategories() {
-  return prisma.category.findMany({
-    orderBy: { name: "asc" },
-    include: { _count: { select: { products: true } } },
-  });
+  try {
+    return await prisma.category.findMany({
+      orderBy: { name: "asc" },
+      include: { _count: { select: { products: true } } },
+    });
+  } catch (error) {
+    console.error("getCategories failed:", error);
+    return [];
+  }
 }
 
 export async function getProductBySlug(slug: string) {
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      category: true,
-      variants: true,
-      reviews: { select: { rating: true } },
-    },
-  });
-  return product ? mapProduct(product) : null;
+  try {
+    const product = await prisma.product.findUnique({
+      where: { slug },
+      include: {
+        category: true,
+        variants: true,
+        reviews: { select: { rating: true } },
+      },
+    });
+    return product ? mapProduct(product) : null;
+  } catch (error) {
+    console.error("getProductBySlug failed:", error);
+    return null;
+  }
 }
 
 export type CatalogQuery = {
@@ -170,11 +185,15 @@ export async function getCatalogProducts(query: CatalogQuery = {}) {
       orderBy = { createdAt: "desc" };
   }
 
-  const products = await prisma.product.findMany({
-    where,
-    include: { category: true, variants: true, reviews: { select: { rating: true } } },
-    orderBy,
-  });
-
-  return products.map(mapProduct);
+  try {
+    const products = await prisma.product.findMany({
+      where,
+      include: { category: true, variants: true, reviews: { select: { rating: true } } },
+      orderBy,
+    });
+    return products.map(mapProduct);
+  } catch (error) {
+    console.error("getCatalogProducts failed:", error);
+    return [];
+  }
 }
