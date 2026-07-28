@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s · Made by Individual",
   },
   description:
-    "We can individually manufacture anything you want with no waste. Custom 3D printing and made-to-order products.",
+    "We can individually manufacture anything you want with no waste. Custom 3D printing and made-to-order fabrication.",
   alternates: {
     canonical: "/",
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Made by Individual",
     title: "Made by Individual — Custom manufacturing on demand",
     description:
-      "Request custom-made products. Printed and manufactured only when ordered — no waste inventory.",
+      "Request custom-made products. Designed and manufactured only when ordered — no waste inventory.",
   },
   robots: {
     index: true,
@@ -43,11 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+      <body className="min-h-full antialiased">{children}</body>
     </html>
   );
 }

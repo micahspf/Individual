@@ -1,104 +1,116 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function RequestForm() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [response, setResponse] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [response, setResponse] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus('loading');
-    setResponse('');
+    setStatus("loading");
+    setResponse("");
 
     try {
-      const res = await fetch('/api/agents/request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/agents/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong');
+        throw new Error(data.error || "Something went wrong");
       }
 
-      setStatus('success');
-      setResponse(data.reply || 'Request received. We’ll be in touch soon.');
-      setName('');
-      setEmail('');
-      setMessage('');
-    } catch (err: any) {
-      setStatus('error');
-      setResponse(err.message || 'Failed to send request');
+      setStatus("success");
+      setResponse(data.reply || "Request received. We’ll be in touch soon.");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err: unknown) {
+      setStatus("error");
+      setResponse(err instanceof Error ? err.message : "Failed to send request");
     }
   }
 
   return (
-    <div className="max-w-xl mx-auto">
+    <div>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Your Name (optional)
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none"
-            placeholder="Micah"
-          />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label htmlFor="name" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+              Name <span className="normal-case tracking-normal text-[var(--fg-soft)]">(optional)</span>
+            </label>
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="input-field"
+              placeholder="Micah"
+              autoComplete="name"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="email" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
+              Email *
+            </label>
+            <input
+              id="email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="input-field"
+              placeholder="you@email.com"
+              autoComplete="email"
+            />
+          </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email *
-          </label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none"
-            placeholder="you@email.com"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-[var(--fg-muted)]">
             What would you like made? *
           </label>
           <textarea
+            id="message"
             required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5}
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none resize-y"
-            placeholder="Example: Custom name plate, 8 inches wide, black acrylic, with the name Parker in a clean modern font."
+            className="input-field min-h-[140px] resize-y"
+            placeholder="Example: Custom name plate, 8 inches wide, black acrylic, name Parker in a clean modern font."
           />
+          <p className="mt-2 text-xs text-[var(--fg-soft)]">
+            Include size, material, color, and quantity if you know them.
+          </p>
         </div>
 
-        <button
-          type="submit"
-          disabled={status === 'loading'}
-          className="w-full bg-black text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition disabled:opacity-60"
-        >
-          {status === 'loading' ? 'Sending...' : 'Send Request'}
+        <button type="submit" disabled={status === "loading"} className="btn-primary">
+          {status === "loading" ? "Sending request…" : "Request a quote"}
         </button>
       </form>
 
-      {status === 'success' && (
-        <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm whitespace-pre-wrap">
+      {status === "success" && (
+        <div
+          className="mt-6 rounded-2xl border border-[color-mix(in_oklab,var(--success)_35%,transparent)] bg-[color-mix(in_oklab,var(--success)_12%,transparent)] p-4 text-sm leading-relaxed text-[var(--fg)] whitespace-pre-wrap"
+          role="status"
+        >
           {response}
         </div>
       )}
 
-      {status === 'error' && (
-        <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+      {status === "error" && (
+        <div
+          className="mt-6 rounded-2xl border border-[color-mix(in_oklab,var(--danger)_40%,transparent)] bg-[color-mix(in_oklab,var(--danger)_12%,transparent)] p-4 text-sm text-[var(--fg)]"
+          role="alert"
+        >
           {response}
         </div>
       )}
