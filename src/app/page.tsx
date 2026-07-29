@@ -14,92 +14,120 @@ export default async function HomePage() {
   ]);
 
   return (
-    <>
-      <section className="relative overflow-hidden">
-        <div className="hero-bubbles" aria-hidden="true">
-          <span className="floaty left-[6%] top-[18%] h-16 w-16 bg-[#ffe14a]" />
-          <span className="floaty-delay right-[8%] top-[22%] h-24 w-24 bg-[#ff8ec8]" />
-          <span className="floaty left-[18%] bottom-[12%] h-12 w-12 bg-[#ffb6de]" />
-          <span className="floaty-delay right-[18%] bottom-[18%] h-20 w-20 bg-[#fff08a]" />
-        </div>
-
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:py-20">
-          <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-[#ffb6de] bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-accent shadow-sm">
-              <Sparkles className="h-3.5 w-3.5" />
-              Made just for you
-            </p>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Custom products with a{" "}
-              <span className="bg-gradient-to-r from-[#ff4fa3] to-[#ff9ad0] bg-clip-text text-transparent">
-                bubbly
-              </span>{" "}
-              twist ✨
-            </h1>
-            <p className="mt-5 max-w-xl text-lg font-medium text-muted-foreground">
-              Personalize apparel, drinkware, and home goods. Bright colors, soft shapes,
-              and made-to-order magic — no boring inventory.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/shop">
-                <Button size="lg">
-                  Shop the fun stuff <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/shop?tag=customizable">
-                <Button size="lg" variant="secondary">
-                  Start customizing
-                </Button>
-              </Link>
-            </div>
-            <div className="mt-10 grid grid-cols-3 gap-3">
-              {[
-                { t: "4.9★", d: "Happy customers" },
-                { t: "$75+", d: "Free shipping" },
-                { t: "30d", d: "Easy returns" },
-              ].map((s) => (
-                <div key={s.t} className="bubble-card px-3 py-4 text-center">
-                  <p className="text-xl font-extrabold text-accent">{s.t}</p>
-                  <p className="mt-1 text-[11px] font-semibold text-muted-foreground">{s.d}</p>
-                </div>
-              ))}
-            </div>
+    <div className="overflow-x-hidden bg-black text-white">
+      {/* Hero — zip design + real shop CTAs */}
+      <section className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-10 lg:grid-cols-2">
+        <div className="relative z-10">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pink-500/40 bg-pink-500/10 px-4 py-1.5 text-sm text-pink-300">
+            <span>✦</span> MADE JUST FOR YOU
           </div>
 
+          <h1 className="mb-6 text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
+            Custom products
+            <br />
+            with a <span className="text-pink-400">bubbly</span>
+            <br />
+            <span className="text-yellow-400">twist</span>{" "}
+            <span className="text-yellow-300">✦</span>
+          </h1>
+
+          <p className="mb-8 max-w-md text-lg leading-relaxed text-neutral-400">
+            Personalize apparel, drinkware, and home goods.{" "}
+            <span className="text-pink-300">Bright colors</span>,{" "}
+            <span className="text-yellow-300">soft shapes</span>, and{" "}
+            <span className="text-white">made-to-order</span> magic — no boring inventory.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Link href="/shop">
+              <Button size="lg" className="px-7 py-3.5">
+                Shop the fun stuff <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/shop?tag=customizable">
+              <Button size="lg" variant="secondary" className="px-7 py-3.5">
+                Start customizing
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="relative flex justify-center lg:justify-end">
           <div className="relative">
-            <div className="absolute -left-4 -top-4 h-24 w-24 blob bg-[#ffe14a]/80 floaty" />
-            <div className="absolute -bottom-6 -right-2 h-28 w-28 blob-soft bg-[#ff8ec8]/70 floaty-delay" />
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border-4 border-white shadow-[0_20px_0_rgba(255,79,163,0.15)] lg:aspect-square">
-              <Image
-                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&q=80"
-                alt="Colorful custom products"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width:1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-x-4 bottom-4 rounded-3xl bg-white/90 p-4 backdrop-blur">
-                <p className="text-xs font-bold uppercase tracking-widest text-accent">Featured vibe</p>
-                <p className="mt-1 text-lg font-extrabold">Pink lemonade edit</p>
+            <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-pink-500/20 blur-3xl" />
+            <div className="absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-yellow-400/15 blur-3xl" />
+
+            <div className="relative z-20 mb-4 ml-12">
+              <div className="glow-pink flex h-48 w-48 items-center justify-center overflow-hidden rounded-2xl border border-pink-500/30 bg-gradient-to-br from-neutral-900 to-black">
+                <div className="text-center">
+                  <div className="text-2xl font-black leading-tight tracking-tight text-pink-400">
+                    GOOD
+                    <br />
+                    VIBES
+                    <br />
+                    ONLY
+                  </div>
+                  <div className="mt-1 text-2xl text-yellow-300">☺</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-10 -mt-8">
+              <div className="glow-yellow flex h-52 w-64 items-center justify-center rounded-2xl border border-yellow-400/20 bg-neutral-900">
+                <div className="text-center">
+                  <div className="text-lg font-semibold text-pink-400">made</div>
+                  <div className="text-xl font-bold text-yellow-300">+ for +</div>
+                  <div className="text-lg font-semibold text-pink-400">you ♥</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Shop by category</h2>
-            <p className="mt-1 font-medium text-muted-foreground">Pick a playground.</p>
+      {/* Stats */}
+      <section className="mx-auto max-w-5xl px-6 pb-20">
+        <div className="grid gap-5 sm:grid-cols-3">
+          <div className="card-dark p-6 text-center shadow-[0_0_25px_rgba(236,72,153,0.1)]">
+            <div className="mb-2 text-2xl text-pink-400">★</div>
+            <div className="mb-1 text-3xl font-bold text-pink-400">4.9★</div>
+            <div className="mb-1 font-medium">Happy customers</div>
+            <p className="text-sm text-neutral-500">Thousands of 5-star reviews from awesome people.</p>
           </div>
+          <div className="card-dark-yellow p-6 text-center shadow-[0_0_25px_rgba(250,204,21,0.1)]">
+            <div className="mb-2 text-2xl text-yellow-400">🚚</div>
+            <div className="mb-1 text-3xl font-bold text-yellow-400">$75+</div>
+            <div className="mb-1 font-medium">Free shipping</div>
+            <p className="text-sm text-neutral-500">On all orders over $75. No code needed.</p>
+          </div>
+          <div className="card-dark p-6 text-center shadow-[0_0_25px_rgba(236,72,153,0.1)]">
+            <div className="mb-2 text-2xl text-pink-400">↺</div>
+            <div className="mb-1 text-3xl font-bold text-pink-400">30d</div>
+            <div className="mb-1 font-medium">Easy returns</div>
+            <p className="text-sm text-neutral-500">Love it or send it back. No hassle, promise.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories from DB */}
+      <section className="mx-auto max-w-7xl px-6 pb-16">
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <div className="mb-2 inline-flex items-center gap-2 text-sm text-pink-400">
+              <span>✦</span> SHOP BY CATEGORY
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Pick a playground</h2>
+          </div>
+          <Link href="/shop" className="text-sm font-medium text-pink-400 hover:text-pink-300">
+            View all →
+          </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat, i) => (
             <Link
               key={cat.id}
               href={`/shop?category=${cat.slug}`}
-              className="group relative aspect-[3/4] overflow-hidden rounded-[2rem] border-4 border-white shadow-[0_12px_0_rgba(255,79,163,0.12)]"
+              className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-neutral-800"
             >
               {cat.image && (
                 <Image
@@ -113,35 +141,36 @@ export default async function HomePage() {
               <div
                 className={`absolute inset-0 ${
                   i % 2 === 0
-                    ? "bg-gradient-to-t from-[#ff4fa3]/85 via-[#ff4fa3]/20 to-transparent"
-                    : "bg-gradient-to-t from-[#f5c400]/90 via-[#ffe14a]/25 to-transparent"
+                    ? "bg-gradient-to-t from-pink-600/90 via-black/30 to-transparent"
+                    : "bg-gradient-to-t from-yellow-500/80 via-black/30 to-transparent"
                 }`}
               />
-              <div className="absolute bottom-0 p-5 text-white">
-                <p className="text-lg font-extrabold drop-shadow">{cat.name}</p>
-                <p className="text-xs font-semibold opacity-90">{cat._count.products} products</p>
+              <div className="absolute bottom-0 p-5">
+                <p className="text-lg font-bold">{cat.name}</p>
+                <p className="text-xs text-white/80">{cat._count.products} products</p>
               </div>
             </Link>
           ))}
           {categories.length === 0 && (
-            <div className="col-span-full bubble-card p-10 text-center">
-              <p className="text-lg font-extrabold">Products loading soon</p>
-              <p className="mt-2 text-muted-foreground">
-                Connect the database and seed to fill the shop.
-              </p>
+            <div className="col-span-full rounded-2xl border border-neutral-800 bg-neutral-950 p-10 text-center">
+              <p className="text-lg font-semibold">Products loading soon</p>
+              <p className="mt-2 text-neutral-500">Connect Postgres + seed to fill the shop.</p>
             </div>
           )}
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="mb-6 flex items-end justify-between gap-4">
+      {/* Featured products from DB */}
+      <section className="mx-auto max-w-7xl px-6 pb-16">
+        <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Featured favorites</h2>
-            <p className="mt-1 font-medium text-muted-foreground">Cute, customizable, ready to personalize.</p>
+            <div className="mb-2 inline-flex items-center gap-2 text-sm text-yellow-400">
+              <span>✦</span> FEATURED
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Customer favorites</h2>
           </div>
-          <Link href="/shop" className="text-sm font-extrabold text-accent hover:underline">
-            View all →
+          <Link href="/shop" className="text-sm font-medium text-yellow-400 hover:text-yellow-300">
+            Shop all →
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -151,41 +180,45 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2.5rem] border-4 border-white bg-gradient-to-br from-[#ffe14a] via-[#ffb6de] to-[#ff4fa3] p-8 text-[#3b2148] shadow-[0_16px_0_rgba(255,79,163,0.2)] sm:p-12">
-          <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/30 blur-2xl" />
-          <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
-            <div>
-              <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
-                Make it cute. Make it yours.
-              </h2>
-              <p className="mt-3 text-base font-medium opacity-90">
-                Upload art, pick colors, add names — every eligible product is made to order
-                with that bubbly Individual energy.
-              </p>
-              <Link href="/shop?tag=customizable" className="mt-6 inline-block">
-                <Button variant="outline" size="lg" className="border-white bg-white">
-                  Explore custom products
-                </Button>
-              </Link>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                { icon: Package, title: "Made to order", body: "Printed only when you buy." },
-                { icon: Truck, title: "Fast & fun", body: "Most customs ship in 3–5 days." },
-                { icon: Heart, title: "Gift ready", body: "Names, colors, and sweet details." },
-                { icon: Sparkles, title: "Zero waste stock", body: "No dusty leftover inventory." },
-              ].map((f) => (
-                <div key={f.title} className="rounded-3xl bg-white/75 p-4 backdrop-blur">
-                  <f.icon className="mb-2 h-5 w-5 text-accent" />
-                  <p className="font-extrabold">{f.title}</p>
-                  <p className="mt-1 text-sm font-medium opacity-80">{f.body}</p>
-                </div>
-              ))}
-            </div>
+      {/* Bottom CTA — zip copy + real links */}
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 lg:grid-cols-2">
+        <div>
+          <div className="mb-4 inline-flex items-center gap-2 text-sm text-pink-400">
+            <span>✦</span> FULLY PERSONALIZED
           </div>
+          <h2 className="mb-5 text-4xl font-bold leading-tight">
+            Made your way,
+            <br />
+            for <span className="text-pink-400">you</span>.{" "}
+            <span className="text-pink-400">♥</span>
+          </h2>
+          <p className="mb-6 max-w-md text-lg leading-relaxed text-neutral-400">
+            You dream it, we make it. From the perfect gift to something just for you — made with
+            care and good vibes.
+          </p>
+          <Link href="/shop?tag=customizable" className="font-medium text-pink-400 hover:text-pink-300">
+            How custom works →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { icon: Package, title: "Made to order", body: "Printed only when you buy." },
+            { icon: Truck, title: "Fast shipping", body: "Most customs in 3–5 days." },
+            { icon: Heart, title: "Gift ready", body: "Names, colors, sweet details." },
+            { icon: Sparkles, title: "Zero waste stock", body: "No leftover inventory." },
+          ].map((f) => (
+            <div
+              key={f.title}
+              className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5"
+            >
+              <f.icon className="mb-2 h-5 w-5 text-pink-400" />
+              <p className="font-semibold">{f.title}</p>
+              <p className="mt-1 text-sm text-neutral-500">{f.body}</p>
+            </div>
+          ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }

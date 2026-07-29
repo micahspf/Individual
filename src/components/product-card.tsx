@@ -16,8 +16,8 @@ export function ProductCard({ product }: { product: ProductDTO }) {
   const image = product.images[0] || "/placeholder-product.svg";
 
   return (
-    <article className="group bubble-card overflow-hidden transition hover:-translate-y-1">
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#fff3c4] to-[#ffe9f4]">
+    <article className="group overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 transition hover:-translate-y-1 hover:border-pink-500/40 hover:shadow-[0_0_30px_rgba(236,72,153,0.12)]">
+      <div className="relative aspect-square overflow-hidden bg-neutral-900">
         <Link href={`/products/${product.slug}`}>
           <Image
             src={image}
@@ -32,35 +32,35 @@ export function ProductCard({ product }: { product: ProductDTO }) {
           aria-label={wished ? "Remove from wishlist" : "Add to wishlist"}
           onClick={() => {
             toggle(product.id);
-            toast(wished ? "Removed from wishlist" : "Saved to wishlist 💕");
+            toast(wished ? "Removed from wishlist" : "Saved to wishlist ♥");
           }}
           className={cn(
-            "absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-white shadow-md transition hover:scale-110",
-            wished && "text-accent"
+            "absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-pink-500 text-white shadow transition hover:scale-110",
+            wished && "bg-pink-400"
           )}
         >
           <Heart className={cn("h-4 w-4", wished && "fill-current")} />
         </button>
         {product.compareAtPrice && (
-          <Badge className="absolute left-3 top-3 border-0 bg-accent text-white">Sale</Badge>
+          <Badge className="absolute left-3 top-3 border-0 bg-pink-500 text-white">Sale</Badge>
         )}
         {product.tags.includes("new") && !product.compareAtPrice && (
-          <Badge className="absolute left-3 top-3 border-0 bg-[#ffe14a] text-[#3b2148]">New</Badge>
+          <Badge className="absolute left-3 top-3 border-0 bg-yellow-400 text-black">New</Badge>
         )}
       </div>
       <div className="space-y-1.5 p-4">
-        <p className="text-[11px] font-extrabold uppercase tracking-wider text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-wider text-pink-400/80">
           {product.category.name}
         </p>
-        <h3 className="font-extrabold leading-snug">
-          <Link href={`/products/${product.slug}`} className="hover:text-accent">
+        <h3 className="font-semibold leading-snug">
+          <Link href={`/products/${product.slug}`} className="hover:text-pink-300">
             {product.name}
           </Link>
         </h3>
         <div className="flex items-center gap-2">
-          <span className="text-lg font-extrabold">{formatMoney(product.price)}</span>
+          <span className="font-bold text-yellow-300">{formatMoney(product.price)}</span>
           {product.compareAtPrice && (
-            <span className="text-sm font-semibold text-muted-foreground line-through">
+            <span className="text-sm text-neutral-500 line-through">
               {formatMoney(product.compareAtPrice)}
             </span>
           )}

@@ -20,19 +20,19 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.madebyindividual
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Made by Individual — Custom products, made for you",
+    default: "Made by Individual — Custom products with a bubbly twist",
     template: "%s · Made by Individual",
   },
   description:
-    "Bubbly custom products made to order — apparel, drinkware, home, and accessories you personalize. No waste inventory.",
+    "Personalize apparel, drinkware, and home goods. Bright colors, soft shapes, and made-to-order magic — no boring inventory.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: "Made by Individual",
-    title: "Made by Individual — Custom products, made for you",
+    title: "Made by Individual — Custom products with a bubbly twist",
     description:
-      "Personalize apparel, drinkware, and more. Bright, fun, made only when ordered.",
+      "Personalize apparel, drinkware, and home goods. Made just for you.",
   },
   twitter: {
     card: "summary_large_image",
@@ -48,10 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-          <div className="flex min-h-screen flex-col">
+          <div className="flex min-h-screen flex-col bg-black text-white">
             <SiteHeader />
             <main className="flex-1">{children}</main>
             <SiteFooter />
