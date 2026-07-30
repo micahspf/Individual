@@ -46,8 +46,8 @@ export default function HomePage() {
           {/* Hero products — clean grid, NO overlap */}
           <div className="relative">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-              {/* Laser tumbler with "Individual" engraving */}
-              <div className="relative overflow-hidden rounded-3xl border border-pink-500/30 bg-neutral-950 shadow-[0_0_40px_rgba(236,72,153,0.2)]">
+              {/* Laser tumbler */}
+              <div className="glass-pink relative overflow-hidden">
                 <div className="relative aspect-[3/4]">
                   <Image
                     src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900&q=80"
@@ -57,23 +57,20 @@ export default function HomePage() {
                     sizes="(max-width:640px) 100vw, 280px"
                     priority
                   />
-                  {/* Engraved word overlay — "Individual" */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="rounded-lg bg-black/25 px-3 py-2 backdrop-blur-[1px]">
+                    <div className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
                       <p
                         className="text-center text-xl font-semibold tracking-[0.18em] sm:text-2xl"
                         style={{
-                          color: "rgba(220, 220, 220, 0.92)",
-                          textShadow:
-                            "0 1px 0 rgba(0,0,0,0.5), 0 0 12px rgba(255,255,255,0.15)",
-                          letterSpacing: "0.2em",
+                          color: "rgba(230, 230, 230, 0.95)",
+                          textShadow: "0 1px 0 rgba(0,0,0,0.5), 0 0 12px rgba(255,255,255,0.12)",
                         }}
                       >
                         Individual
                       </p>
                     </div>
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1c21]/95 to-transparent p-4">
                     <p className="text-xs font-semibold uppercase tracking-wider text-pink-300">
                       Laser engraved
                     </p>
@@ -82,10 +79,10 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Founders hoodie — separate card, no overlap */}
-              <div className="relative overflow-hidden rounded-3xl border border-yellow-400/25 bg-neutral-900 shadow-[0_0_35px_rgba(250,204,21,0.1)]">
-                <div className="flex aspect-[3/4] flex-col items-center justify-center bg-gradient-to-br from-neutral-900 via-black to-neutral-950 p-6">
-                  <div className="flex h-32 w-36 items-center justify-center rounded-2xl bg-black ring-1 ring-white/5">
+              {/* Founders hoodie */}
+              <div className="glass-yellow relative overflow-hidden">
+                <div className="flex aspect-[3/4] flex-col items-center justify-center bg-gradient-to-br from-white/[0.06] to-transparent p-6">
+                  <div className="flex h-32 w-36 items-center justify-center rounded-2xl border border-white/10 bg-[#1c1c21]/80 backdrop-blur">
                     <div className="text-center">
                       <p
                         className="text-base font-semibold tracking-[0.18em] sm:text-lg"
@@ -99,15 +96,15 @@ export default function HomePage() {
                     </div>
                   </div>
                   <div className="mt-3 flex w-40 gap-2">
-                    <div className="h-9 flex-1 rounded-b-xl bg-neutral-800" />
-                    <div className="h-9 flex-1 rounded-b-xl bg-neutral-800" />
+                    <div className="h-9 flex-1 rounded-b-xl bg-white/10" />
+                    <div className="h-9 flex-1 rounded-b-xl bg-white/10" />
                   </div>
                 </div>
-                <div className="border-t border-yellow-400/20 bg-black/70 px-4 py-3">
+                <div className="border-t border-yellow-400/20 bg-[#1c1c21]/50 px-4 py-3 backdrop-blur">
                   <p className="text-xs font-semibold text-yellow-300">
                     Founders Edition · First 100 customers
                   </p>
-                  <p className="text-sm text-neutral-400">Black hoodie · gold Individual mark</p>
+                  <p className="text-sm text-zinc-400">Black hoodie · gold Individual mark</p>
                 </div>
               </div>
             </div>
@@ -116,8 +113,8 @@ export default function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <div className="relative border-y border-neutral-900 bg-neutral-950/60">
-        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-10 gap-y-3 px-6 py-5 text-sm text-neutral-400">
+      <div className="relative border-y border-white/10 bg-white/[0.03] backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-10 gap-y-3 px-6 py-5 text-sm text-zinc-400">
           <span className="flex items-center gap-2">
             <span className="text-yellow-400">●</span> Locally made in Cullman, Alabama
           </span>
@@ -133,7 +130,7 @@ export default function HomePage() {
       {/* Categories */}
       <section className="relative mx-auto max-w-7xl px-6 py-16">
         <h2 className="mb-2 text-2xl font-bold">What we make</h2>
-        <p className="mb-8 max-w-xl text-neutral-500">
+        <p className="mb-8 max-w-xl text-zinc-400">
           Maker tools. Custom finishes. No shelves full of leftovers.
         </p>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
@@ -147,20 +144,20 @@ export default function HomePage() {
             <Link
               key={c.href}
               href={c.href}
-              className="group rounded-2xl border border-neutral-800 bg-neutral-950 p-5 transition hover:border-pink-500/40"
+              className="glass group p-5 transition hover:border-pink-500/40"
             >
               <div className="font-medium transition group-hover:text-pink-300">{c.label}</div>
-              <div className="mt-1 text-sm text-neutral-500">{c.desc}</div>
+              <div className="mt-1 text-sm text-zinc-400">{c.desc}</div>
             </Link>
           ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section id="how" className="border-t border-neutral-900">
+      <section id="how" className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <h2 className="mb-10 text-center text-2xl font-bold">How it works</h2>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {[
               {
                 n: "01",
@@ -178,10 +175,10 @@ export default function HomePage() {
                 d: "3D printed or laser engraved to order. Made for you.",
               },
             ].map((s) => (
-              <div key={s.n} className="text-center">
+              <div key={s.n} className="glass p-6 text-center">
                 <div className="mb-3 font-mono text-sm text-pink-400">{s.n}</div>
                 <div className="mb-2 text-lg font-medium">{s.t}</div>
-                <p className="text-sm text-neutral-500">{s.d}</p>
+                <p className="text-sm text-zinc-400">{s.d}</p>
               </div>
             ))}
           </div>
@@ -189,29 +186,29 @@ export default function HomePage() {
       </section>
 
       {/* Founders */}
-      <section className="border-t border-neutral-900 bg-gradient-to-b from-neutral-950/80 to-black">
+      <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-16">
-          <div className="rounded-3xl border border-yellow-400/25 bg-black/60 p-8 sm:p-12">
+          <div className="glass-yellow p-8 sm:p-12">
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-yellow-300">
               Founders Edition
             </p>
             <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
               First 100 customers. Permanent Founders status.
             </h2>
-            <p className="mt-4 max-w-2xl text-neutral-400">
+            <p className="mt-4 max-w-2xl text-zinc-300/90">
               Early supporters get Founders Edition access, token exclusives, and a seat at the
               start of Individual — custom manufacturing built in Cullman, Alabama.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/rewards"
-                className="rounded-full bg-yellow-400 px-6 py-3 text-sm font-semibold text-black transition hover:bg-yellow-300"
+                className="btn-pill-yellow px-6 py-3 text-sm"
               >
                 See rewards & tokens
               </Link>
               <Link
                 href="/shop"
-                className="rounded-full border border-neutral-700 px-6 py-3 text-sm font-medium text-neutral-200 transition hover:border-pink-500/40"
+                className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-zinc-100 transition hover:border-pink-500/40"
               >
                 Shop the catalog
               </Link>
@@ -221,14 +218,16 @@ export default function HomePage() {
       </section>
 
       {/* Custom request */}
-      <section id="request" className="border-t border-neutral-900 bg-neutral-950/40">
+      <section id="request" className="border-t border-white/10">
         <div className="mx-auto max-w-2xl px-6 py-16">
           <h2 className="mb-2 text-center text-2xl font-bold">Custom request</h2>
-          <p className="mb-8 text-center text-sm text-neutral-500">
+          <p className="mb-8 text-center text-sm text-zinc-400">
             Best for pieces that fit roughly a 12.8″ print cube — or laser engraving on drinkware
             and wood. Made for you.
           </p>
-          <RequestForm />
+          <div className="glass-strong p-6 sm:p-8">
+            <RequestForm />
+          </div>
         </div>
       </section>
     </main>

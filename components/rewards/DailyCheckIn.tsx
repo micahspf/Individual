@@ -24,18 +24,18 @@ export default function DailyCheckIn({
   const fill = streakBarFill(streak);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 p-6">
+    <div className="glass relative overflow-hidden p-6">
       <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-pink-500/10 blur-3xl" />
 
       <div className="relative">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h3 className="font-medium text-white">Daily Check-in</h3>
-            <p className="mt-0.5 text-xs text-neutral-500">Come back every day for tokens</p>
+            <h3 className="font-medium text-zinc-100">Daily Check-in</h3>
+            <p className="mt-0.5 text-xs text-zinc-400">Come back every day for tokens</p>
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-yellow-300">{streak}</div>
-            <div className="text-[10px] uppercase tracking-wider text-neutral-500">Day streak</div>
+            <div className="text-[10px] uppercase tracking-wider text-zinc-500">Day streak</div>
           </div>
         </div>
 

@@ -154,13 +154,13 @@ export default function RewardsPage() {
 
   return (
     <main className="min-h-screen">
-      <div className="border-b border-neutral-900">
+      <div className="border-b border-white/10">
         <div className="mx-auto max-w-5xl px-6 py-10">
           <p className="mb-2 text-sm font-medium tracking-wide text-pink-400">✦ REWARDS</p>
           <h1 className="text-4xl font-bold tracking-tight">
             Earn. Spin. <span className="text-pink-400">Unlock.</span>
           </h1>
-          <p className="mt-2 max-w-lg text-neutral-500">
+          <p className="mt-2 max-w-lg text-zinc-400">
             Daily check-ins, streak bonuses, and a premium spin wheel. Spend tokens on Founders
             & Nova exclusives.
           </p>
@@ -233,9 +233,9 @@ export default function RewardsPage() {
           </div>
 
           <div className="lg:col-span-3">
-            <div className="flex flex-col items-center rounded-2xl border border-neutral-800 bg-neutral-950 p-8">
+            <div className="glass-strong flex flex-col items-center p-8">
               <h2 className="mb-1 text-xl font-bold">Spin the Wheel</h2>
-              <p className="mb-8 text-sm text-neutral-500">
+              <p className="mb-8 text-sm text-zinc-400">
                 {SPIN_COST} tokens per spin · Six premium outcomes
               </p>
               <SpinWheel tokens={state.tokens} onSpin={handleSpin} disabled={spinningLock} />

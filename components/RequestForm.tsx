@@ -22,13 +22,14 @@ export default function RequestForm() {
 
   if (status === 'sent') {
     return (
-      <div className="rounded-2xl border border-pink-500/30 bg-pink-500/10 p-8 text-center">
-        <div className="text-2xl mb-2">✓</div>
+      <div className="glass-pink p-8 text-center">
+        <div className="mb-2 text-2xl">✓</div>
         <p className="font-medium">Request received</p>
-        <p className="text-neutral-400 text-sm mt-1">
+        <p className="mt-1 text-sm text-zinc-300">
           We’ll reply with a quote and timeline soon.
         </p>
         <button
+          type="button"
           onClick={() => setStatus('idle')}
           className="mt-4 text-sm text-pink-400 hover:text-pink-300"
         >
@@ -41,41 +42,41 @@ export default function RequestForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="block text-sm text-neutral-400 mb-1.5">Your name (optional)</label>
+        <label className="mb-1.5 block text-sm text-zinc-400">Your name (optional)</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-pink-500/50 focus:outline-none"
           placeholder="Micah"
         />
       </div>
       <div>
-        <label className="block text-sm text-neutral-400 mb-1.5">Email *</label>
+        <label className="mb-1.5 block text-sm text-zinc-400">Email *</label>
         <input
           type="email"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-pink-500/50 focus:outline-none"
           placeholder="you@email.com"
         />
       </div>
       <div>
-        <label className="block text-sm text-neutral-400 mb-1.5">What would you like made? *</label>
+        <label className="mb-1.5 block text-sm text-zinc-400">What would you like made? *</label>
         <textarea
           required
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 resize-none"
+          className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-pink-500/50 focus:outline-none"
           placeholder="Describe size, material preference, color, quantity, any text/logo, and deadline if you have one..."
         />
       </div>
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition disabled:opacity-60"
+        className="btn-pill-pink w-full py-3.5 disabled:opacity-60"
       >
         {status === 'sending' ? 'Sending…' : 'Send Request'}
       </button>

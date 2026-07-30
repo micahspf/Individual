@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import SearchBar from '@/components/search/SearchBar';
-import CartDrawer from '@/components/cart/CartDrawer';
-import { cartCount } from '@/lib/cart/store';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import SearchBar from "@/components/search/SearchBar";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { cartCount } from "@/lib/cart/store";
 
 export default function Header() {
   const [count, setCount] = useState(0);
@@ -15,13 +15,13 @@ export default function Header() {
     function sync() {
       setCount(cartCount());
     }
-    window.addEventListener('cart-updated', sync);
-    return () => window.removeEventListener('cart-updated', sync);
+    window.addEventListener("cart-updated", sync);
+    return () => window.removeEventListener("cart-updated", sync);
   }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-neutral-900 bg-black/90 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1c1c21]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
           <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
             Made by <span className="text-pink-400">Individual</span>
@@ -32,41 +32,32 @@ export default function Header() {
           </div>
 
           <nav className="ml-auto flex items-center gap-2 text-sm sm:gap-3">
-            <Link
-              href="/shop"
-              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white sm:inline"
-            >
-              Shop
-            </Link>
-            <Link
-              href="/rewards"
-              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-pink-300 sm:inline"
-            >
-              Rewards
-            </Link>
-            <Link
-              href="/about"
-              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:inline"
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:inline"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/account"
-              className="rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
-            >
-              Account
-            </Link>
+            {[
+              { href: "/shop", label: "Shop", hide: "sm" },
+              { href: "/rewards", label: "Rewards", hide: "sm" },
+              { href: "/about", label: "About", hide: "md" },
+              { href: "/contact", label: "Contact", hide: "md" },
+              { href: "/account", label: "Account", hide: "" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`rounded-full px-3 py-1.5 text-zinc-400 transition hover:bg-white/10 hover:text-white ${
+                  item.hide === "sm"
+                    ? "hidden sm:inline"
+                    : item.hide === "md"
+                      ? "hidden md:inline"
+                      : ""
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
 
             <button
               type="button"
               onClick={() => setCartOpen(true)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-yellow-400 text-black transition hover:bg-yellow-300"
+              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-yellow-400 text-black shadow-[0_0_16px_rgba(250,204,21,0.35)] transition hover:bg-yellow-300"
               aria-label="Open cart"
             >
               <span className="text-sm">🛒</span>
@@ -79,8 +70,7 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Mobile search */}
-        <div className="md:hidden px-4 pb-3">
+        <div className="px-4 pb-3 md:hidden">
           <SearchBar />
         </div>
       </header>

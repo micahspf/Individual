@@ -19,11 +19,11 @@ export default function TokenBalance({ tokens, isFounder, compact }: TokenBalanc
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-pink-500/25 bg-neutral-950 p-6">
+    <div className="glass-pink relative overflow-hidden p-6">
       <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-pink-500/10 blur-2xl" />
       <div className="absolute -bottom-10 -left-6 h-28 w-28 rounded-full bg-yellow-400/10 blur-2xl" />
       <div className="relative">
-        <div className="mb-1 text-xs uppercase tracking-wider text-neutral-500">
+        <div className="mb-1 text-xs uppercase tracking-wider text-zinc-400">
           Individual Tokens
         </div>
         <div className="flex items-center gap-3">

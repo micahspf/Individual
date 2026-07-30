@@ -52,12 +52,12 @@ export default function SearchBar() {
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search products…"
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-full px-4 py-2 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-pink-500/50 transition"
+          className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 transition focus:border-pink-500/50 focus:outline-none"
         />
       </form>
 
       {open && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 rounded-xl border border-neutral-800 bg-neutral-950 shadow-xl z-50 overflow-hidden">
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-white/10 bg-[#24242b]/95 shadow-xl backdrop-blur-xl">
           {results.map((p) => (
             <Link
               key={p.id}
@@ -66,17 +66,17 @@ export default function SearchBar() {
                 setOpen(false);
                 setQ('');
               }}
-              className="flex items-center justify-between px-4 py-3 hover:bg-neutral-900 transition text-sm"
+              className="flex items-center justify-between px-4 py-3 text-sm transition hover:bg-white/5"
             >
-              <span className="text-white">{p.name}</span>
-              <span className="text-yellow-300 text-xs">
+              <span className="text-zinc-100">{p.name}</span>
+              <span className="text-xs text-yellow-300">
                 {p.isTokenOnly ? `${p.tokenPrice} tokens` : `$${p.price}`}
               </span>
             </Link>
           ))}
           <button
             onClick={submit}
-            className="w-full text-left px-4 py-2.5 text-xs text-pink-400 border-t border-neutral-800 hover:bg-neutral-900"
+            className="w-full border-t border-white/10 px-4 py-2.5 text-left text-xs text-pink-400 hover:bg-white/5"
           >
             View all results for “{q}” →
           </button>

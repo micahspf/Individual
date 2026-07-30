@@ -1,25 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  /* Medium dark grey base (not pure black) */
+  --background: #1c1c21;
+  --background-elevated: #24242b;
+  --background-soft: #2a2a33;
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
   --pink: #ec4899;
+  --pink-soft: #f9a8d4;
   --yellow: #facc15;
+  --yellow-soft: #fde047;
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.09);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(236, 72, 153, 0.08), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(250, 204, 21, 0.06), transparent 45%),
+    var(--background);
   color: var(--foreground);
+  min-height: 100vh;
 }
 
 ::selection {
-  background: rgba(236, 72, 153, 0.35);
+  background: rgba(236, 72, 153, 0.4);
   color: #fff;
 }
 
 :focus-visible {
   outline: 2px solid #ec4899;
   outline-offset: 2px;
+}
+
+/* Glassmorphism cards — Vision Pro style, pink/yellow neon system */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.glass-pink {
+  background: linear-gradient(
+    145deg,
+    rgba(236, 72, 153, 0.18),
+    rgba(236, 72, 153, 0.06)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(236, 72, 153, 0.35);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(236, 72, 153, 0.12);
+}
+
+.glass-yellow {
+  background: linear-gradient(
+    145deg,
+    rgba(250, 204, 21, 0.16),
+    rgba(250, 204, 21, 0.05)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(250, 204, 21, 0.3);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(250, 204, 21, 0.1);
+}
+
+.btn-pill-pink {
+  border-radius: 999px;
+  background: #ec4899;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 24px rgba(236, 72, 153, 0.35);
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.btn-pill-pink:hover {
+  background: #f472b6;
+  box-shadow: 0 0 32px rgba(236, 72, 153, 0.45);
+}
+
+.btn-pill-yellow {
+  border-radius: 999px;
+  background: #facc15;
+  color: #111;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.25);
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-pill-yellow:hover {
+  background: #fde047;
+}
+
+.surface {
+  background: var(--background-elevated);
 }
 
 .scrollbar-hide::-webkit-scrollbar {

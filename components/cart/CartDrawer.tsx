@@ -33,9 +33,9 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
 
   return (
     <div className="fixed inset-0 z-[100]">
-      <div className="absolute inset-0 bg-black/70" onClick={onClose} />
-      <div className="absolute right-0 top-0 h-full w-full max-w-md bg-neutral-950 border-l border-neutral-800 flex flex-col shadow-2xl">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-neutral-800">
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-white/10 bg-[#24242b]/95 shadow-2xl backdrop-blur-xl">
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <h2 className="font-bold text-lg">Your cart</h2>
           <button onClick={onClose} className="text-neutral-500 hover:text-white text-sm">
             Close
