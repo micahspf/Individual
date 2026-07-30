@@ -85,7 +85,6 @@ export default function HomePage() {
               {/* Founders hoodie — separate card, no overlap */}
               <div className="relative overflow-hidden rounded-3xl border border-yellow-400/25 bg-neutral-900 shadow-[0_0_35px_rgba(250,204,21,0.1)]">
                 <div className="flex aspect-[3/4] flex-col items-center justify-center bg-gradient-to-br from-neutral-900 via-black to-neutral-950 p-6">
-                  <div className="mb-3 h-14 w-24 rounded-t-full bg-neutral-800 shadow-inner" />
                   <div className="flex h-32 w-36 items-center justify-center rounded-2xl bg-black ring-1 ring-white/5">
                     <div className="text-center">
                       <p
