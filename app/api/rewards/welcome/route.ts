@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { awardWelcomeBonus } from '@/lib/rewards/engine';
+import { WELCOME_BONUS } from '@/lib/rewards/constants';
 import { buildWelcomeEmail } from '@/lib/rewards/welcome-email';
 import { notifyFounder } from '@/lib/email';
 
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
     const profile = awardWelcomeBonus(email);
 
     // Build personal welcome email from Micah
-    const { subject, html, text } = buildWelcomeEmail(name || null, 20);
+    const { subject, html, text } = buildWelcomeEmail(name || null, WELCOME_BONUS);
 
     // Send welcome email to the customer
     // (Uses the existing email helper – safe if Resend key is missing)
@@ -40,7 +41,7 @@ export async function POST(req: NextRequest) {
     try {
       await notifyFounder(
         'New account + welcome tokens',
-        `New user: ${name || 'Unknown'} <${email}>\nTokens awarded: 20\nFounder status: ${profile.isFounder}`
+        `New user: ${name || 'Unknown'} <${email}>\nTokens awarded: ${WELCOME_BONUS}\nFounder status: ${profile.isFounder}`
       );
     } catch (e) {
       // silent

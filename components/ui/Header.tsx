@@ -21,41 +21,57 @@ export default function Header() {
 
   return (
     <>
-      <header className="border-b border-neutral-900 sticky top-0 z-50 bg-black/90 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4">
-          <Link href="/" className="font-bold text-lg tracking-tight shrink-0">
+      <header className="sticky top-0 z-50 border-b border-neutral-900 bg-black/90 backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
+          <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
             Made by <span className="text-pink-400">Individual</span>
           </Link>
 
-          <div className="hidden md:block flex-1 max-w-sm mx-4">
+          <div className="mx-4 hidden max-w-sm flex-1 md:block">
             <SearchBar />
           </div>
 
-          <nav className="flex items-center gap-3 sm:gap-5 text-sm ml-auto">
-            <Link href="/shop" className="text-neutral-400 hover:text-white transition hidden sm:inline">
+          <nav className="ml-auto flex items-center gap-2 text-sm sm:gap-3">
+            <Link
+              href="/shop"
+              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white sm:inline"
+            >
               Shop
             </Link>
-            <Link href="/rewards" className="text-neutral-400 hover:text-white transition hidden sm:inline">
+            <Link
+              href="/rewards"
+              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-pink-300 sm:inline"
+            >
               Rewards
             </Link>
-            <Link href="/about" className="text-neutral-400 hover:text-white transition hidden md:inline">
+            <Link
+              href="/about"
+              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:inline"
+            >
               About
             </Link>
-            <Link href="/contact" className="text-neutral-400 hover:text-white transition hidden md:inline">
+            <Link
+              href="/contact"
+              className="hidden rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white md:inline"
+            >
               Contact
             </Link>
-            <Link href="/account" className="text-neutral-400 hover:text-white transition">
+            <Link
+              href="/account"
+              className="rounded-full px-3 py-1.5 text-neutral-400 transition hover:bg-neutral-900 hover:text-white"
+            >
               Account
             </Link>
 
             <button
+              type="button"
               onClick={() => setCartOpen(true)}
-              className="relative p-2 text-neutral-300 hover:text-pink-300 transition"
+              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-yellow-400 text-black transition hover:bg-yellow-300"
               aria-label="Open cart"
             >
-              <span className="text-lg">🛒</span>
+              <span className="text-sm">🛒</span>
               {count > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-pink-500 text-white text-[10px] font-bold flex items-center justify-center">
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-pink-500 px-1 text-[10px] font-bold text-white">
                   {count}
                 </span>
               )}

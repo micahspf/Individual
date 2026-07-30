@@ -131,8 +131,9 @@ export const products: Product[] = [
     isTokenOnly: true,
     tokenPrice: 80,
     edition: 'founders',
-    remainingQuantity: 47,
-    description: 'Exclusive Founders Edition name plate. Available only with Individual Tokens.',
+    remainingQuantity: 100,
+    description:
+      'Founders Edition · First 100 customers. Exclusive name plate available only with Individual Tokens.',
     materials: 'PLA / specialty filament',
     turnaround: '4–7 days',
   },

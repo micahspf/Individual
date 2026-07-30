@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import EditionBadge from '@/components/rewards/EditionBadge';
+import TokenIcon from '@/components/rewards/TokenIcon';
 import { EditionType } from '@/lib/data/products';
 
 interface Product {
@@ -62,8 +63,8 @@ export default function ProductCard({ product }: { product: Product }) {
         </h3>
         <div className="mt-1.5 flex items-center justify-between">
           {product.isTokenOnly && product.tokenPrice ? (
-            <span className="text-lg font-semibold text-yellow-300 flex items-center gap-1">
-              <span className="text-yellow-400/80">●</span>
+            <span className="text-lg font-semibold text-yellow-300 flex items-center gap-1.5">
+              <TokenIcon size={18} />
               {product.tokenPrice}
             </span>
           ) : (

@@ -4,13 +4,13 @@ import Header from '@/components/ui/Header';
 import EmailCapture from '@/components/ui/EmailCapture';
 
 export const metadata: Metadata = {
-  title: 'Made by Individual — Custom products made in Cullman, Alabama',
+  title: 'Made by Individual — Custom 3D print & laser engraving · Cullman, AL',
   description:
-    'Personalized tumblers, wood signs, flexi animals, pet tags, and custom 3D-printed goods. Made to order in Cullman, Alabama. No waste inventory.',
+    'Custom 3D-printed and laser-engraved products made to order in Cullman, Alabama. Tumblers, signs, flexi packs, pet tags. Made for you. No waste inventory.',
   openGraph: {
-    title: 'Made by Individual — Custom products made in Cullman, Alabama',
+    title: 'Made by Individual — Custom 3D print & laser engraving',
     description:
-      'Personalized tumblers, wood signs, flexi animals, pet tags, and custom 3D-printed goods. Made to order in Cullman, Alabama.',
+      'Custom 3D-printed and laser-engraved goods made to order in Cullman, Alabama. Made for you.',
     url: 'https://www.madebyindividual.com',
     siteName: 'Made by Individual',
     locale: 'en_US',
@@ -38,7 +38,7 @@ export default function RootLayout({
               '@type': 'LocalBusiness',
               name: 'Made by Individual',
               description:
-                'Custom made-to-order products: personalized drinkware, wood signs, 3D printed goods, and more. Based in Cullman, Alabama.',
+                'Custom 3D printing and laser engraving: tumblers, wood signs, flexi packs, and more. Made for you in Cullman, Alabama.',
               url: 'https://www.madebyindividual.com',
               address: {
                 '@type': 'PostalAddress',
@@ -62,7 +62,7 @@ export default function RootLayout({
                 Made by <span className="text-pink-400">Individual</span>
               </div>
               <p className="text-neutral-500">
-                Custom products made to order in Cullman, Alabama. No waste inventory.
+                Custom 3D print & laser engraving. Made for you in Cullman, Alabama.
               </p>
             </div>
             <div>

@@ -3,6 +3,14 @@
  * In-memory for now — swap to DB later
  */
 
+import {
+  WELCOME_BONUS,
+  FOUNDERS_CAP,
+  computeCheckIn,
+  SPIN_COST,
+  localDateKey,
+} from "./constants";
+
 export interface UserRewards {
   email: string;
   tokens: number;
@@ -10,36 +18,32 @@ export interface UserRewards {
   lifetimeSpent: number;
   isFounder: boolean;
   streak: number;
-  lastCheckIn: string | null; // YYYY-MM-DD
+  lastCheckIn: string | null;
   createdAt: string;
   updatedAt: string;
+  welcomeClaimed: boolean;
 }
 
 const store = new Map<string, UserRewards>();
-
-const WELCOME_BONUS = 20;
-const DAILY_BASE = 3;
-const STREAK_BONUS_3 = 5;
-const STREAK_BONUS_7 = 12;
-
-function todayKey() {
-  return new Date().toISOString().slice(0, 10);
-}
+let founderSlotsUsed = 0;
 
 export function getOrCreateRewards(email: string): UserRewards {
   const key = email.toLowerCase().trim();
   if (!store.has(key)) {
     const now = new Date().toISOString();
+    const isFounder = founderSlotsUsed < FOUNDERS_CAP;
+    if (isFounder) founderSlotsUsed += 1;
     store.set(key, {
       email: key,
       tokens: 0,
       lifetimeEarned: 0,
       lifetimeSpent: 0,
-      isFounder: store.size < 100,
+      isFounder,
       streak: 0,
       lastCheckIn: null,
       createdAt: now,
       updatedAt: now,
+      welcomeClaimed: false,
     });
   }
   return store.get(key)!;
@@ -47,9 +51,10 @@ export function getOrCreateRewards(email: string): UserRewards {
 
 export function awardWelcomeBonus(email: string): UserRewards {
   const profile = getOrCreateRewards(email);
-  if (profile.lifetimeEarned > 0) return profile;
+  if (profile.welcomeClaimed) return profile;
   profile.tokens += WELCOME_BONUS;
   profile.lifetimeEarned += WELCOME_BONUS;
+  profile.welcomeClaimed = true;
   profile.updatedAt = new Date().toISOString();
   return profile;
 }
@@ -59,37 +64,41 @@ export function dailyCheckIn(email: string): {
   earned: number;
   alreadyClaimed: boolean;
   streak: number;
+  breakdown: { base: number; streak3: number; streak7: number };
 } {
   const profile = getOrCreateRewards(email);
-  const today = todayKey();
+  const result = computeCheckIn({
+    lastCheckIn: profile.lastCheckIn,
+    streak: profile.streak,
+  });
 
-  if (profile.lastCheckIn === today) {
-    return { profile, earned: 0, alreadyClaimed: true, streak: profile.streak };
+  if (result.alreadyClaimed) {
+    return {
+      profile,
+      earned: 0,
+      alreadyClaimed: true,
+      streak: profile.streak,
+      breakdown: result.breakdown,
+    };
   }
 
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayKey = yesterday.toISOString().slice(0, 10);
-
-  if (profile.lastCheckIn === yesterdayKey) {
-    profile.streak += 1;
-  } else {
-    profile.streak = 1;
-  }
-
-  let earned = DAILY_BASE;
-  if (profile.streak === 3) earned += STREAK_BONUS_3;
-  if (profile.streak >= 7 && profile.streak % 7 === 0) earned += STREAK_BONUS_7;
-
-  profile.tokens += earned;
-  profile.lifetimeEarned += earned;
-  profile.lastCheckIn = today;
+  profile.streak = result.newStreak;
+  profile.tokens += result.earned;
+  profile.lifetimeEarned += result.earned;
+  profile.lastCheckIn = result.today;
   profile.updatedAt = new Date().toISOString();
 
-  return { profile, earned, alreadyClaimed: false, streak: profile.streak };
+  return {
+    profile,
+    earned: result.earned,
+    alreadyClaimed: false,
+    streak: profile.streak,
+    breakdown: result.breakdown,
+  };
 }
 
 export function spendTokens(email: string, amount: number): boolean {
+  if (amount <= 0) return false;
   const profile = getOrCreateRewards(email);
   if (profile.tokens < amount) return false;
   profile.tokens -= amount;
@@ -100,8 +109,10 @@ export function spendTokens(email: string, amount: number): boolean {
 
 export function addTokens(email: string, amount: number): UserRewards {
   const profile = getOrCreateRewards(email);
-  profile.tokens += amount;
-  profile.lifetimeEarned += amount;
+  if (amount > 0) {
+    profile.tokens += amount;
+    profile.lifetimeEarned += amount;
+  }
   profile.updatedAt = new Date().toISOString();
   return profile;
 }
@@ -109,3 +120,5 @@ export function addTokens(email: string, amount: number): UserRewards {
 export function getRewards(email: string): UserRewards {
   return getOrCreateRewards(email);
 }
+
+export { SPIN_COST, WELCOME_BONUS, localDateKey };
