@@ -11,7 +11,7 @@ interface TokenBalanceProps {
 export default function TokenBalance({ tokens, isFounder, compact }: TokenBalanceProps) {
   if (compact) {
     return (
-      <div className="inline-flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-neutral-900 px-3 py-1 text-sm font-medium text-yellow-300">
+      <div className="inline-flex items-center gap-1.5 rounded-full border border-pink-500/30 bg-[#1c1c21]/80 px-3 py-1 text-sm font-medium text-yellow-300 backdrop-blur-sm">
         <TokenIcon size={16} />
         {tokens}
       </div>

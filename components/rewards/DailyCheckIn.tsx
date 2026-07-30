@@ -53,8 +53,8 @@ export default function DailyCheckIn({
         </div>
 
         {claimedToday ? (
-          <div className="rounded-xl border border-neutral-800 bg-neutral-900 py-3 text-center">
-            <p className="text-sm text-neutral-400">
+          <div className="rounded-xl border border-white/10 bg-white/5 py-3 text-center">
+            <p className="text-sm text-zinc-400">
               {earned && earned > 0 ? (
                 <>
                   You claimed <span className="font-medium text-yellow-300">+{earned} tokens</span>{" "}

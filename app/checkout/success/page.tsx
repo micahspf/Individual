@@ -18,13 +18,13 @@ function SuccessContent() {
       </p>
 
       {orderId && (
-        <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 mb-8 text-left">
-          <div className="text-sm text-neutral-500 mb-1">Order ID</div>
+        <div className="glass p-6 mb-8 text-left">
+          <div className="text-sm text-zinc-500 mb-1">Order ID</div>
           <div className="font-mono text-lg text-yellow-300 mb-4">{orderId}</div>
           {email && (
             <>
-              <div className="text-sm text-neutral-500 mb-1">Confirmation sent to</div>
-              <div className="text-neutral-300">{email}</div>
+              <div className="text-sm text-zinc-500 mb-1">Confirmation sent to</div>
+              <div className="text-zinc-300">{email}</div>
             </>
           )}
         </div>
@@ -33,13 +33,13 @@ function SuccessContent() {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <Link
           href={`/orders/track?order=${orderId}&email=${encodeURIComponent(email)}`}
-          className="px-6 py-3 rounded-full bg-pink-500 text-white text-sm font-medium hover:bg-pink-400 transition"
+          className="btn-pill-pink px-6 py-3 text-sm"
         >
           Track this order
         </Link>
         <Link
           href="/shop"
-          className="px-6 py-3 rounded-full border border-neutral-700 text-sm text-neutral-300 hover:border-pink-500/40 transition"
+          className="px-6 py-3 rounded-full border border-white/15 bg-white/5 text-sm text-zinc-300 transition hover:border-pink-500/40"
         >
           Continue shopping
         </Link>

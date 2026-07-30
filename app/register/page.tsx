@@ -40,48 +40,48 @@ export default function RegisterPage() {
 
   return (
     <main className="min-h-[70vh] flex items-center justify-center px-6 py-16">
-      <div className="w-full max-w-md">
+      <div className="glass-strong w-full max-w-md p-8">
         <div className="text-center mb-8">
           <p className="text-pink-400 text-sm font-medium mb-2">ACCOUNT</p>
           <h1 className="text-3xl font-bold">Create account</h1>
-          <p className="text-neutral-500 text-sm mt-2">
+          <p className="text-zinc-400 text-sm mt-2">
             Get 20 welcome tokens + Founders status (first 100)
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-neutral-400 mb-1.5">Name (optional)</label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Name (optional)</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass"
               placeholder="Micah"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-neutral-400 mb-1.5">Email</label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass"
               placeholder="you@email.com"
             />
           </div>
 
           <div>
-            <label className="block text-sm text-neutral-400 mb-1.5">Password</label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Password</label>
             <input
               type="password"
               required
               minLength={8}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass"
               placeholder="At least 8 characters"
             />
           </div>
@@ -91,13 +91,13 @@ export default function RegisterPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition disabled:opacity-60"
+            className="btn-pill-pink w-full py-3.5 disabled:opacity-60"
           >
             {loading ? 'Creating…' : 'Create account'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-neutral-500 mt-6">
+        <p className="text-center text-sm text-zinc-400 mt-6">
           Already have an account?{' '}
           <Link href="/login" className="text-pink-400 hover:text-pink-300">
             Sign in

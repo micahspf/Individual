@@ -30,11 +30,11 @@ export default function FAQPage() {
     <main className="max-w-3xl mx-auto px-6 py-16">
       <p className="text-pink-400 text-sm font-medium mb-3">FAQ</p>
       <h1 className="text-4xl font-bold mb-10">Questions</h1>
-      <div className="space-y-8">
+      <div className="space-y-4">
         {faqs.map((f) => (
-          <div key={f.q}>
+          <div key={f.q} className="glass p-5">
             <h2 className="font-medium text-white mb-2">{f.q}</h2>
-            <p className="text-neutral-400 text-sm leading-relaxed">{f.a}</p>
+            <p className="text-zinc-400 text-sm leading-relaxed">{f.a}</p>
           </div>
         ))}
       </div>

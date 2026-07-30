@@ -111,6 +111,45 @@ body {
   background: var(--background-elevated);
 }
 
+/* Form controls — glass on medium-dark grey */
+.input-glass {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #f4f4f5;
+  transition: border-color 0.15s, background 0.15s;
+}
+.input-glass::placeholder {
+  color: #71717a;
+}
+.input-glass:focus {
+  outline: none;
+  border-color: rgba(236, 72, 153, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.input-glass-pill {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  color: #f4f4f5;
+  transition: border-color 0.15s, background 0.15s;
+}
+.input-glass-pill::placeholder {
+  color: #71717a;
+}
+.input-glass-pill:focus {
+  outline: none;
+  border-color: rgba(236, 72, 153, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

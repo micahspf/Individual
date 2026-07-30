@@ -71,7 +71,7 @@ export default function SpinWheel({ tokens, onSpin, disabled }: SpinWheelProps) 
         <div className="absolute inset-[-12px] rounded-full bg-gradient-to-br from-pink-500/25 via-yellow-400/15 to-pink-500/25 blur-xl" />
 
         <div
-          className="relative h-64 w-64 rounded-full border-[6px] border-neutral-800 shadow-[0_0_48px_rgba(236,72,153,0.28)] sm:h-72 sm:w-72"
+          className="relative h-64 w-64 rounded-full border-[6px] border-white/15 shadow-[0_0_48px_rgba(236,72,153,0.28)] sm:h-72 sm:w-72"
           style={{
             transform: `rotate(${rotation}deg)`,
             transition: spinning
@@ -125,7 +125,7 @@ export default function SpinWheel({ tokens, onSpin, disabled }: SpinWheelProps) 
           })}
 
           {/* Center hub */}
-          <div className="absolute inset-0 m-auto flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-full border-2 border-yellow-400/90 bg-black shadow-[0_0_24px_rgba(250,204,21,0.5)]">
+          <div className="absolute inset-0 m-auto flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-full border-2 border-yellow-400/90 bg-[#1c1c21] shadow-[0_0_24px_rgba(250,204,21,0.5)]">
             <span className="text-xs font-bold tracking-wide text-yellow-400">SPIN</span>
           </div>
         </div>

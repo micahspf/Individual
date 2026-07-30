@@ -53,39 +53,39 @@ function TrackForm() {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+            className="input-glass"
           />
         </div>
         <div>
-          <label className="block text-sm text-neutral-400 mb-1.5">Order ID</label>
+          <label className="block text-sm text-zinc-400 mb-1.5">Order ID</label>
           <input
             type="text"
             required
             value={orderId}
             onChange={(e) => setOrderId(e.target.value)}
             placeholder="IND-…"
-            className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 font-mono"
+            className="input-glass font-mono"
           />
         </div>
         {error && <p className="text-sm text-red-400">{error}</p>}
         <button
           type="submit"
-          className="w-full py-3 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition"
+          className="btn-pill-pink w-full py-3"
         >
           Track order
         </button>
       </form>
 
       {order && (
-        <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6">
+        <div className="glass p-6">
           <div className="flex justify-between items-start mb-6">
             <div>
               <div className="font-mono text-yellow-300">{order.id}</div>
-              <div className="text-sm text-neutral-500 mt-1">
+              <div className="text-sm text-zinc-500 mt-1">
                 Placed {new Date(order.createdAt).toLocaleDateString()}
               </div>
             </div>
-            <div className="text-right text-sm text-neutral-400">
+            <div className="text-right text-sm text-zinc-400">
               ${order.total.toFixed(2)}
             </div>
           </div>
@@ -98,12 +98,12 @@ function TrackForm() {
                   className={`mx-auto w-3 h-3 rounded-full mb-2 ${
                     i <= stepIndex
                       ? 'bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.6)]'
-                      : 'bg-neutral-700'
+                      : 'bg-white/15'
                   }`}
                 />
                 <div
                   className={`text-[10px] ${
-                    i <= stepIndex ? 'text-pink-300' : 'text-neutral-600'
+                    i <= stepIndex ? 'text-pink-300' : 'text-zinc-500'
                   }`}
                 >
                   {step.label}
@@ -112,7 +112,7 @@ function TrackForm() {
             ))}
           </div>
 
-          <ul className="space-y-2 text-sm text-neutral-400 border-t border-neutral-800 pt-4">
+          <ul className="space-y-2 text-sm text-zinc-400 border-t border-white/10 pt-4">
             {order.items.map((item) => (
               <li key={item.id} className="flex justify-between">
                 <span>

@@ -134,44 +134,44 @@ export default function AccountPage() {
         <div className="grid sm:grid-cols-2 gap-4">
           <Link
             href="/rewards"
-            className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5 hover:border-pink-500/40 transition group"
+            className="glass p-5 transition hover:border-pink-500/40 group"
           >
             <div className="font-medium group-hover:text-pink-300 transition">
               Play & Earn
             </div>
-            <p className="text-sm text-neutral-500 mt-1">
+            <p className="text-sm text-zinc-400 mt-1">
               Daily check-in · Spin the wheel · Streaks
             </p>
           </Link>
 
           <Link
             href="/shop"
-            className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5 hover:border-pink-500/40 transition group"
+            className="glass p-5 transition hover:border-pink-500/40 group"
           >
             <div className="font-medium group-hover:text-pink-300 transition">
               Shop
             </div>
-            <p className="text-sm text-neutral-500 mt-1">
+            <p className="text-sm text-zinc-400 mt-1">
               Spend tokens on exclusives
             </p>
           </Link>
         </div>
 
         {rewards && (
-          <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5">
+          <div className="glass p-5">
             <h2 className="font-medium mb-3">Activity</h2>
-            <div className="space-y-2 text-sm text-neutral-400">
+            <div className="space-y-2 text-sm text-zinc-400">
               <div className="flex justify-between">
                 <span>Current streak</span>
                 <span className="text-yellow-300">{rewards.streak} days</span>
               </div>
               <div className="flex justify-between">
                 <span>Tokens spent (lifetime)</span>
-                <span className="text-neutral-300">{rewards.lifetimeSpent}</span>
+                <span className="text-zinc-300">{rewards.lifetimeSpent}</span>
               </div>
               <div className="flex justify-between">
                 <span>Last check-in</span>
-                <span className="text-neutral-300">
+                <span className="text-zinc-300">
                   {rewards.lastCheckIn || 'Never'}
                 </span>
               </div>

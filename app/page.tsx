@@ -58,7 +58,7 @@ export default function HomePage() {
                     priority
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 backdrop-blur-sm">
+                    <div className="rounded-xl border border-white/10 bg-[#1c1c21]/50 px-3 py-2 backdrop-blur-sm">
                       <p
                         className="text-center text-xl font-semibold tracking-[0.18em] sm:text-2xl"
                         style={{

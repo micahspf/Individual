@@ -209,8 +209,8 @@ export default function RewardsPage() {
               loading={loading}
             />
             <ProgressBar current={state.lifetimeSpent} target={100} />
-            <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 text-xs text-neutral-500">
-              <p className="mb-1 font-medium text-neutral-400">Token math</p>
+            <div className="glass p-4 text-xs text-zinc-400">
+              <p className="mb-1 font-medium text-zinc-300">Token math</p>
               <p>
                 Daily base +3 · Day 3 +5 · Every 7 days +12 · Spin costs{" "}
                 <strong className="text-yellow-300">{SPIN_COST}</strong>
@@ -226,7 +226,7 @@ export default function RewardsPage() {
             </div>
             <Link
               href="/shop"
-              className="block rounded-xl border border-neutral-800 py-3 text-center text-sm text-neutral-400 transition hover:border-pink-500/40 hover:text-pink-300"
+              className="block rounded-xl border border-white/10 bg-white/5 py-3 text-center text-sm text-zinc-400 transition hover:border-pink-500/40 hover:text-pink-300"
             >
               Spend tokens in the shop →
             </Link>

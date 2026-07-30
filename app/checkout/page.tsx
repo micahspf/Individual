@@ -91,7 +91,7 @@ export default function CheckoutPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+              className="input-glass"
               placeholder="you@email.com"
             />
           </div>
@@ -102,7 +102,7 @@ export default function CheckoutPage() {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+              className="input-glass"
             />
           </div>
           <div>
@@ -112,7 +112,7 @@ export default function CheckoutPage() {
               required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+              className="input-glass"
             />
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -123,7 +123,7 @@ export default function CheckoutPage() {
                 required
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+                className="input-glass"
               />
             </div>
             <div>
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
                 required
                 value={state}
                 onChange={(e) => setState(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+                className="input-glass"
               />
             </div>
             <div>
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
                 required
                 value={zip}
                 onChange={(e) => setZip(e.target.value)}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+                className="input-glass"
               />
             </div>
           </div>
@@ -164,12 +164,12 @@ export default function CheckoutPage() {
         </form>
 
         <div className="lg:col-span-2">
-          <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-5 sticky top-24">
+          <div className="glass sticky top-24 p-5">
             <h2 className="font-medium mb-4">Order summary</h2>
             <ul className="space-y-3 mb-4">
               {items.map((i) => (
                 <li key={i.id} className="flex justify-between text-sm">
-                  <span className="text-neutral-300">
+                  <span className="text-zinc-300">
                     {i.name} × {i.quantity}
                   </span>
                   <span className="text-yellow-300">
@@ -178,7 +178,7 @@ export default function CheckoutPage() {
                 </li>
               ))}
             </ul>
-            <div className="border-t border-neutral-800 pt-3 flex justify-between font-medium">
+            <div className="border-t border-white/10 pt-3 flex justify-between font-medium">
               <span>Total</span>
               <span className="text-yellow-300">${total.toFixed(2)}</span>
             </div>

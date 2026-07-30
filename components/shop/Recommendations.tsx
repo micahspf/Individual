@@ -31,8 +31,8 @@ export default function Recommendations({ context = 'default' }: { context?: str
     suggestions[suggestions.length - 1];
 
   return (
-    <div className="rounded-xl border border-neutral-800/80 bg-neutral-950/80 px-4 py-3 flex items-center justify-between gap-4">
-      <p className="text-sm text-neutral-400">
+    <div className="flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+      <p className="text-sm text-zinc-400">
         <span className="text-pink-400/80">✦</span> {item.text}
       </p>
       <Link

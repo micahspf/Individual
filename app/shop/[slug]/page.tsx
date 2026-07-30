@@ -62,7 +62,7 @@ export default function ProductPage({
 
       <div className="grid lg:grid-cols-2 gap-12">
         {/* Image placeholder */}
-        <div className="aspect-square rounded-2xl bg-neutral-900 border border-neutral-800 flex items-center justify-center relative overflow-hidden">
+        <div className="glass aspect-square flex items-center justify-center relative overflow-hidden">
           <div className="text-7xl opacity-30">
             {product.category === '3d-printed' && '🖨️'}
             {product.category === 'fidget-sensory' && '🧩'}
@@ -128,9 +128,9 @@ export default function ProductPage({
           )}
 
           {/* Shipping note near buy */}
-          <div className="mt-6 p-4 rounded-xl border border-neutral-800 bg-neutral-950 text-sm text-neutral-400">
+          <div className="glass mt-6 p-4 text-sm text-zinc-400">
             <p>
-              <span className="text-neutral-300">Shipping:</span> Made to order.
+              <span className="text-zinc-200">Shipping:</span> Made to order.
               Typical {product.turnaround}. Local Cullman pickup available.
             </p>
             <p className="mt-1">
@@ -145,9 +145,9 @@ export default function ProductPage({
           </div>
 
           {/* Reviews slot */}
-          <div className="mt-8 p-5 rounded-xl border border-neutral-800">
+          <div className="glass mt-8 p-5">
             <h3 className="font-medium mb-2">Reviews</h3>
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-zinc-500">
               No reviews yet — be the first after your order ships.
             </p>
           </div>
@@ -166,7 +166,7 @@ export default function ProductPage({
               <Link
                 key={p.id}
                 href={`/shop/${p.slug}`}
-                className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 hover:border-pink-500/40 transition"
+                className="glass p-4 transition hover:border-pink-500/40"
               >
                 <div className="font-medium text-sm mb-1 line-clamp-1">{p.name}</div>
                 <div className="text-yellow-300 text-sm">

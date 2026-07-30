@@ -39,31 +39,31 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-[70vh] flex items-center justify-center px-6 py-16">
-      <div className="w-full max-w-md">
+      <div className="glass-strong w-full max-w-md p-8">
         <div className="text-center mb-8">
           <p className="text-pink-400 text-sm font-medium mb-2">ACCOUNT</p>
           <h1 className="text-3xl font-bold">Sign in</h1>
-          <p className="text-neutral-500 text-sm mt-2">
+          <p className="text-zinc-400 text-sm mt-2">
             Access your orders and Individual Tokens
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-neutral-400 mb-1.5">Email</label>
+            <label className="block text-sm text-zinc-400 mb-1.5">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass"
               placeholder="you@email.com"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-sm text-neutral-400">Password</label>
+              <label className="text-sm text-zinc-400">Password</label>
               <Link href="/forgot-password" className="text-xs text-pink-400 hover:text-pink-300">
                 Forgot password?
               </Link>
@@ -73,7 +73,7 @@ export default function LoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass"
               placeholder="Your password"
             />
           </div>
@@ -83,20 +83,20 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition disabled:opacity-60"
+            className="btn-pill-pink w-full py-3.5 disabled:opacity-60"
           >
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
 
-        <p className="text-center text-sm text-neutral-500 mt-6">
+        <p className="text-center text-sm text-zinc-400 mt-6">
           Don’t have an account?{' '}
           <Link href="/register" className="text-pink-400 hover:text-pink-300">
             Create one
           </Link>
         </p>
 
-        <p className="text-center text-xs text-neutral-600 mt-8">
+        <p className="text-center text-xs text-zinc-500 mt-8">
           Demo: demo@individual.com / demo1234
         </p>
       </div>

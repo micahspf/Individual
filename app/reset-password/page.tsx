@@ -77,7 +77,7 @@ function ResetPasswordForm() {
           minLength={8}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+          className="input-glass"
           placeholder="At least 8 characters"
         />
       </div>
@@ -90,7 +90,7 @@ function ResetPasswordForm() {
           minLength={8}
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
-          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 transition"
+          className="input-glass"
           placeholder="Repeat password"
         />
       </div>

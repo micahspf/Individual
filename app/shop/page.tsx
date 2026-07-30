@@ -64,7 +64,7 @@ function ShopContent() {
 
   return (
     <main className="min-h-screen">
-      <div className="border-b border-neutral-900">
+      <div className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
@@ -72,13 +72,13 @@ function ShopContent() {
               <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
                 Find your <span className="text-pink-400">thing</span>
               </h1>
-              <p className="text-neutral-500 mt-2 max-w-md">
+              <p className="text-zinc-400 mt-2 max-w-md">
                 Everything is made to order in Cullman, Alabama. No waste. Just yours.
               </p>
             </div>
             <Link
               href="/#request"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-400 text-black text-sm font-semibold hover:bg-yellow-300 transition"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-400 text-black text-sm font-semibold shadow-[0_0_20px_rgba(250,204,21,0.25)] hover:bg-yellow-300 transition"
             >
               Start Custom Request →
             </Link>
@@ -96,13 +96,13 @@ function ShopContent() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search products..."
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-full px-5 py-2.5 text-sm text-white placeholder:text-neutral-600 focus:outline-none focus:border-pink-500/50 transition"
+              className="input-glass-pill"
             />
           </div>
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortOption)}
-            className="bg-neutral-950 border border-neutral-800 rounded-full px-4 py-2 text-sm text-neutral-300 focus:outline-none"
+            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300 backdrop-blur-sm focus:outline-none focus:border-pink-500/50"
           >
             <option value="newest">Featured</option>
             <option value="price-asc">Price: Low to High</option>
@@ -112,7 +112,7 @@ function ShopContent() {
         </div>
 
         <div className="mt-5 flex flex-wrap gap-2 items-center">
-          <span className="text-xs text-neutral-600 uppercase tracking-wider mr-2">Price</span>
+          <span className="text-xs text-zinc-500 uppercase tracking-wider mr-2">Price</span>
           {[
             { id: 'all', label: 'Any' },
             { id: '0-20', label: 'Under $20' },
@@ -125,8 +125,8 @@ function ShopContent() {
               onClick={() => setPriceRange(r.id)}
               className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition ${
                 priceRange === r.id
-                  ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40'
-                  : 'bg-neutral-900 text-neutral-500 border border-neutral-800'
+                  ? 'bg-pink-500/20 text-pink-300 border border-pink-500/40 shadow-[0_0_16px_rgba(236,72,153,0.2)]'
+                  : 'bg-white/5 text-zinc-400 border border-white/10 hover:border-pink-500/30'
               }`}
             >
               {r.label}

@@ -27,7 +27,7 @@ export default function EmailCapture() {
 
   return (
     <form onSubmit={submit} className="space-y-2">
-      <p className="text-neutral-500 text-sm mb-2">
+      <p className="text-zinc-400 text-sm mb-2">
         Get drop alerts + token bonuses
       </p>
       <input
@@ -36,11 +36,11 @@ export default function EmailCapture() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@email.com"
-        className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-pink-500/50"
+        className="input-glass !rounded-lg !py-2"
       />
       <button
         type="submit"
-        className="w-full py-2 rounded-lg bg-neutral-800 text-sm text-neutral-300 hover:bg-pink-500 hover:text-white transition"
+        className="w-full py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-zinc-300 transition hover:border-pink-500/40 hover:bg-pink-500 hover:text-white"
       >
         Subscribe
       </button>
