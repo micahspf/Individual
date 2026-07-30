@@ -1,108 +1,84 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function RequestForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [response, setResponse] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setStatus("loading");
-    setResponse("");
+    if (!email || !message) return;
+    setStatus('sending');
+    // Placeholder — wire to your Request Agent / email later
+    await new Promise((r) => setTimeout(r, 800));
+    setStatus('sent');
+    setName('');
+    setEmail('');
+    setMessage('');
+  }
 
-    try {
-      const res = await fetch("/api/agents/request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
-
-      setStatus("success");
-      setResponse(data.reply || "Request received. We’ll be in touch soon.");
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (err: unknown) {
-      setStatus("error");
-      setResponse(err instanceof Error ? err.message : "Failed to send request");
-    }
+  if (status === 'sent') {
+    return (
+      <div className="rounded-2xl border border-pink-500/30 bg-pink-500/10 p-8 text-center">
+        <div className="text-2xl mb-2">✓</div>
+        <p className="font-medium">Request received</p>
+        <p className="text-neutral-400 text-sm mt-1">
+          We’ll reply with a quote and timeline soon.
+        </p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="mt-4 text-sm text-pink-400 hover:text-pink-300"
+        >
+          Send another
+        </button>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-neutral-300">
-            Your name <span className="text-neutral-600">(optional)</span>
-          </label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full rounded-xl border border-neutral-800 bg-black px-4 py-2.5 text-sm text-white placeholder:text-neutral-600 focus:border-pink-500/50 focus:outline-none focus:ring-1 focus:ring-pink-500/30"
-            placeholder="Micah"
-            autoComplete="name"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-neutral-300">
-            Email *
-          </label>
-          <input
-            id="email"
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-xl border border-neutral-800 bg-black px-4 py-2.5 text-sm text-white placeholder:text-neutral-600 focus:border-pink-500/50 focus:outline-none focus:ring-1 focus:ring-pink-500/30"
-            placeholder="you@email.com"
-            autoComplete="email"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-neutral-300">
-            What would you like made? *
-          </label>
-          <textarea
-            id="message"
-            required
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={5}
-            className="w-full resize-y rounded-xl border border-neutral-800 bg-black px-4 py-2.5 text-sm text-white placeholder:text-neutral-600 focus:border-pink-500/50 focus:outline-none focus:ring-1 focus:ring-pink-500/30"
-            placeholder="Example: Custom name plate, 8 inches wide, black, name Parker in a clean modern font."
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="w-full rounded-full bg-pink-500 py-3 px-6 font-medium text-white transition hover:bg-pink-400 disabled:opacity-60"
-        >
-          {status === "loading" ? "Sending…" : "Send request"}
-        </button>
-      </form>
-
-      {status === "success" && (
-        <div className="mt-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-sm whitespace-pre-wrap text-emerald-200">
-          {response}
-        </div>
-      )}
-      {status === "error" && (
-        <div className="mt-6 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-200">
-          {response}
-        </div>
-      )}
-    </div>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label className="block text-sm text-neutral-400 mb-1.5">Your name (optional)</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+          placeholder="Micah"
+        />
+      </div>
+      <div>
+        <label className="block text-sm text-neutral-400 mb-1.5">Email *</label>
+        <input
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50"
+          placeholder="you@email.com"
+        />
+      </div>
+      <div>
+        <label className="block text-sm text-neutral-400 mb-1.5">What would you like made? *</label>
+        <textarea
+          required
+          rows={4}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-pink-500/50 resize-none"
+          placeholder="Describe size, material preference, color, quantity, any text/logo, and deadline if you have one..."
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={status === 'sending'}
+        className="w-full py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition disabled:opacity-60"
+      >
+        {status === 'sending' ? 'Sending…' : 'Send Request'}
+      </button>
+    </form>
   );
 }

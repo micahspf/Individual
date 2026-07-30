@@ -1,122 +1,111 @@
-import { UserRewards, TokenTransaction, Product } from './types';
+/**
+ * Token + Daily Check-in + Streak engine
+ * In-memory for now — swap to DB later
+ */
 
-// ============================================
-// In-memory store (replace with DB later)
-// ============================================
-const rewardsStore = new Map<string, UserRewards>();
-const transactions: TokenTransaction[] = [];
+export interface UserRewards {
+  email: string;
+  tokens: number;
+  lifetimeEarned: number;
+  lifetimeSpent: number;
+  isFounder: boolean;
+  streak: number;
+  lastCheckIn: string | null; // YYYY-MM-DD
+  createdAt: string;
+  updatedAt: string;
+}
+
+const store = new Map<string, UserRewards>();
 
 const WELCOME_BONUS = 20;
+const DAILY_BASE = 3;
+const STREAK_BONUS_3 = 5;
+const STREAK_BONUS_7 = 12;
 
-/**
- * Get or create rewards profile for an email
- */
+function todayKey() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 export function getOrCreateRewards(email: string): UserRewards {
   const key = email.toLowerCase().trim();
-  
-  if (!rewardsStore.has(key)) {
+  if (!store.has(key)) {
     const now = new Date().toISOString();
-    const profile: UserRewards = {
+    store.set(key, {
       email: key,
       tokens: 0,
       lifetimeEarned: 0,
       lifetimeSpent: 0,
-      isFounder: rewardsStore.size < 100, // first 100 accounts = founders
+      isFounder: store.size < 100,
+      streak: 0,
+      lastCheckIn: null,
       createdAt: now,
       updatedAt: now,
-    };
-    rewardsStore.set(key, profile);
+    });
   }
-  
-  return rewardsStore.get(key)!;
+  return store.get(key)!;
 }
 
-/**
- * Award welcome bonus (+20 tokens) — call this on account creation
- */
 export function awardWelcomeBonus(email: string): UserRewards {
   const profile = getOrCreateRewards(email);
-  
-  // Only award once
-  const alreadyAwarded = transactions.some(
-    (t) => t.email === profile.email && t.reason === 'welcome_bonus'
-  );
-  
-  if (alreadyAwarded) return profile;
-  
+  if (profile.lifetimeEarned > 0) return profile;
   profile.tokens += WELCOME_BONUS;
   profile.lifetimeEarned += WELCOME_BONUS;
   profile.updatedAt = new Date().toISOString();
-  
-  transactions.push({
-    id: `txn_${Date.now()}`,
-    email: profile.email,
-    amount: WELCOME_BONUS,
-    reason: 'welcome_bonus',
-    createdAt: new Date().toISOString(),
-  });
-  
   return profile;
 }
 
-/**
- * Add tokens for any reason
- */
-export function addTokens(email: string, amount: number, reason: string): UserRewards {
+export function dailyCheckIn(email: string): {
+  profile: UserRewards;
+  earned: number;
+  alreadyClaimed: boolean;
+  streak: number;
+} {
+  const profile = getOrCreateRewards(email);
+  const today = todayKey();
+
+  if (profile.lastCheckIn === today) {
+    return { profile, earned: 0, alreadyClaimed: true, streak: profile.streak };
+  }
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayKey = yesterday.toISOString().slice(0, 10);
+
+  if (profile.lastCheckIn === yesterdayKey) {
+    profile.streak += 1;
+  } else {
+    profile.streak = 1;
+  }
+
+  let earned = DAILY_BASE;
+  if (profile.streak === 3) earned += STREAK_BONUS_3;
+  if (profile.streak >= 7 && profile.streak % 7 === 0) earned += STREAK_BONUS_7;
+
+  profile.tokens += earned;
+  profile.lifetimeEarned += earned;
+  profile.lastCheckIn = today;
+  profile.updatedAt = new Date().toISOString();
+
+  return { profile, earned, alreadyClaimed: false, streak: profile.streak };
+}
+
+export function spendTokens(email: string, amount: number): boolean {
+  const profile = getOrCreateRewards(email);
+  if (profile.tokens < amount) return false;
+  profile.tokens -= amount;
+  profile.lifetimeSpent += amount;
+  profile.updatedAt = new Date().toISOString();
+  return true;
+}
+
+export function addTokens(email: string, amount: number): UserRewards {
   const profile = getOrCreateRewards(email);
   profile.tokens += amount;
   profile.lifetimeEarned += amount;
   profile.updatedAt = new Date().toISOString();
-  
-  transactions.push({
-    id: `txn_${Date.now()}`,
-    email: profile.email,
-    amount,
-    reason,
-    createdAt: new Date().toISOString(),
-  });
-  
   return profile;
 }
 
-/**
- * Spend tokens (returns false if not enough)
- */
-export function spendTokens(email: string, amount: number, reason: string): boolean {
-  const profile = getOrCreateRewards(email);
-  
-  if (profile.tokens < amount) return false;
-  
-  profile.tokens -= amount;
-  profile.lifetimeSpent += amount;
-  profile.updatedAt = new Date().toISOString();
-  
-  transactions.push({
-    id: `txn_${Date.now()}`,
-    email: profile.email,
-    amount: -amount,
-    reason,
-    createdAt: new Date().toISOString(),
-  });
-  
-  return true;
-}
-
-/**
- * Check if user can afford a token-only product
- */
-export function canAfford(email: string, product: Product): boolean {
-  if (!product.isTokenOnly || !product.tokenPrice) return true;
-  const profile = getOrCreateRewards(email);
-  return profile.tokens >= product.tokenPrice;
-}
-
-/**
- * Get transaction history for a user
- */
-export function getTransactions(email: string): TokenTransaction[] {
-  const key = email.toLowerCase().trim();
-  return transactions
-    .filter((t) => t.email === key)
-    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+export function getRewards(email: string): UserRewards {
+  return getOrCreateRewards(email);
 }

@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Made by Individual — Strategy-Aligned Website
 
-## Getting Started
+Built from the July 30, 2026 Website, Market, and Product Strategy Report.
 
-First, run the development server:
+## What’s included
 
-```bash
+### Shop (populated)
+- Personalized Tumbler ($32) — lead product
+- Personalized Can Cooler ($28)
+- Custom Wood Sign ($45)
+- Smith Lake Sign ($38)
+- Flexi Animal Multipack 12pc ($18)
+- Flexi Animal Multipack 25pc ($24)
+- Pet ID Tag ($16)
+- Fidget Slider ($12) — ages 13+
+- Fidget Board ($18) — ages 13+
+- Founders Name Plate (tokens only)
+- Nova Desk Piece (tokens only)
+
+### Categories (updated per strategy)
+- All
+- 3D Printed
+- Fidget & Sensory (renamed from Viral Toys)
+- Drinkware
+- Home
+- Custom Request
+
+### Pages added
+- `/` — Homepage (no fake 4.9★ rating; local Cullman messaging)
+- `/shop` — Full catalog + filters
+- `/about` — Local maker story
+- `/contact` — Cullman location + email
+- `/faq` — Materials, turnaround, collegiate policy, ages
+- `/shipping` — Turnaround + local pickup
+- `/returns` — Made-to-order return policy
+
+### SEO / Trust
+- Title and meta include “Cullman, Alabama”
+- LocalBusiness schema
+- Honest trust bar (no fabricated ratings)
+
+## PowerShell quick start
+
+```powershell
+# Unzip, then:
+cd individual-strategy
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Next steps from the strategy report
+1. Replace emoji placeholders with your real product photos
+2. Wire the Request form to email / Request Agent
+3. Claim Google Business Profile
+4. Add real reviews only when you have them
+5. Keep collegiate marks off the site unless licensed
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Redis (production auth)
 
-## Learn More
+Token blacklist + refresh tokens can run on Redis for multi-server deploys.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install ioredis
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+REDIS_URL=redis://localhost:6379
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If `REDIS_URL` is missing, the app automatically uses the in-memory store.
