@@ -18,10 +18,12 @@ function base64UrlEncode(data: ArrayBuffer | string): string {
   return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-function base64UrlDecode(str: string): Uint8Array {
+function base64UrlDecode(str: string): Uint8Array<ArrayBuffer> {
   const padded = str.replace(/-/g, '+').replace(/_/g, '/');
   const binary = atob(padded);
-  const bytes = new Uint8Array(binary.length);
+  // Explicit ArrayBuffer-backed view (satisfies BufferSource under TS 5.x DOM types)
+  const buffer = new ArrayBuffer(binary.length);
+  const bytes = new Uint8Array(buffer);
   for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
   return bytes;
 }
