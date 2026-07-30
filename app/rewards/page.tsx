@@ -12,9 +12,10 @@ import {
   computeCheckIn,
   computeSpinResult,
   localDateKey,
+  type SpinFlags,
 } from "@/lib/rewards/constants";
 
-const STORAGE_KEY = "individual_rewards_v2";
+const STORAGE_KEY = "individual_rewards_v3";
 
 type RewardsState = {
   tokens: number;
@@ -24,6 +25,7 @@ type RewardsState = {
   lifetimeEarned: number;
   isFounder: boolean;
   welcomeClaimed: boolean;
+  flags: SpinFlags;
 };
 
 const defaultState = (): RewardsState => ({
@@ -34,6 +36,11 @@ const defaultState = (): RewardsState => ({
   lifetimeEarned: WELCOME_BONUS,
   isFounder: true,
   welcomeClaimed: true,
+  flags: {
+    freeShipping: false,
+    freeLocalDelivery: false,
+    mysteryGift: false,
+  },
 });
 
 export default function RewardsPage() {
@@ -53,11 +60,14 @@ export default function RewardsPage() {
         const next: RewardsState = {
           ...defaultState(),
           ...data,
-          // never allow negative balances from corrupt storage
           tokens: Math.max(0, Number(data.tokens) || 0),
           lifetimeSpent: Math.max(0, Number(data.lifetimeSpent) || 0),
           lifetimeEarned: Math.max(0, Number(data.lifetimeEarned) || WELCOME_BONUS),
           streak: Math.max(0, Number(data.streak) || 0),
+          flags: {
+            ...defaultState().flags,
+            ...(data.flags || {}),
+          },
         };
         setState(next);
         setAlreadyClaimed(next.lastCheckIn === localDateKey());
@@ -112,6 +122,7 @@ export default function RewardsPage() {
       tokens: state.tokens,
       lifetimeSpent: state.lifetimeSpent,
       prize,
+      flags: state.flags,
     });
 
     if (!result.ok) {
@@ -125,6 +136,7 @@ export default function RewardsPage() {
       tokens: result.nextTokens,
       lifetimeSpent: result.nextLifetimeSpent,
       lifetimeEarned: state.lifetimeEarned + result.prizeTokens,
+      flags: result.flags,
     };
 
     setMessage(result.message);
@@ -162,6 +174,29 @@ export default function RewardsPage() {
           </div>
         )}
 
+        {/* Active perks */}
+        {(state.flags.freeShipping ||
+          state.flags.freeLocalDelivery ||
+          state.flags.mysteryGift) && (
+          <div className="mb-6 flex flex-wrap gap-2">
+            {state.flags.freeShipping && (
+              <span className="rounded-full border border-purple-400/40 bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-200">
+                Free Shipping active
+              </span>
+            )}
+            {state.flags.freeLocalDelivery && (
+              <span className="rounded-full border border-cyan-400/40 bg-cyan-500/15 px-3 py-1 text-xs font-semibold text-cyan-200">
+                Free Local Delivery active
+              </span>
+            )}
+            {state.flags.mysteryGift && (
+              <span className="rounded-full border border-pink-400/40 bg-pink-500/15 px-3 py-1 text-xs font-semibold text-pink-200">
+                Mystery Gift reserved
+              </span>
+            )}
+          </div>
+        )}
+
         <div className="grid gap-8 lg:grid-cols-5">
           <div className="space-y-5 lg:col-span-2">
             <TokenBalance tokens={state.tokens} isFounder={state.isFounder} />
@@ -177,8 +212,11 @@ export default function RewardsPage() {
             <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-4 text-xs text-neutral-500">
               <p className="mb-1 font-medium text-neutral-400">Token math</p>
               <p>
-                Daily base +{3} · Day 3 +{5} · Every 7 days +{12} · Spin costs {SPIN_COST} · Mystery
-                +7
+                Daily base +3 · Day 3 +5 · Every 7 days +12 · Spin costs{" "}
+                <strong className="text-yellow-300">{SPIN_COST}</strong>
+              </p>
+              <p className="mt-1">
+                Prizes: 20 / 5 / 0 tokens · Free Shipping · Free Local Delivery · Mystery Gift
               </p>
               <p className="mt-2">
                 Earned lifetime:{" "}
@@ -198,28 +236,11 @@ export default function RewardsPage() {
             <div className="flex flex-col items-center rounded-2xl border border-neutral-800 bg-neutral-950 p-8">
               <h2 className="mb-1 text-xl font-bold">Spin the Wheel</h2>
               <p className="mb-8 text-sm text-neutral-500">
-                {SPIN_COST} tokens per spin · Win more tokens & perks
+                {SPIN_COST} tokens per spin · Six premium outcomes
               </p>
-              <SpinWheel
-                tokens={state.tokens}
-                onSpin={handleSpin}
-                disabled={spinningLock}
-              />
+              <SpinWheel tokens={state.tokens} onSpin={handleSpin} disabled={spinningLock} />
             </div>
           </div>
-        </div>
-
-        <div className="mt-16 grid gap-6 text-center sm:grid-cols-3">
-          {[
-            { t: "Check in daily", d: "Build a streak for bigger bonuses" },
-            { t: "Spin for rewards", d: "Tokens, free shipping, mystery prizes" },
-            { t: "Unlock exclusives", d: "Founders Edition · first 100 customers" },
-          ].map((item) => (
-            <div key={item.t} className="rounded-2xl border border-neutral-900 p-5">
-              <div className="mb-1 font-medium text-white">{item.t}</div>
-              <div className="text-sm text-neutral-500">{item.d}</div>
-            </div>
-          ))}
         </div>
       </div>
     </main>

@@ -1,18 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import RequestForm from "@/components/RequestForm";
+import HeroDecor from "@/components/home/HeroDecor";
 
 export default function HomePage() {
   return (
     <main>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-20 top-10 h-72 w-72 rounded-full bg-pink-500/15 blur-3xl" />
-          <div className="absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-yellow-400/10 blur-3xl" />
-        </div>
+        <HeroDecor />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-14 lg:grid-cols-2 lg:pb-28 lg:pt-20">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-14 lg:grid-cols-2 lg:gap-16 lg:pb-28 lg:pt-20">
           <div>
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-pink-500/40 bg-pink-500/10 px-4 py-1.5 text-sm font-medium text-pink-300">
               <span>✦</span> MADE FOR YOU · CULLMAN, ALABAMA
@@ -45,61 +43,72 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Hero products */}
-          <div className="relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md">
-              <div className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-pink-500/20 blur-3xl" />
-              <div className="absolute -bottom-4 -left-4 h-36 w-36 rounded-full bg-yellow-400/15 blur-3xl" />
-
-              {/* Laser tumbler */}
-              <div className="relative z-20 mx-auto mb-4 w-[70%]">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-pink-500/30 bg-neutral-950 shadow-[0_0_40px_rgba(236,72,153,0.25)]">
+          {/* Hero products — clean grid, NO overlap */}
+          <div className="relative">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+              {/* Laser tumbler with "Individual" engraving */}
+              <div className="relative overflow-hidden rounded-3xl border border-pink-500/30 bg-neutral-950 shadow-[0_0_40px_rgba(236,72,153,0.2)]">
+                <div className="relative aspect-[3/4]">
                   <Image
                     src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900&q=80"
-                    alt="Laser-engraved custom tumbler"
+                    alt="Laser-engraved tumbler with Individual"
                     fill
                     className="object-cover"
-                    sizes="(max-width:768px) 70vw, 320px"
+                    sizes="(max-width:640px) 100vw, 280px"
                     priority
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                  {/* Engraved word overlay — "Individual" */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="rounded-lg bg-black/25 px-3 py-2 backdrop-blur-[1px]">
+                      <p
+                        className="text-center text-xl font-semibold tracking-[0.18em] sm:text-2xl"
+                        style={{
+                          color: "rgba(220, 220, 220, 0.92)",
+                          textShadow:
+                            "0 1px 0 rgba(0,0,0,0.5), 0 0 12px rgba(255,255,255,0.15)",
+                          letterSpacing: "0.2em",
+                        }}
+                      >
+                        Individual
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4">
                     <p className="text-xs font-semibold uppercase tracking-wider text-pink-300">
                       Laser engraved
                     </p>
-                    <p className="font-semibold">Personalized Tumbler</p>
+                    <p className="font-semibold">Tumbler · “Individual”</p>
                   </div>
                 </div>
               </div>
 
-              {/* Founders hoodie */}
-              <div className="relative z-10 -mt-16 ml-auto w-[78%]">
-                <div className="relative overflow-hidden rounded-3xl border border-yellow-400/25 bg-neutral-900 shadow-[0_0_35px_rgba(250,204,21,0.12)]">
-                  <div className="flex aspect-[5/4] flex-col items-center justify-center bg-gradient-to-br from-neutral-900 via-black to-neutral-950 p-6">
-                    <div className="mb-4 h-16 w-28 rounded-t-full bg-neutral-800 shadow-inner" />
-                    <div className="flex h-28 w-40 items-center justify-center rounded-2xl bg-black ring-1 ring-white/5">
-                      <div className="text-center">
-                        <p
-                          className="text-lg font-semibold tracking-[0.2em]"
-                          style={{ color: "#d4b896" }}
-                        >
-                          INDIVIDUAL
-                        </p>
-                        <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-[#c4a574]/80">
-                          Founders Edition
-                        </p>
-                      </div>
-                    </div>
-                    <div className="mt-4 flex w-44 gap-2">
-                      <div className="h-10 flex-1 rounded-b-xl bg-neutral-800" />
-                      <div className="h-10 flex-1 rounded-b-xl bg-neutral-800" />
+              {/* Founders hoodie — separate card, no overlap */}
+              <div className="relative overflow-hidden rounded-3xl border border-yellow-400/25 bg-neutral-900 shadow-[0_0_35px_rgba(250,204,21,0.1)]">
+                <div className="flex aspect-[3/4] flex-col items-center justify-center bg-gradient-to-br from-neutral-900 via-black to-neutral-950 p-6">
+                  <div className="mb-3 h-14 w-24 rounded-t-full bg-neutral-800 shadow-inner" />
+                  <div className="flex h-32 w-36 items-center justify-center rounded-2xl bg-black ring-1 ring-white/5">
+                    <div className="text-center">
+                      <p
+                        className="text-base font-semibold tracking-[0.18em] sm:text-lg"
+                        style={{ color: "#d4b896" }}
+                      >
+                        INDIVIDUAL
+                      </p>
+                      <p className="mt-1 text-[9px] uppercase tracking-[0.22em] text-[#c4a574]/85">
+                        Founders Edition
+                      </p>
                     </div>
                   </div>
-                  <div className="border-t border-yellow-400/20 bg-black/60 px-4 py-3">
-                    <p className="text-xs font-semibold text-yellow-300">
-                      Founders Edition · First 100 customers
-                    </p>
-                    <p className="text-sm text-neutral-400">Black hoodie · gold Individual mark</p>
+                  <div className="mt-3 flex w-40 gap-2">
+                    <div className="h-9 flex-1 rounded-b-xl bg-neutral-800" />
+                    <div className="h-9 flex-1 rounded-b-xl bg-neutral-800" />
                   </div>
+                </div>
+                <div className="border-t border-yellow-400/20 bg-black/70 px-4 py-3">
+                  <p className="text-xs font-semibold text-yellow-300">
+                    Founders Edition · First 100 customers
+                  </p>
+                  <p className="text-sm text-neutral-400">Black hoodie · gold Individual mark</p>
                 </div>
               </div>
             </div>
@@ -107,8 +116,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust bar — honest */}
-      <div className="border-y border-neutral-900 bg-neutral-950/60">
+      {/* Trust bar */}
+      <div className="relative border-y border-neutral-900 bg-neutral-950/60">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-10 gap-y-3 px-6 py-5 text-sm text-neutral-400">
           <span className="flex items-center gap-2">
             <span className="text-yellow-400">●</span> Locally made in Cullman, Alabama
@@ -123,7 +132,7 @@ export default function HomePage() {
       </div>
 
       {/* Categories */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="relative mx-auto max-w-7xl px-6 py-16">
         <h2 className="mb-2 text-2xl font-bold">What we make</h2>
         <p className="mb-8 max-w-xl text-neutral-500">
           Maker tools. Custom finishes. No shelves full of leftovers.
