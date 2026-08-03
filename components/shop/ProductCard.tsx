@@ -13,7 +13,13 @@ interface Product {
   image: string;
 }
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   return (
     <Link
       href={`/shop/${product.slug}`}
@@ -24,6 +30,7 @@ export default function ProductCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           fill
+          priority={priority}
           className="object-cover transition duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />

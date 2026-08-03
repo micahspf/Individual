@@ -39,6 +39,7 @@ export default function ProductImage({
       height={fill ? undefined : height}
       sizes={sizes}
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       className={className}
       onError={() => {
         if (current !== PRODUCT_IMAGE_PLACEHOLDER) {

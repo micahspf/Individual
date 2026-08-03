@@ -173,8 +173,12 @@ function ShopContent() {
               {filtered.length} product{filtered.length !== 1 ? 's' : ''}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              {filtered.map((product, i) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  priority={i === 0}
+                />
               ))}
             </div>
           </>

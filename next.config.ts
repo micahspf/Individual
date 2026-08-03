@@ -6,6 +6,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 });
 
 const nextConfig: NextConfig = {
+  // Prevent Turbopack from picking C:\Users\micah\package-lock.json as root
+  turbopack: {
+    root: process.cwd(),
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
