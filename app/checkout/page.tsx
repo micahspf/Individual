@@ -67,18 +67,8 @@ function CheckoutContent() {
       const data = await res.json();
 
       if (res.ok && data.url) {
-        // Save a local order stub for track page before redirect
-        createOrder({
-          email,
-          name,
-          address,
-          city,
-          state,
-          zip,
-          items: payload.items,
-          total,
-        });
-        clearCart();
+        // Do NOT create the order here — webhook fulfills after payment.
+        // Cart clears on success page after Stripe returns.
         window.location.href = data.url;
         return;
       }
