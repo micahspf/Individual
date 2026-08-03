@@ -70,7 +70,7 @@ export default function RequestForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-pink-500/50 focus:outline-none"
-          placeholder="Size, material, finish, quantity, text or artwork, and target date if you have one…"
+          placeholder="What to personalize (names, monogram, date, message), size, material, quantity, and target date…"
         />
       </div>
       <button

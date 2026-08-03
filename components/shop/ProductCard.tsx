@@ -54,7 +54,7 @@ export default function ProductCard({
             ${product.price.toFixed(2)}
           </span>
           <span className="text-xs uppercase tracking-wider text-zinc-500">
-            Made to order
+            Personalize
           </span>
         </div>
       </div>

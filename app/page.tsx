@@ -2,8 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
+import { giftOccasions, shopProducts } from "@/lib/data/products";
 
 export default function HomePage() {
+  const featured = shopProducts.filter((p) => p.badge).slice(0, 4);
+
   return (
     <main>
       {/* Hero */}
@@ -16,11 +19,12 @@ export default function HomePage() {
               Individual manufacturer · Cullman, Alabama
             </p>
             <h1 className="font-display max-w-xl text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem]">
-              Made-to-order goods from a single manufacturer.
+              Personalized goods, manufactured to order.
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400 sm:text-lg">
-              Drinkware, home pieces, precision parts, and custom commissions — designed
-              and produced only when you order. Clear quotes. Honest timelines. No waste inventory.
+              Name, monogram, date, or message on drinkware, home pieces, and keepsakes —
+              produced one order at a time. Gift-ready ideas with a manufacturer’s finish.
+              Clear quotes. Honest timelines.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
@@ -104,16 +108,44 @@ export default function HomePage() {
       {/* Trust bar */}
       <div className="relative border-y border-white/10 bg-white/[0.03] backdrop-blur">
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-12 gap-y-3 px-6 py-5 text-sm text-zinc-400">
-          <span>Individual manufacturer</span>
+          <span>Personalized · made to order</span>
           <span className="hidden text-zinc-600 sm:inline">·</span>
-          <span>Made to order only</span>
+          <span>Individual manufacturer</span>
           <span className="hidden text-zinc-600 sm:inline">·</span>
           <span>Free shipping $75+</span>
         </div>
       </div>
 
+      {/* Occasions — gift-site idea, our glass layout */}
+      <section className="relative mx-auto max-w-7xl px-6 py-16">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+          Occasions
+        </p>
+        <h2 className="font-display text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
+          Gift ideas that stay personal
+        </h2>
+        <p className="mt-3 max-w-xl text-zinc-400">
+          Same spirit as big personalized gift shops — weddings, housewarmings, corporate sets —
+          executed here as small-batch manufacturing in Cullman.
+        </p>
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+          {giftOccasions.map((o) => (
+            <Link
+              key={o.label}
+              href={o.href}
+              className="glass group p-5 transition hover:border-pink-500/35"
+            >
+              <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
+                {o.label}
+              </div>
+              <div className="mt-1.5 text-sm leading-snug text-zinc-500">{o.hint}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Categories */}
-      <section className="relative mx-auto max-w-7xl px-6 py-20">
+      <section className="relative mx-auto max-w-7xl px-6 py-16">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
           Catalog
         </p>
@@ -121,14 +153,15 @@ export default function HomePage() {
           What we manufacture
         </h2>
         <p className="mt-3 max-w-lg text-zinc-400">
-          Focused lines for everyday use and custom work — each piece produced after you order.
+          Drinkware, home keepsakes, fabricated forms, and desk accessories — each piece
+          produced after you order, with clear personalization options.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {[
-            { href: "/shop?cat=drinkware", label: "Drinkware", desc: "Engraved tumblers & coolers" },
-            { href: "/shop?cat=home", label: "Home", desc: "Signs & interior pieces" },
-            { href: "/shop?cat=3d-printed", label: "Fabricated", desc: "Precision parts & forms" },
-            { href: "/shop?cat=fidget-sensory", label: "Accessories", desc: "Desk & everyday tools" },
+            { href: "/shop?cat=drinkware", label: "Drinkware", desc: "Tumblers, bottles, mugs" },
+            { href: "/shop?cat=home", label: "Home & gifts", desc: "Signs, boards, coasters" },
+            { href: "/shop?cat=3d-printed", label: "Fabricated", desc: "Parts, forms, sets" },
+            { href: "/shop?cat=fidget-sensory", label: "Accessories", desc: "Tags, desk, keychains" },
             { href: "/shop?cat=custom", label: "Commission", desc: "Your exact specification" },
           ].map((c) => (
             <Link
@@ -144,6 +177,52 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* Featured personalized products */}
+      {featured.length > 0 && (
+        <section className="border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-6 py-16">
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+                  Featured
+                </p>
+                <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+                  Popular to personalize
+                </h2>
+              </div>
+              <Link
+                href="/shop"
+                className="text-sm font-medium text-pink-400 transition hover:text-pink-300"
+              >
+                Full catalog →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {featured.map((p) => (
+                <Link
+                  key={p.id}
+                  href={`/shop/${p.slug}`}
+                  className="glass group p-4 transition hover:border-pink-500/40"
+                >
+                  {p.badge && (
+                    <span className="mb-2 inline-block rounded-full bg-pink-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-pink-300">
+                      {p.badge}
+                    </span>
+                  )}
+                  <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
+                    {p.name}
+                  </div>
+                  <div className="mt-1 text-sm text-yellow-300">${p.price.toFixed(2)}</div>
+                  <div className="mt-2 line-clamp-2 text-xs text-zinc-500">
+                    {p.personalize?.[0] ?? "Made to order"}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* How it works */}
       <section id="how" className="border-t border-white/10">
@@ -190,11 +269,11 @@ export default function HomePage() {
               Cullman, Alabama
             </p>
             <h2 className="font-display max-w-2xl text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
-              One manufacturer. Your order only when you need it.
+              Gift personalization without the factory warehouse.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
-              Individual is a solo manufacturing practice — no warehouse surplus, no mass
-              inventory. Personalization, small runs, and one-off commissions with a straight
+              Think names, monograms, dates, and occasion gifts — manufactured here one order
+              at a time. No surplus inventory. Small runs and commissions with a straight
               7–10 day standard turnaround.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
@@ -222,8 +301,8 @@ export default function HomePage() {
             Request a quote
           </h2>
           <p className="mb-10 text-center text-sm leading-relaxed text-zinc-400">
-            Share dimensions, material preference, quantity, any text or artwork, and your
-            target date. We reply with price and timeline before work begins.
+            Share what to personalize (names, monogram, date, message), size, material,
+            quantity, and target date. We reply with price and timeline before work begins.
           </p>
           <div className="glass-strong p-6 sm:p-8">
             <RequestForm />

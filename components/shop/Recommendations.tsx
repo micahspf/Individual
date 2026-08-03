@@ -4,23 +4,23 @@ import Link from 'next/link';
 
 const suggestions = [
   {
-    trigger: 'tumbler',
-    text: 'People who ordered a personalized tumbler also got a matching pet tag',
+    trigger: 'drinkware',
+    text: 'Pair drinkware with a monogram coaster set for a complete host gift',
     href: '/shop?cat=home',
   },
   {
-    trigger: 'sign',
-    text: 'Based on popular local orders — a Smith Lake version of this sign is trending',
-    href: '/shop?cat=home',
+    trigger: 'home',
+    text: 'Housewarming favorites: family name sign + engraved cutting board',
+    href: '/shop?q=cutting',
   },
   {
     trigger: 'form',
-    text: 'Clients who order articulated form sets often add a second batch for events',
-    href: '/shop?cat=3d-printed',
+    text: 'Event sets pair well with bag tags for favors and place settings',
+    href: '/shop?cat=fidget-sensory',
   },
   {
     trigger: 'default',
-    text: 'Most clients start with personalized drinkware or a custom wood sign',
+    text: 'Most gifts start with a personalized tumbler or family name sign',
     href: '/shop?cat=drinkware',
   },
 ];

@@ -150,22 +150,55 @@ export default async function ProductPage({
             ${product.price.toFixed(2)}
           </div>
 
-          <p className="text-zinc-300 leading-relaxed mb-6">{product.description}</p>
+          <p className="mb-6 leading-relaxed text-zinc-300">{product.description}</p>
 
-          <dl className="space-y-3 text-sm mb-8">
+          {product.occasions && product.occasions.length > 0 && (
+            <div className="mb-6 flex flex-wrap gap-2">
+              {product.occasions.map((o) => (
+                <span
+                  key={o}
+                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-400"
+                >
+                  {o}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <dl className="mb-8 space-y-3 text-sm">
             <div className="flex gap-3">
-              <dt className="text-zinc-500 w-28 shrink-0">Materials</dt>
+              <dt className="w-28 shrink-0 text-zinc-500">Materials</dt>
               <dd className="text-zinc-300">{product.materials}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="text-zinc-500 w-28 shrink-0">Turnaround</dt>
+              <dt className="w-28 shrink-0 text-zinc-500">Turnaround</dt>
               <dd className="text-zinc-300">{product.turnaround}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="text-zinc-500 w-28 shrink-0">Made in</dt>
+              <dt className="w-28 shrink-0 text-zinc-500">Made in</dt>
               <dd className="text-zinc-300">Cullman, Alabama</dd>
             </div>
           </dl>
+
+          {product.personalize && product.personalize.length > 0 && (
+            <div className="glass-pink mb-8 p-5">
+              <h3 className="font-display mb-1 text-lg font-medium text-zinc-50">
+                Personalize this piece
+              </h3>
+              <p className="mb-3 text-sm text-zinc-400">
+                After checkout, reply with your details — or note them at checkout if available.
+                We confirm engraving text before production.
+              </p>
+              <ul className="space-y-1.5 text-sm text-zinc-300">
+                {product.personalize.map((line) => (
+                  <li key={line} className="flex gap-2">
+                    <span className="text-pink-400">—</span>
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <AddToCartButton
             id={product.id}
@@ -187,11 +220,15 @@ export default async function ProductPage({
               <Link href="/shipping" className="text-pink-400 hover:text-pink-300">
                 Shipping details
               </Link>
+              {" · "}
+              <Link href="/#request" className="text-pink-400 hover:text-pink-300">
+                Custom commission
+              </Link>
             </p>
           </div>
 
           <div className="glass mt-8 p-5">
-            <h3 className="font-medium mb-2">Reviews</h3>
+            <h3 className="mb-2 font-medium">Reviews</h3>
             <p className="text-sm text-zinc-500">
               No reviews yet — be the first after your order ships.
             </p>

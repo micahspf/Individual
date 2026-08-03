@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     template: "%s · Individual",
   },
   description:
-    "Individual manufacturer of made-to-order drinkware, home pieces, and custom commissions in Cullman, Alabama. Clear quotes. Honest timelines. No waste inventory.",
+    "Personalized drinkware, home gifts, and keepsakes manufactured to order in Cullman, Alabama. Names, monograms, dates — clear quotes and honest timelines.",
   openGraph: {
-    title: "Individual — Individual manufacturer",
+    title: "Individual — Personalized, made to order",
     description:
-      "Made-to-order goods from a single manufacturer in Cullman, Alabama. Drinkware, home pieces, precision fabrication, and commissions.",
+      "Personalized gifts and home goods from an individual manufacturer in Cullman, Alabama. Drinkware, signs, boards, and commissions.",
     url: "https://www.madebyindividual.com",
     siteName: "Individual",
     locale: "en_US",

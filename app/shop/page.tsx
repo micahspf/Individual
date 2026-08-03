@@ -70,10 +70,10 @@ function ShopContent() {
                 Catalog
               </p>
               <h1 className="font-display text-4xl font-medium tracking-tight sm:text-5xl">
-                Made to <span className="text-pink-400">order</span>
+                Personalize & <span className="text-pink-400">order</span>
               </h1>
               <p className="mt-2 max-w-md text-zinc-400">
-                Individual manufacturer in Cullman, Alabama. Produced after you order — not stocked for the shelf.
+                Gift-ready personalization — names, monograms, dates, messages — manufactured to order in Cullman, Alabama.
               </p>
             </div>
             <Link
