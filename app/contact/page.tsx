@@ -15,8 +15,11 @@ export default function ContactPage() {
           <div>
             <h2 className="font-medium text-white mb-2">Email</h2>
             <p className="text-zinc-400">
-              <a href="mailto:micahspf@gmail.com" className="text-pink-400 hover:text-pink-300">
-                micahspf@gmail.com
+              <a
+                href="mailto:founder@madebyindividual.com"
+                className="text-pink-400 hover:text-pink-300"
+              >
+                founder@madebyindividual.com
               </a>
             </p>
           </div>

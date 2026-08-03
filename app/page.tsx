@@ -39,7 +39,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-sm font-semibold text-yellow-300">
-              ★ Founders Edition · First 100 customers
+              ★ Early supporter · Made to order in Cullman
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Founders hoodie */}
+              {/* Custom wood / home accent */}
               <div className="glass-yellow relative overflow-hidden">
                 <div className="flex aspect-[3/4] flex-col items-center justify-center bg-gradient-to-br from-white/[0.06] to-transparent p-6">
                   <div className="flex h-32 w-36 items-center justify-center rounded-2xl border border-white/10 bg-[#1c1c21]/80 backdrop-blur">
@@ -91,7 +91,7 @@ export default function HomePage() {
                         INDIVIDUAL
                       </p>
                       <p className="mt-1 text-[9px] uppercase tracking-[0.22em] text-[#c4a574]/85">
-                        Founders Edition
+                        Made to order
                       </p>
                     </div>
                   </div>
@@ -102,9 +102,9 @@ export default function HomePage() {
                 </div>
                 <div className="border-t border-yellow-400/20 bg-[#1c1c21]/50 px-4 py-3 backdrop-blur">
                   <p className="text-xs font-semibold text-yellow-300">
-                    Founders Edition · First 100 customers
+                    Wood signs · flexi packs · custom
                   </p>
-                  <p className="text-sm text-zinc-400">Black hoodie · gold Individual mark</p>
+                  <p className="text-sm text-zinc-400">Printed or engraved only when you order</p>
                 </div>
               </div>
             </div>
@@ -185,32 +185,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Founders */}
+      {/* Local maker CTA */}
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="glass-yellow p-8 sm:p-12">
             <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-yellow-300">
-              Founders Edition
+              Cullman, Alabama
             </p>
             <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
-              First 100 customers. Permanent Founders status.
+              One maker. Your piece only when you order.
             </h2>
             <p className="mt-4 max-w-2xl text-zinc-300/90">
-              Early supporters get Founders Edition access, token exclusives, and a seat at the
-              start of Individual — custom manufacturing built in Cullman, Alabama.
+              No warehouse leftovers. Clear quote and timeline before anything hits the
+              machine — tumblers, signs, flexi packs, pet tags, and custom builds.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/rewards"
-                className="btn-pill-yellow px-6 py-3 text-sm"
-              >
-                See rewards & tokens
+              <Link href="/shop" className="btn-pill-yellow px-6 py-3 text-sm">
+                Shop the catalog
               </Link>
               <Link
-                href="/shop"
+                href="#request"
                 className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-zinc-100 transition hover:border-pink-500/40"
               >
-                Shop the catalog
+                Start a custom request
               </Link>
             </div>
           </div>

@@ -2,7 +2,7 @@ export default function FAQPage() {
   const faqs = [
     {
       q: 'How long does it take?',
-      a: 'Most standard items ship in 2–5 days. Custom requests are quoted with a timeline before we start. Same-week custom is often possible for simpler pieces.',
+      a: 'Plan on 7–10 days for standard catalog items (about 10 business days as a quote baseline). Custom requests get a clear timeline before we start.',
     },
     {
       q: 'What materials do you use?',

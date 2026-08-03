@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -19,10 +17,26 @@
 
 # production
 /build
+/dist
+
+# python (never commit backends from old archive experiments)
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.Python
+
+# databases
+*.db
+*.sqlite
+*.sqlite3
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.log
 
 # debug
 npm-debug.log*
@@ -30,8 +44,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env — never commit secrets
+.env
+.env.*
+!.env.example
+!.env.local.example
 
 # vercel
 .vercel
@@ -39,3 +56,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OS / editor
+.idea/
+.vscode/
+*.swp
+*~
+
+# archives / snapshots (use git history instead)
+*.zip

@@ -45,7 +45,7 @@ export default function RegisterPage() {
           <p className="text-pink-400 text-sm font-medium mb-2">ACCOUNT</p>
           <h1 className="text-3xl font-bold">Create account</h1>
           <p className="text-zinc-400 text-sm mt-2">
-            Get 20 welcome tokens + Founders status (first 100)
+            Save your details for easier checkout and order tracking
           </p>
         </div>
 

@@ -1,246 +1,34 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
-import SpinWheel from "@/components/games/SpinWheel";
-import DailyCheckIn from "@/components/rewards/DailyCheckIn";
-import TokenBalance from "@/components/rewards/TokenBalance";
-import ProgressBar from "@/components/rewards/ProgressBar";
 import Link from "next/link";
-import {
-  WELCOME_BONUS,
-  SPIN_COST,
-  computeCheckIn,
-  computeSpinResult,
-  localDateKey,
-  type SpinFlags,
-} from "@/lib/rewards/constants";
 
-const STORAGE_KEY = "individual_rewards_v3";
-
-type RewardsState = {
-  tokens: number;
-  streak: number;
-  lastCheckIn: string | null;
-  lifetimeSpent: number;
-  lifetimeEarned: number;
-  isFounder: boolean;
-  welcomeClaimed: boolean;
-  flags: SpinFlags;
-};
-
-const defaultState = (): RewardsState => ({
-  tokens: WELCOME_BONUS,
-  streak: 0,
-  lastCheckIn: null,
-  lifetimeSpent: 0,
-  lifetimeEarned: WELCOME_BONUS,
-  isFounder: true,
-  welcomeClaimed: true,
-  flags: {
-    freeShipping: false,
-    freeLocalDelivery: false,
-    mysteryGift: false,
-  },
-});
-
+/**
+ * Rewards UI paused until balances persist in a real database.
+ * In-memory / localStorage token balances reset on serverless cold starts.
+ * Spin wheel removed (paid chance mechanic — wrong risk for launch).
+ * Keep lib/rewards/* for a future ship after ~20 real orders.
+ */
 export default function RewardsPage() {
-  const [state, setState] = useState<RewardsState>(defaultState);
-  const [hydrated, setHydrated] = useState(false);
-  const [checkInEarned, setCheckInEarned] = useState<number | null>(null);
-  const [alreadyClaimed, setAlreadyClaimed] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
-  const [spinningLock, setSpinningLock] = useState(false);
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const data = JSON.parse(raw) as Partial<RewardsState>;
-        const next: RewardsState = {
-          ...defaultState(),
-          ...data,
-          tokens: Math.max(0, Number(data.tokens) || 0),
-          lifetimeSpent: Math.max(0, Number(data.lifetimeSpent) || 0),
-          lifetimeEarned: Math.max(0, Number(data.lifetimeEarned) || WELCOME_BONUS),
-          streak: Math.max(0, Number(data.streak) || 0),
-          flags: {
-            ...defaultState().flags,
-            ...(data.flags || {}),
-          },
-        };
-        setState(next);
-        setAlreadyClaimed(next.lastCheckIn === localDateKey());
-      }
-    } catch {
-      /* ignore */
-    }
-    setHydrated(true);
-  }, []);
-
-  const persist = useCallback((next: RewardsState) => {
-    setState(next);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-  }, []);
-
-  async function handleCheckIn() {
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 350));
-
-    const result = computeCheckIn({
-      lastCheckIn: state.lastCheckIn,
-      streak: state.streak,
-    });
-
-    if (result.alreadyClaimed) {
-      setAlreadyClaimed(true);
-      setMessage("Already checked in today.");
-      setLoading(false);
-      return;
-    }
-
-    const next: RewardsState = {
-      ...state,
-      tokens: state.tokens + result.earned,
-      streak: result.newStreak,
-      lastCheckIn: result.today,
-      lifetimeEarned: state.lifetimeEarned + result.earned,
-    };
-
-    setCheckInEarned(result.earned);
-    setAlreadyClaimed(true);
-    setMessage(`+${result.earned} tokens claimed!`);
-    persist(next);
-    setLoading(false);
-  }
-
-  function handleSpin(prize: { label: string; value: number | string }) {
-    if (spinningLock) return;
-    setSpinningLock(true);
-
-    const result = computeSpinResult({
-      tokens: state.tokens,
-      lifetimeSpent: state.lifetimeSpent,
-      prize,
-      flags: state.flags,
-    });
-
-    if (!result.ok) {
-      setMessage(result.reason);
-      setSpinningLock(false);
-      return;
-    }
-
-    const next: RewardsState = {
-      ...state,
-      tokens: result.nextTokens,
-      lifetimeSpent: result.nextLifetimeSpent,
-      lifetimeEarned: state.lifetimeEarned + result.prizeTokens,
-      flags: result.flags,
-    };
-
-    setMessage(result.message);
-    persist(next);
-    setSpinningLock(false);
-  }
-
-  if (!hydrated) {
-    return (
-      <main className="flex min-h-screen items-center justify-center text-neutral-500">
-        Loading rewards…
-      </main>
-    );
-  }
-
   return (
-    <main className="min-h-screen">
-      <div className="border-b border-white/10">
-        <div className="mx-auto max-w-5xl px-6 py-10">
-          <p className="mb-2 text-sm font-medium tracking-wide text-pink-400">✦ REWARDS</p>
-          <h1 className="text-4xl font-bold tracking-tight">
-            Earn. Spin. <span className="text-pink-400">Unlock.</span>
-          </h1>
-          <p className="mt-2 max-w-lg text-zinc-400">
-            Daily check-ins, streak bonuses, and a premium spin wheel. Spend tokens on Founders
-            & Nova exclusives.
-          </p>
-        </div>
-      </div>
-
-      <div className="mx-auto max-w-5xl px-6 py-10">
-        {message && (
-          <div className="mb-6 rounded-xl border border-pink-500/30 bg-pink-500/10 py-3 text-center text-sm text-pink-300">
-            {message}
-          </div>
-        )}
-
-        {/* Active perks */}
-        {(state.flags.freeShipping ||
-          state.flags.freeLocalDelivery ||
-          state.flags.mysteryGift) && (
-          <div className="mb-6 flex flex-wrap gap-2">
-            {state.flags.freeShipping && (
-              <span className="rounded-full border border-purple-400/40 bg-purple-500/15 px-3 py-1 text-xs font-semibold text-purple-200">
-                Free Shipping active
-              </span>
-            )}
-            {state.flags.freeLocalDelivery && (
-              <span className="rounded-full border border-cyan-400/40 bg-cyan-500/15 px-3 py-1 text-xs font-semibold text-cyan-200">
-                Free Local Delivery active
-              </span>
-            )}
-            {state.flags.mysteryGift && (
-              <span className="rounded-full border border-pink-400/40 bg-pink-500/15 px-3 py-1 text-xs font-semibold text-pink-200">
-                Mystery Gift reserved
-              </span>
-            )}
-          </div>
-        )}
-
-        <div className="grid gap-8 lg:grid-cols-5">
-          <div className="space-y-5 lg:col-span-2">
-            <TokenBalance tokens={state.tokens} isFounder={state.isFounder} />
-            <DailyCheckIn
-              streak={state.streak}
-              lastCheckIn={state.lastCheckIn}
-              onCheckIn={handleCheckIn}
-              earned={checkInEarned}
-              alreadyClaimed={alreadyClaimed}
-              loading={loading}
-            />
-            <ProgressBar current={state.lifetimeSpent} target={100} />
-            <div className="glass p-4 text-xs text-zinc-400">
-              <p className="mb-1 font-medium text-zinc-300">Token math</p>
-              <p>
-                Daily base +3 · Day 3 +5 · Every 7 days +12 · Spin costs{" "}
-                <strong className="text-yellow-300">{SPIN_COST}</strong>
-              </p>
-              <p className="mt-1">
-                Prizes: 20 / 5 / 0 tokens · Free Shipping · Free Local Delivery · Mystery Gift
-              </p>
-              <p className="mt-2">
-                Earned lifetime:{" "}
-                <span className="text-yellow-300">{state.lifetimeEarned}</span> · Spent:{" "}
-                <span className="text-pink-300">{state.lifetimeSpent}</span>
-              </p>
-            </div>
-            <Link
-              href="/shop"
-              className="block rounded-xl border border-white/10 bg-white/5 py-3 text-center text-sm text-zinc-400 transition hover:border-pink-500/40 hover:text-pink-300"
-            >
-              Spend tokens in the shop →
-            </Link>
-          </div>
-
-          <div className="lg:col-span-3">
-            <div className="glass-strong flex flex-col items-center p-8">
-              <h2 className="mb-1 text-xl font-bold">Spin the Wheel</h2>
-              <p className="mb-8 text-sm text-zinc-400">
-                {SPIN_COST} tokens per spin · Six premium outcomes
-              </p>
-              <SpinWheel tokens={state.tokens} onSpin={handleSpin} disabled={spinningLock} />
-            </div>
-          </div>
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl items-center px-6 py-20">
+      <div className="glass-strong w-full p-8 text-center sm:p-12">
+        <p className="mb-3 text-sm font-medium text-pink-400">REWARDS</p>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          Coming after real orders
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-zinc-400 leading-relaxed">
+          Individual Tokens, daily check-ins, and exclusives will return when they
+          sit on a durable database — not memory that vanishes on every deploy.
+          For now we ship the shop: made-to-order goods from Cullman, Alabama.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/shop" className="btn-pill-pink px-7 py-3 text-sm">
+            Shop the catalog →
+          </Link>
+          <Link
+            href="/#request"
+            className="rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium transition hover:border-pink-500/40"
+          >
+            Custom request
+          </Link>
         </div>
       </div>
     </main>

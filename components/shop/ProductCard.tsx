@@ -1,9 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import EditionBadge from '@/components/rewards/EditionBadge';
-import TokenIcon from '@/components/rewards/TokenIcon';
-import { EditionType } from '@/lib/data/products';
 
 interface Product {
   id: string;
@@ -12,10 +9,6 @@ interface Product {
   category: string;
   badge?: string;
   slug: string;
-  isTokenOnly?: boolean;
-  tokenPrice?: number;
-  edition?: EditionType;
-  remainingQuantity?: number;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -36,23 +29,11 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <div className="absolute top-3 left-3 flex flex-col gap-1.5">
-          {product.edition && <EditionBadge edition={product.edition} />}
-          {product.badge && !product.edition && (
+        {product.badge && (
+          <div className="absolute top-3 left-3">
             <div className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-pink-500 text-white">
               {product.badge}
             </div>
-          )}
-          {product.isTokenOnly && (
-            <div className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-yellow-400/20 text-yellow-300 border border-yellow-400/40">
-              Tokens Only
-            </div>
-          )}
-        </div>
-
-        {typeof product.remainingQuantity === 'number' && product.remainingQuantity <= 20 && (
-          <div className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-[#1c1c21]/75 px-2.5 py-1 text-[11px] font-medium text-zinc-300 backdrop-blur">
-            Only {product.remainingQuantity} left
           </div>
         )}
       </div>
@@ -62,18 +43,11 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
         <div className="mt-1.5 flex items-center justify-between">
-          {product.isTokenOnly && product.tokenPrice ? (
-            <span className="flex items-center gap-1.5 text-lg font-semibold text-yellow-300">
-              <TokenIcon size={18} />
-              {product.tokenPrice}
-            </span>
-          ) : (
-            <span className="text-lg font-semibold text-yellow-300">
-              ${product.price.toFixed(2)}
-            </span>
-          )}
+          <span className="text-lg font-semibold text-yellow-300">
+            ${product.price.toFixed(2)}
+          </span>
           <span className="text-xs uppercase tracking-wider text-zinc-500">
-            {product.isTokenOnly ? 'Tokens' : 'Made to order'}
+            Made to order
           </span>
         </div>
       </div>

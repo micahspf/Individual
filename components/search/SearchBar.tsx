@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { products } from '@/lib/data/products';
+import { shopProducts } from '@/lib/data/products';
 import Link from 'next/link';
 
 export default function SearchBar() {
@@ -14,7 +14,7 @@ export default function SearchBar() {
   const results = useMemo(() => {
     if (!q.trim()) return [];
     const term = q.toLowerCase();
-    return products
+    return shopProducts
       .filter(
         (p) =>
           p.name.toLowerCase().includes(term) ||
@@ -69,9 +69,7 @@ export default function SearchBar() {
               className="flex items-center justify-between px-4 py-3 text-sm transition hover:bg-white/5"
             >
               <span className="text-zinc-100">{p.name}</span>
-              <span className="text-xs text-yellow-300">
-                {p.isTokenOnly ? `${p.tokenPrice} tokens` : `$${p.price}`}
-              </span>
+              <span className="text-xs text-yellow-300">${p.price}</span>
             </Link>
           ))}
           <button

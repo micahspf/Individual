@@ -2,7 +2,7 @@
 
 import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { products, categories } from '@/lib/data/products';
+import { shopProducts, categories } from '@/lib/data/products';
 import ProductCard from '@/components/shop/ProductCard';
 import CategoryTabs from '@/components/shop/CategoryTabs';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ function ShopContent() {
   const [priceRange, setPriceRange] = useState('all');
 
   const filtered = useMemo(() => {
-    let result = [...products];
+    let result = [...shopProducts];
 
     if (activeCategory === 'custom') return [];
     if (activeCategory !== 'all') {
@@ -41,7 +41,7 @@ function ShopContent() {
 
     if (priceRange !== 'all') {
       result = result.filter((p) => {
-        const price = p.isTokenOnly ? (p.tokenPrice || 0) : p.price;
+        const price = p.price;
         if (priceRange === '0-20') return price < 20;
         if (priceRange === '20-35') return price >= 20 && price <= 35;
         if (priceRange === '35-50') return price > 35 && price <= 50;
@@ -51,10 +51,8 @@ function ShopContent() {
     }
 
     result.sort((a, b) => {
-      const pa = a.isTokenOnly ? (a.tokenPrice || 0) : a.price;
-      const pb = b.isTokenOnly ? (b.tokenPrice || 0) : b.price;
-      if (sort === 'price-asc') return pa - pb;
-      if (sort === 'price-desc') return pb - pa;
+      if (sort === 'price-asc') return a.price - b.price;
+      if (sort === 'price-desc') return b.price - a.price;
       if (sort === 'name') return a.name.localeCompare(b.name);
       return 0;
     });

@@ -13,11 +13,17 @@ export interface Product {
   isTokenOnly?: boolean;
   tokenPrice?: number;
   edition?: EditionType;
+  /** Real remaining count only — never invent scarcity. Wire to orders before use. */
   remainingQuantity?: number;
 }
 
+/**
+ * Shop catalog — made to order in Cullman, AL.
+ * Turnarounds: quote baseline 10 business days; typical 7–10 day delivery window.
+ * Token-only exclusives stay in data but are hidden from shop until rewards has a DB.
+ */
 export const products: Product[] = [
-  // 1. Lead product — Personalized Drinkware
+  // Lead product — Personalized Drinkware
   {
     id: '1',
     name: 'Personalized Tumbler',
@@ -25,9 +31,10 @@ export const products: Product[] = [
     price: 32,
     category: 'drinkware',
     badge: 'Lead Product',
-    description: 'Custom laser-engraved tumbler. Add a name, date, short message, or lake coordinates. Perfect for Smith Lake days, tailgates, and gifts.',
+    description:
+      'Custom laser-engraved tumbler. Add a name, date, short message, or lake coordinates. Perfect for Smith Lake days, tailgates, and gifts.',
     materials: 'Stainless steel, laser engraved',
-    turnaround: '2–4 days',
+    turnaround: '7–10 days',
   },
   {
     id: '2',
@@ -35,12 +42,13 @@ export const products: Product[] = [
     slug: 'personalized-can-cooler',
     price: 28,
     category: 'drinkware',
-    description: 'Slim can cooler with your custom engraving. Ideal for boat days and game-day gifting.',
+    description:
+      'Slim can cooler with your custom engraving. Ideal for boat days and game-day gifting.',
     materials: 'Stainless steel, laser engraved',
-    turnaround: '2–4 days',
+    turnaround: '7–10 days',
   },
 
-  // 2. Custom wood signs
+  // Custom wood signs
   {
     id: '3',
     name: 'Custom Wood Sign',
@@ -48,9 +56,10 @@ export const products: Product[] = [
     price: 45,
     category: 'home',
     badge: 'Popular',
-    description: 'Laser-cut and engraved wood sign. Family name, Smith Lake, Scripture, or German-heritage designs available.',
+    description:
+      'Laser-cut and engraved wood sign. Family name, Smith Lake, Scripture, or German-heritage designs available.',
     materials: 'Basswood / birch, laser cut + engraved',
-    turnaround: '3–5 days',
+    turnaround: '7–10 days',
   },
   {
     id: '4',
@@ -58,12 +67,13 @@ export const products: Product[] = [
     slug: 'smith-lake-sign',
     price: 38,
     category: 'home',
-    description: 'Lake-house ready wood sign celebrating Smith Lake. Personalize with your dock name or coordinates.',
+    description:
+      'Lake-house ready wood sign celebrating Smith Lake. Personalize with your dock name or coordinates.',
     materials: 'Basswood, laser engraved',
-    turnaround: '3–5 days',
+    turnaround: '7–10 days',
   },
 
-  // 3. Flexi animal multipacks
+  // Flexi animal multipacks
   {
     id: '5',
     name: 'Flexi Animal Multipack (12 pc)',
@@ -71,9 +81,10 @@ export const products: Product[] = [
     price: 18,
     category: '3d-printed',
     badge: 'Party Favors',
-    description: 'Articulated flexi animals printed in colorful PLA. Perfect for birthday goodie bags, classroom rewards, and VBS.',
+    description:
+      'Articulated flexi animals printed in colorful PLA. Perfect for birthday goodie bags, classroom rewards, and VBS.',
     materials: 'PLA (print-in-place)',
-    turnaround: '3–5 days',
+    turnaround: '7–10 days',
   },
   {
     id: '6',
@@ -83,10 +94,10 @@ export const products: Product[] = [
     category: '3d-printed',
     description: 'Larger multipack of articulated animals. Great for parties and teacher gifts.',
     materials: 'PLA (print-in-place)',
-    turnaround: '4–6 days',
+    turnaround: '7–10 days',
   },
 
-  // 4. Pet ID tags
+  // Pet ID tags
   {
     id: '7',
     name: 'Pet ID Tag',
@@ -94,21 +105,23 @@ export const products: Product[] = [
     price: 16,
     category: 'home',
     badge: 'High Margin',
-    description: 'Laser-engraved metal pet ID tag. Name + phone number. Fast local turnaround.',
+    description:
+      'Laser-engraved metal pet ID tag. Name + phone number. Local Cullman pickup available.',
     materials: 'Anodized aluminum, laser engraved',
-    turnaround: '1–2 days',
+    turnaround: '7–10 days',
   },
 
-  // 5. 13+ Fidget & Sensory
+  // 13+ Fidget & Sensory
   {
     id: '8',
     name: 'Print-in-Place Fidget Slider',
     slug: 'fidget-slider',
     price: 12,
     category: 'fidget-sensory',
-    description: 'Smooth print-in-place fidget slider. Marketed for ages 13+. Great desk or backpack item.',
+    description:
+      'Smooth print-in-place fidget slider. Marketed for ages 13+. Great desk or backpack item.',
     materials: 'PLA or TPU',
-    turnaround: '2–4 days',
+    turnaround: '7–10 days',
   },
   {
     id: '9',
@@ -118,10 +131,10 @@ export const products: Product[] = [
     category: 'fidget-sensory',
     description: 'Compact fidget board with multiple mechanisms. Ages 13+.',
     materials: 'PLA',
-    turnaround: '3–5 days',
+    turnaround: '7–10 days',
   },
 
-  // Token / exclusive examples
+  // Token exclusives — kept for later; not sold until rewards has durable storage
   {
     id: '10',
     name: 'Founders Name Plate',
@@ -131,11 +144,10 @@ export const products: Product[] = [
     isTokenOnly: true,
     tokenPrice: 80,
     edition: 'founders',
-    remainingQuantity: 100,
     description:
-      'Founders Edition · First 100 customers. Exclusive name plate available only with Individual Tokens.',
+      'Founders Edition name plate for early customers. Token exclusives return when rewards launches with a real database.',
     materials: 'PLA / specialty filament',
-    turnaround: '4–7 days',
+    turnaround: '7–10 days',
   },
   {
     id: '11',
@@ -146,12 +158,14 @@ export const products: Product[] = [
     isTokenOnly: true,
     tokenPrice: 120,
     edition: 'nova',
-    remainingQuantity: 18,
-    description: 'Limited Nova Edition desk piece. Token-only drop.',
+    description: 'Nova Edition desk piece. Token-only drop — paused until rewards storage ships.',
     materials: 'Premium filament',
-    turnaround: '5–8 days',
+    turnaround: '7–10 days',
   },
 ];
+
+/** Products visible in the shop (cash catalog only). */
+export const shopProducts = products.filter((p) => !p.isTokenOnly);
 
 export const categories = [
   { id: 'all', label: 'All', icon: '✦' },

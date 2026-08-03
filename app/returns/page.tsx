@@ -14,7 +14,10 @@ export default function ReturnsPage() {
           Contact us within 7 days of delivery if something isn’t right. Include photos and your order details.
         </p>
         <p className="text-neutral-500 text-sm">
-          Email: <a href="mailto:micahspf@gmail.com" className="text-pink-400">micahspf@gmail.com</a>
+          Email:{' '}
+          <a href="mailto:founder@madebyindividual.com" className="text-pink-400">
+            founder@madebyindividual.com
+          </a>
         </p>
       </div>
     </main>

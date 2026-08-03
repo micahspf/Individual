@@ -5,7 +5,7 @@ export default function ShippingPage() {
       <h1 className="text-4xl font-bold mb-6">Shipping & Turnaround</h1>
       <div className="space-y-5 text-neutral-300 leading-relaxed">
         <p>
-          Everything is made to order. Production time is usually 2–5 days for standard items. You’ll get a clear timeline with your quote on custom work.
+          Everything is made to order. Plan on a 7–10 day turnaround for standard catalog items (quote baseline is about 10 business days). You’ll get a clear timeline with every custom quote.
         </p>
         <p>
           <strong className="text-white">Local (Cullman area):</strong> Pickup is available by arrangement — often the fastest option.

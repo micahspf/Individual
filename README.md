@@ -1,72 +1,53 @@
-# Made by Individual — Strategy-Aligned Website
+# Made by Individual
 
-Built from the July 30, 2026 Website, Market, and Product Strategy Report.
+Custom 3D print & laser engraving · Cullman, Alabama  
+Live site: [www.madebyindividual.com](https://www.madebyindividual.com)
 
-## What’s included
+**One repo. One shop. No archive variants.**
 
-### Shop (populated)
-- Personalized Tumbler ($32) — lead product
-- Personalized Can Cooler ($28)
-- Custom Wood Sign ($45)
-- Smith Lake Sign ($38)
-- Flexi Animal Multipack 12pc ($18)
-- Flexi Animal Multipack 25pc ($24)
-- Pet ID Tag ($16)
-- Fidget Slider ($12) — ages 13+
-- Fidget Board ($18) — ages 13+
-- Founders Name Plate (tokens only)
-- Nova Desk Piece (tokens only)
+## Catalog (cash products)
 
-### Categories (updated per strategy)
-- All
-- 3D Printed
-- Fidget & Sensory (renamed from Viral Toys)
-- Drinkware
-- Home
-- Custom Request
+| Product | Price | Turnaround |
+|---------|-------|------------|
+| Personalized Tumbler | $32 | 7–10 days |
+| Personalized Can Cooler | $28 | 7–10 days |
+| Custom Wood Sign | $45 | 7–10 days |
+| Smith Lake Sign | $38 | 7–10 days |
+| Flexi Animal Multipack 12 | $18 | 7–10 days |
+| Flexi Animal Multipack 25 | $24 | 7–10 days |
+| Pet ID Tag | $16 | 7–10 days |
+| Fidget Slider (13+) | $12 | 7–10 days |
+| Fidget Board (13+) | $18 | 7–10 days |
 
-### Pages added
-- `/` — Homepage (no fake 4.9★ rating; local Cullman messaging)
-- `/shop` — Full catalog + filters
-- `/about` — Local maker story
-- `/contact` — Cullman location + email
-- `/faq` — Materials, turnaround, collegiate policy, ages
-- `/shipping` — Turnaround + local pickup
-- `/returns` — Made-to-order return policy
+Token exclusives exist in `lib/data/products.ts` but are **hidden** until rewards has a real database.
 
-### SEO / Trust
-- Title and meta include “Cullman, Alabama”
-- LocalBusiness schema
-- Honest trust bar (no fabricated ratings)
-
-## PowerShell quick start
+## Local run
 
 ```powershell
-# Unzip, then:
-cd individual-strategy
+cd rootnova
 npm install
 npm run dev
 ```
 
 Open http://localhost:3000
 
-## Next steps from the strategy report
-1. Replace emoji placeholders with your real product photos
-2. Wire the Request form to email / Request Agent
-3. Claim Google Business Profile
-4. Add real reviews only when you have them
-5. Keep collegiate marks off the site unless licensed
+## Launch posture (from archive audit)
 
-## Redis (production auth)
+- **Ship the shop** — cart, checkout, track order, custom request.
+- **No spin wheel** — removed (paid chance mechanic).
+- **Rewards UI paused** — `/rewards` is a coming-soon page; code kept under `lib/rewards/`.
+- **No fake scarcity** — no hardcoded “X left” without order-backed counters.
+- **Public email** — `founder@madebyindividual.com` (not personal Gmail in committed files).
 
-Token blacklist + refresh tokens can run on Redis for multi-server deploys.
+See `docs/ARCHITECTURE.md`.
 
-```bash
-npm install ioredis
-```
+## Env
 
-```env
-REDIS_URL=redis://localhost:6379
-```
+Copy `.env.local.example` → `.env.local`. Never commit real secrets.
 
-If `REDIS_URL` is missing, the app automatically uses the in-memory store.
+## Next
+
+1. Real product photos  
+2. Postgres for orders/auth  
+3. LLC / filings (keep Wednesday)  
+4. ~20 real orders before reopening rewards  
