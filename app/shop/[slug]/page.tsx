@@ -1,54 +1,31 @@
-'use client';
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { shopProducts, products } from "@/lib/data/products";
+import Recommendations from "@/components/shop/Recommendations";
+import AddToCartButton from "@/components/shop/AddToCartButton";
 
-import { use } from 'react';
-import Link from 'next/link';
-import { products, shopProducts } from '@/lib/data/products';
-import { addToCart } from '@/lib/cart/store';
-import Recommendations from '@/components/shop/Recommendations';
-import { useState } from 'react';
+/** ISR: rebuild product pages at most once per hour */
+export const revalidate = 3600;
 
-export default function ProductPage({
+export async function generateStaticParams() {
+  return shopProducts.map((p) => ({ slug: p.slug }));
+}
+
+export default async function ProductPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = use(params);
+  const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
-  const [added, setAdded] = useState(false);
 
   if (!product || product.isTokenOnly) {
-    return (
-      <main className="max-w-3xl mx-auto px-6 py-20 text-center">
-        <h1 className="text-2xl font-bold mb-4">
-          {product?.isTokenOnly ? 'Not available yet' : 'Product not found'}
-        </h1>
-        <p className="text-zinc-400 mb-6 max-w-md mx-auto">
-          {product?.isTokenOnly
-            ? 'Token exclusives are paused until rewards run on a real database. Shop the made-to-order catalog instead.'
-            : 'That product isn’t in the catalog.'}
-        </p>
-        <Link href="/shop" className="text-pink-400 hover:text-pink-300">
-          ← Back to shop
-        </Link>
-      </main>
-    );
+    notFound();
   }
 
   const related = shopProducts
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
-
-  function handleAdd() {
-    addToCart({
-      id: product!.id,
-      slug: product!.slug,
-      name: product!.name,
-      price: product!.price,
-      isTokenOnly: false,
-    });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-  }
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-10">
@@ -67,10 +44,10 @@ export default function ProductPage({
       <div className="grid lg:grid-cols-2 gap-12">
         <div className="glass aspect-square flex items-center justify-center relative overflow-hidden">
           <div className="text-7xl opacity-30">
-            {product.category === '3d-printed' && '🖨️'}
-            {product.category === 'fidget-sensory' && '🧩'}
-            {product.category === 'drinkware' && '🥤'}
-            {product.category === 'home' && '🏠'}
+            {product.category === "3d-printed" && "🖨️"}
+            {product.category === "fidget-sensory" && "🧩"}
+            {product.category === "drinkware" && "🥤"}
+            {product.category === "home" && "🏠"}
           </div>
           {product.badge && (
             <div className="absolute top-4 left-4">
@@ -107,12 +84,12 @@ export default function ProductPage({
             </div>
           </dl>
 
-          <button
-            onClick={handleAdd}
-            className="btn-pill-pink w-full sm:w-auto px-10 py-3.5"
-          >
-            {added ? 'Added to cart ✓' : 'Add to cart'}
-          </button>
+          <AddToCartButton
+            id={product.id}
+            slug={product.slug}
+            name={product.name}
+            price={product.price}
+          />
 
           <div className="glass mt-6 p-4 text-sm text-zinc-400">
             <p>
@@ -123,7 +100,7 @@ export default function ProductPage({
               <Link href="/returns" className="text-pink-400 hover:text-pink-300">
                 Returns policy
               </Link>
-              {' · '}
+              {" · "}
               <Link href="/shipping" className="text-pink-400 hover:text-pink-300">
                 Shipping details
               </Link>
