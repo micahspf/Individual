@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import EmailCapture from "@/components/ui/EmailCapture";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Made by Individual — Custom 3D print & laser engraving · Cullman, AL",
@@ -55,6 +56,7 @@ export default function RootLayout({
       <body className="min-h-screen text-zinc-100 antialiased">
         <Header />
         {children}
+        <SpeedInsights />
         <footer className="mt-20 border-t border-white/10">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 text-sm sm:grid-cols-2 lg:grid-cols-4">
             <div>
