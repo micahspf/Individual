@@ -65,3 +65,7 @@ next-env.d.ts
 
 # archives / snapshots (use git history instead)
 *.zip
+
+# founder phone photos (optimized copies go to public/products)
+raw-photos/*
+!raw-photos/.gitkeep

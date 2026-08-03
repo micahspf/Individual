@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images": "node scripts/optimize-images.mjs",
+    "images:placeholder": "node scripts/make-placeholder.mjs",
+    "analyze": "next build"
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.12.1",
@@ -19,12 +22,14 @@
     "stripe": "^22.4.0"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.2.12",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

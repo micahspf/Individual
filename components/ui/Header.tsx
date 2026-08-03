@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import SearchBar from "@/components/search/SearchBar";
-import CartDrawer from "@/components/cart/CartDrawer";
 import { cartCount } from "@/lib/cart/store";
+
+const CartDrawer = dynamic(() => import("@/components/cart/CartDrawer"), {
+  ssr: false,
+});
 
 export default function Header() {
   const [count, setCount] = useState(0);

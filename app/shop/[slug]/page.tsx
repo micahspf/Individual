@@ -1,14 +1,41 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { shopProducts, products } from "@/lib/data/products";
 import Recommendations from "@/components/shop/Recommendations";
 import AddToCartButton from "@/components/shop/AddToCartButton";
+import ProductImage from "@/components/shop/ProductImage";
 
 /** ISR: rebuild product pages at most once per hour */
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
   return shopProducts.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const product = shopProducts.find((p) => p.slug === slug);
+  if (!product) {
+    return { title: "Product not found" };
+  }
+  const url = `https://www.madebyindividual.com/shop/${product.slug}`;
+  return {
+    title: product.name,
+    description: product.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      url,
+      type: "website",
+      images: [{ url: product.image, width: 800, height: 1000, alt: product.name }],
+    },
+  };
 }
 
 export default async function ProductPage({
@@ -27,8 +54,62 @@ export default async function ProductPage({
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
+  const priceValidUntil = new Date();
+  priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: `https://www.madebyindividual.com${product.image}`,
+    brand: { "@type": "Brand", name: "Made by Individual" },
+    offers: {
+      "@type": "Offer",
+      url: `https://www.madebyindividual.com/shop/${product.slug}`,
+      priceCurrency: "USD",
+      price: product.price.toFixed(2),
+      availability: "https://schema.org/MadeToOrder",
+      priceValidUntil: priceValidUntil.toISOString().slice(0, 10),
+      itemCondition: "https://schema.org/NewCondition",
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://www.madebyindividual.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Shop",
+        item: "https://www.madebyindividual.com/shop",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.name,
+        item: `https://www.madebyindividual.com/shop/${product.slug}`,
+      },
+    ],
+  };
+
   return (
     <main className="max-w-7xl mx-auto px-6 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <nav className="text-sm text-zinc-500 mb-8 flex items-center gap-2">
         <Link href="/" className="hover:text-pink-300">
           Home
@@ -42,15 +123,17 @@ export default async function ProductPage({
       </nav>
 
       <div className="grid lg:grid-cols-2 gap-12">
-        <div className="glass aspect-square flex items-center justify-center relative overflow-hidden">
-          <div className="text-7xl opacity-30">
-            {product.category === "3d-printed" && "🖨️"}
-            {product.category === "fidget-sensory" && "🧩"}
-            {product.category === "drinkware" && "🥤"}
-            {product.category === "home" && "🏠"}
-          </div>
+        <div className="glass aspect-square relative overflow-hidden">
+          <ProductImage
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
           {product.badge && (
-            <div className="absolute top-4 left-4">
+            <div className="absolute top-4 left-4 z-10">
               <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-pink-500 text-white">
                 {product.badge}
               </span>

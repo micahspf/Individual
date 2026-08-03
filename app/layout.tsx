@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import EmailCapture from "@/components/ui/EmailCapture";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+/** Self-hosted via next/font — two weights max */
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600"],
+  variable: "--font-sans",
+});
+
 export const metadata: Metadata = {
-  title: "Made by Individual — Custom 3D print & laser engraving · Cullman, AL",
+  metadataBase: new URL("https://www.madebyindividual.com"),
+  title: {
+    default: "Made by Individual — Custom 3D print & laser engraving · Cullman, AL",
+    template: "%s · Made by Individual",
+  },
   description:
     "Custom 3D-printed and laser-engraved products made to order in Cullman, Alabama. Tumblers, signs, flexi packs, pet tags. Made for you. No waste inventory.",
   openGraph: {
@@ -16,6 +29,11 @@ export const metadata: Metadata = {
     siteName: "Made by Individual",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Made by Individual",
+    description: "Custom 3D print & laser engraving · Cullman, AL",
   },
   robots: {
     index: true,
@@ -29,31 +47,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: "Made by Individual",
-              description:
-                "Custom 3D printing and laser engraving: tumblers, wood signs, flexi packs, and more. Made for you in Cullman, Alabama.",
-              url: "https://www.madebyindividual.com",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Cullman",
-                addressRegion: "AL",
-                addressCountry: "US",
-              },
-              areaServed: "Cullman County, Alabama",
-              priceRange: "$$",
-            }),
-          }}
-        />
-      </head>
-      <body className="min-h-screen text-zinc-100 antialiased">
+    <html lang="en" className={inter.variable}>
+      <body className={`${inter.className} min-h-screen text-zinc-100 antialiased`}>
         <Header />
         {children}
         <SpeedInsights />
@@ -125,6 +120,16 @@ export default function RootLayout({
                     Track order
                   </a>
                 </li>
+                <li>
+                  <a href="/privacy" className="hover:text-pink-300">
+                    Privacy
+                  </a>
+                </li>
+                <li>
+                  <a href="/terms" className="hover:text-pink-300">
+                    Terms
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
@@ -133,7 +138,14 @@ export default function RootLayout({
             </div>
           </div>
           <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">
-            © {new Date().getFullYear()} Made by Individual · Cullman, AL
+            © {new Date().getFullYear()} Made by Individual · Cullman, AL ·{" "}
+            <a href="/privacy" className="hover:text-pink-300">
+              Privacy
+            </a>{" "}
+            ·{" "}
+            <a href="/terms" className="hover:text-pink-300">
+              Terms
+            </a>
           </div>
         </footer>
       </body>
