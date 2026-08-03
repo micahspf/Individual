@@ -14,23 +14,24 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <HeroDecor />
 
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-20 pt-16 lg:grid-cols-2 lg:gap-20 lg:pb-28 lg:pt-24">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-20 pt-12 lg:grid-cols-2 lg:gap-20 lg:pb-28 lg:pt-20">
           <div>
-            <div className="mb-6 hidden sm:block">
-              <BrandLogo size="lg" link={false} priority />
+            {/* Floating wordmark + aura — centered above maker line */}
+            <div className="mb-5 flex flex-col items-center text-center lg:items-start lg:text-left">
+              <BrandLogo size="lg" link={false} hero priority />
+              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#ff7ab8]/90 sm:text-xs">
+                Individual manufacturer · Cullman, Alabama
+              </p>
             </div>
-            <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-[#ff7ab8]/90">
-              Individual manufacturer · Cullman, Alabama
-            </p>
-            <h1 className="font-display max-w-xl text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="font-display mx-auto max-w-xl text-center text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl lg:mx-0 lg:text-left lg:text-[3.25rem]">
               Personalized goods, manufactured to order.
             </h1>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-md text-center text-base leading-relaxed text-zinc-400 sm:text-lg lg:mx-0 lg:text-left">
               Name, monogram, date, or message on drinkware, home pieces, and keepsakes —
               produced one order at a time. Gift-ready ideas with a manufacturer’s finish.
               Clear quotes. Honest timelines.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Link
                 href="/shop"
                 className="inline-flex items-center gap-2 rounded-full bg-[#ff2d8a] px-7 py-3.5 text-sm font-medium text-white shadow-[0_0_28px_rgba(255,45,138,0.4)] transition hover:bg-[#ff4da0]"
@@ -45,7 +46,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-8">
+            <dl className="mx-auto mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-white/10 pt-8 lg:mx-0">
               {[
                 { k: "Turnaround", v: "7–10 days" },
                 { k: "Model", v: "Made to order" },

@@ -187,3 +187,109 @@ h3 {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* —— Brand logo: floating mark + soft aura (no black box) —— */
+.brand-logo {
+  isolation: isolate;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible;
+}
+
+.brand-logo__img {
+  background: transparent !important;
+  /* Gentle depth so the mark sits in space, not as a sticker */
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.28))
+    drop-shadow(0 0 18px rgba(255, 45, 138, 0.18))
+    drop-shadow(0 0 28px rgba(255, 225, 74, 0.12));
+}
+
+.brand-logo__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -35% -20%;
+  z-index: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 35% 50%,
+      rgba(255, 45, 138, 0.28) 0%,
+      rgba(255, 45, 138, 0.08) 40%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 65% 50% at 70% 48%,
+      rgba(255, 225, 74, 0.22) 0%,
+      rgba(255, 140, 66, 0.1) 38%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 50% 55%,
+      rgba(255, 140, 66, 0.12) 0%,
+      transparent 60%
+    );
+  filter: blur(22px);
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.brand-logo__glow--soft {
+  inset: -55% -35%;
+  filter: blur(40px);
+  opacity: 0.45;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(255, 45, 138, 0.16) 0%,
+      rgba(255, 140, 66, 0.1) 35%,
+      rgba(255, 225, 74, 0.08) 55%,
+      transparent 72%
+    );
+}
+
+/* Header / footer: compact, left-aligned, lighter glow */
+.brand-logo--inline {
+  padding: 0.15rem 0.25rem;
+}
+.brand-logo--inline .brand-logo__glow {
+  inset: -40% -25%;
+  filter: blur(16px);
+  opacity: 0.55;
+}
+.brand-logo--inline .brand-logo__glow--soft {
+  display: none;
+}
+.brand-logo--inline .brand-logo__img {
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 0 12px rgba(255, 45, 138, 0.15));
+}
+
+/* Hero: centered, richer aura, integrated into gradient */
+.brand-logo--hero {
+  display: flex;
+  width: 100%;
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: 1.25rem 1.5rem 1rem;
+  justify-content: center;
+}
+.brand-logo--hero .brand-logo__img {
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.22))
+    drop-shadow(0 0 24px rgba(255, 45, 138, 0.22))
+    drop-shadow(0 0 40px rgba(255, 225, 74, 0.14));
+}
+
+@media (min-width: 640px) {
+  .brand-logo--hero {
+    max-width: 36rem;
+    padding: 1.5rem 2rem 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-logo--hero {
+    max-width: 42rem;
+  }
+}
