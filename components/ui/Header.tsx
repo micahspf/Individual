@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import SearchBar from "@/components/search/SearchBar";
+import BrandLogo from "@/components/ui/BrandLogo";
 import { cartCount } from "@/lib/cart/store";
 
 const CartDrawer = dynamic(() => import("@/components/cart/CartDrawer"), {
@@ -25,14 +26,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1c1c21]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a12]/85 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link
-            href="/"
-            className="font-display shrink-0 text-xl font-medium tracking-wide text-pink-400"
-          >
-            Individual
-          </Link>
+          <BrandLogo size="sm" priority />
 
           <div className="mx-4 hidden max-w-sm flex-1 md:block">
             <SearchBar />
@@ -63,7 +59,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setCartOpen(true)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-yellow-400 text-black shadow-[0_0_16px_rgba(250,204,21,0.35)] transition hover:bg-yellow-300"
+              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[#ffe14a] text-black shadow-[0_0_16px_rgba(255,225,74,0.4)] transition hover:bg-[#fff08a]"
               aria-label="Open cart"
             >
               <span className="text-sm">🛒</span>

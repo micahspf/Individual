@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
+import BrandLogo from "@/components/ui/BrandLogo";
 import { giftOccasions, shopProducts } from "@/lib/data/products";
 
 export default function HomePage() {
@@ -15,7 +16,10 @@ export default function HomePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-20 pt-16 lg:grid-cols-2 lg:gap-20 lg:pb-28 lg:pt-24">
           <div>
-            <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-pink-300/90">
+            <div className="mb-6 hidden sm:block">
+              <BrandLogo size="lg" link={false} priority />
+            </div>
+            <p className="mb-5 text-xs font-medium uppercase tracking-[0.22em] text-[#ff7ab8]/90">
               Individual manufacturer · Cullman, Alabama
             </p>
             <h1 className="font-display max-w-xl text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl lg:text-[3.25rem]">
@@ -29,13 +33,13 @@ export default function HomePage() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 rounded-full bg-pink-500 px-7 py-3.5 text-sm font-medium text-white shadow-[0_0_28px_rgba(236,72,153,0.3)] transition hover:bg-pink-400"
+                className="inline-flex items-center gap-2 rounded-full bg-[#ff2d8a] px-7 py-3.5 text-sm font-medium text-white shadow-[0_0_28px_rgba(255,45,138,0.4)] transition hover:bg-[#ff4da0]"
               >
                 View catalog
               </Link>
               <Link
                 href="#request"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-yellow-400/40 hover:bg-yellow-400/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-[#ffe14a]/40 hover:bg-[#ffe14a]/10"
               >
                 Request a commission
               </Link>
@@ -78,9 +82,9 @@ export default function HomePage() {
               </div>
 
               <div className="glass-yellow relative overflow-hidden">
-                <div className="flex aspect-[3/4] flex-col justify-between bg-gradient-to-br from-white/[0.05] to-transparent p-6">
+                <div className="flex aspect-[3/4] flex-col justify-between bg-gradient-to-br from-[#ff2d8a]/10 via-[#ff8c42]/5 to-[#ffe14a]/10 p-6">
                   <div>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-yellow-300/90">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#ffe14a]/90">
                       Capability
                     </p>
                     <p className="font-display mt-3 text-2xl font-medium leading-snug text-zinc-100">
@@ -89,13 +93,13 @@ export default function HomePage() {
                   </div>
                   <ul className="space-y-2 text-sm text-zinc-400">
                     <li className="flex gap-2">
-                      <span className="text-yellow-400">—</span> Personalization
+                      <span className="text-[#ffe14a]">—</span> Personalization
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-yellow-400">—</span> Small-batch production
+                      <span className="text-[#ff8c42]">—</span> Small-batch production
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-yellow-400">—</span> One-off commissions
+                      <span className="text-[#ff2d8a]">—</span> One-off commissions
                     </li>
                   </ul>
                 </div>

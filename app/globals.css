@@ -1,25 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Medium dark grey base (not pure black) */
-  --background: #1c1c21;
-  --background-elevated: #24242b;
-  --background-soft: #2a2a33;
+  /* Brand from Individual wordmark — deep night + pink→orange→yellow */
+  --background: #0a0a12;
+  --background-elevated: #12121c;
+  --background-soft: #1a1a28;
   --foreground: #f4f4f5;
   --muted: #a1a1aa;
-  --pink: #ec4899;
-  --pink-soft: #f9a8d4;
-  --yellow: #facc15;
-  --yellow-soft: #fde047;
+  --pink: #ff2d8a;
+  --pink-soft: #ff7ab8;
+  --orange: #ff8c42;
+  --yellow: #ffe14a;
+  --yellow-soft: #fff08a;
+  --brand-gradient: linear-gradient(90deg, #ff2d8a 0%, #ff8c42 48%, #ffe14a 100%);
   --border-glass: rgba(255, 255, 255, 0.1);
-  --glass: rgba(255, 255, 255, 0.06);
-  --glass-strong: rgba(255, 255, 255, 0.09);
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-strong: rgba(255, 255, 255, 0.08);
 }
 
 body {
   background:
-    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(236, 72, 153, 0.08), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(250, 204, 21, 0.06), transparent 45%),
+    radial-gradient(ellipse 70% 45% at 8% 0%, rgba(255, 45, 138, 0.12), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 92% 8%, rgba(255, 225, 74, 0.08), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(255, 140, 66, 0.06), transparent 50%),
     var(--background);
   color: var(--foreground);
   min-height: 100vh;
@@ -40,17 +43,29 @@ h3 {
   letter-spacing: -0.015em;
 }
 
+/* Logo gradient text (matches wordmark) */
+.text-brand-gradient {
+  background: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-brand-gradient {
+  background: var(--brand-gradient);
+}
+
 ::selection {
-  background: rgba(236, 72, 153, 0.4);
+  background: rgba(255, 45, 138, 0.45);
   color: #fff;
 }
 
 :focus-visible {
-  outline: 2px solid #ec4899;
+  outline: 2px solid #ff2d8a;
   outline-offset: 2px;
 }
 
-/* Glassmorphism cards — Vision Pro style, pink/yellow neon system */
+/* Glassmorphism — night sky + brand neon */
 .glass {
   background: var(--glass);
   backdrop-filter: blur(20px);
@@ -58,7 +73,7 @@ h3 {
   border: 1px solid var(--border-glass);
   border-radius: 1.5rem;
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
@@ -69,64 +84,64 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1.5rem;
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.3),
+    0 12px 40px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-pink {
   background: linear-gradient(
     145deg,
-    rgba(236, 72, 153, 0.18),
-    rgba(236, 72, 153, 0.06)
+    rgba(255, 45, 138, 0.2),
+    rgba(255, 140, 66, 0.06)
   );
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(236, 72, 153, 0.35);
+  border: 1px solid rgba(255, 45, 138, 0.38);
   border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(236, 72, 153, 0.12);
+  box-shadow: 0 8px 32px rgba(255, 45, 138, 0.14);
 }
 
 .glass-yellow {
   background: linear-gradient(
     145deg,
-    rgba(250, 204, 21, 0.16),
-    rgba(250, 204, 21, 0.05)
+    rgba(255, 225, 74, 0.16),
+    rgba(255, 140, 66, 0.05)
   );
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(250, 204, 21, 0.3);
+  border: 1px solid rgba(255, 225, 74, 0.32);
   border-radius: 1.5rem;
-  box-shadow: 0 8px 32px rgba(250, 204, 21, 0.1);
+  box-shadow: 0 8px 32px rgba(255, 225, 74, 0.1);
 }
 
 .btn-pill-pink {
   border-radius: 999px;
-  background: #ec4899;
+  background: #ff2d8a;
   color: #fff;
   font-weight: 600;
-  box-shadow: 0 0 24px rgba(236, 72, 153, 0.35);
+  box-shadow: 0 0 24px rgba(255, 45, 138, 0.4);
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 .btn-pill-pink:hover {
-  background: #f472b6;
-  box-shadow: 0 0 32px rgba(236, 72, 153, 0.45);
+  background: #ff4da0;
+  box-shadow: 0 0 32px rgba(255, 45, 138, 0.5);
 }
 
 .btn-pill-yellow {
   border-radius: 999px;
-  background: #facc15;
+  background: #ffe14a;
   color: #111;
   font-weight: 600;
-  box-shadow: 0 0 20px rgba(250, 204, 21, 0.25);
+  box-shadow: 0 0 20px rgba(255, 225, 74, 0.3);
   transition: background 0.2s, transform 0.15s;
 }
 .btn-pill-yellow:hover {
-  background: #fde047;
+  background: #fff08a;
 }
 
 .surface {
   background: var(--background-elevated);
 }
 
-/* Form controls — glass on medium-dark grey */
+/* Form controls */
 .input-glass {
   width: 100%;
   border-radius: 0.75rem;
@@ -142,7 +157,7 @@ h3 {
 }
 .input-glass:focus {
   outline: none;
-  border-color: rgba(236, 72, 153, 0.5);
+  border-color: rgba(255, 45, 138, 0.55);
   background: rgba(255, 255, 255, 0.07);
 }
 
@@ -161,7 +176,7 @@ h3 {
 }
 .input-glass-pill:focus {
   outline: none;
-  border-color: rgba(236, 72, 153, 0.5);
+  border-color: rgba(255, 45, 138, 0.55);
   background: rgba(255, 255, 255, 0.07);
 }
 

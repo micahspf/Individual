@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
+import BrandLogo from "@/components/ui/BrandLogo";
 import EmailCapture from "@/components/ui/EmailCapture";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -28,6 +29,11 @@ export const metadata: Metadata = {
   },
   description:
     "Personalized drinkware, home gifts, and keepsakes manufactured to order in Cullman, Alabama. Names, monograms, dates — clear quotes and honest timelines.",
+  icons: {
+    icon: [{ url: "/brand/logo.jpg", type: "image/jpeg" }],
+    apple: [{ url: "/brand/logo.jpg" }],
+    shortcut: "/brand/logo.jpg",
+  },
   openGraph: {
     title: "Individual — Personalized, made to order",
     description:
@@ -36,11 +42,20 @@ export const metadata: Metadata = {
     siteName: "Individual",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/brand/logo-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Individual",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Individual",
     description: "Individual manufacturer · made to order · Cullman, AL",
+    images: ["/brand/logo-og.jpg"],
   },
   robots: {
     index: true,
@@ -62,8 +77,8 @@ export default function RootLayout({
         <footer className="mt-20 border-t border-white/10">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 text-sm sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <div className="font-display mb-3 text-xl font-medium tracking-wide">
-                <span className="text-pink-400">Individual</span>
+              <div className="mb-4">
+                <BrandLogo size="md" />
               </div>
               <p className="leading-relaxed text-zinc-400">
                 Individual manufacturer. Made-to-order goods in Cullman, Alabama.

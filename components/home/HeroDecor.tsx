@@ -1,31 +1,53 @@
-/** Subtle maker-tech accents on medium-dark grey glass UI */
+/** Ambient brand accents matching the Individual wordmark (roots + stars) */
 export default function HeroDecor() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute -left-24 top-8 h-72 w-72 rounded-full bg-pink-500/12 blur-3xl" />
-      <div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-yellow-400/10 blur-3xl" />
+      <div className="absolute -left-24 top-8 h-72 w-72 rounded-full bg-[#ff2d8a]/15 blur-3xl" />
+      <div className="absolute right-0 top-1/4 h-64 w-64 rounded-full bg-[#ff8c42]/10 blur-3xl" />
+      <div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-[#ffe14a]/10 blur-3xl" />
 
+      {/* Root-like curves — logo language */}
       <svg
-        className="absolute right-4 top-16 h-40 w-40 opacity-[0.2] sm:right-16 sm:h-52 sm:w-52"
+        className="absolute bottom-0 left-0 h-40 w-full opacity-[0.18] sm:h-52"
+        viewBox="0 0 1200 200"
+        fill="none"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0 160 C120 120, 180 180, 280 140 S420 100, 520 130 S680 170, 800 120 S1000 80, 1200 110"
+          stroke="url(#brandStroke)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M0 180 C150 150, 220 190, 340 160 S500 120, 640 150 S820 190, 980 140 S1100 100, 1200 130"
+          stroke="url(#brandStroke)"
+          strokeWidth="1"
+          strokeLinecap="round"
+          opacity="0.7"
+        />
+        <defs>
+          <linearGradient id="brandStroke" x1="0" y1="0" x2="1200" y2="0">
+            <stop stopColor="#ff2d8a" />
+            <stop offset="0.5" stopColor="#ff8c42" />
+            <stop offset="1" stopColor="#ffe14a" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Stars */}
+      <svg
+        className="absolute right-6 top-12 h-36 w-36 opacity-40 sm:right-20 sm:h-48 sm:w-48"
         viewBox="0 0 200 200"
         fill="none"
       >
-        <path d="M100 100 C100 70 130 40 160 40" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M100 100 C100 55 145 20 180 20" stroke="#facc15" strokeWidth="1.2" strokeLinecap="round" opacity="0.7" />
-        <path d="M100 100 C100 40 155 5 190 5" stroke="#ec4899" strokeWidth="1" strokeLinecap="round" opacity="0.45" />
-        <circle cx="100" cy="100" r="3" fill="#ec4899" opacity="0.6" />
-      </svg>
-
-      <svg className="absolute left-0 top-1/3 h-24 w-48 opacity-[0.16] sm:w-64" viewBox="0 0 260 80" fill="none">
-        <line x1="0" y1="40" x2="220" y2="40" stroke="#facc15" strokeWidth="1" />
-        <line x1="0" y1="40" x2="200" y2="40" stroke="#ec4899" strokeWidth="2" opacity="0.5" />
-        <circle cx="230" cy="40" r="4" fill="#ec4899" opacity="0.7" />
-        <circle cx="230" cy="40" r="8" stroke="#facc15" strokeWidth="1" opacity="0.4" />
-      </svg>
-
-      <svg className="absolute bottom-8 left-1/4 h-20 w-64 opacity-[0.14] sm:left-1/3" viewBox="0 0 280 60" fill="none">
-        <path d="M0 30 C40 10, 80 50, 120 30 S200 10, 280 30" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M0 40 C50 20, 90 55, 140 35 S220 15, 280 40" stroke="#facc15" strokeWidth="1" strokeLinecap="round" opacity="0.8" />
+        <circle cx="40" cy="50" r="1.5" fill="white" opacity="0.7" />
+        <circle cx="90" cy="30" r="1" fill="white" opacity="0.5" />
+        <circle cx="140" cy="55" r="1.2" fill="white" opacity="0.6" />
+        <circle cx="70" cy="90" r="1" fill="#ffe14a" opacity="0.5" />
+        <path d="M120 20 L122 26 L128 28 L122 30 L120 36 L118 30 L112 28 L118 26 Z" fill="white" opacity="0.55" />
+        <path d="M50 70 L51.5 74 L55.5 75.5 L51.5 77 L50 81 L48.5 77 L44.5 75.5 L48.5 74 Z" fill="#ff2d8a" opacity="0.45" />
+        <path d="M160 80 L161.2 83 L164.2 84.2 L161.2 85.4 L160 88.4 L158.8 85.4 L155.8 84.2 L158.8 83 Z" fill="#ffe14a" opacity="0.5" />
       </svg>
     </div>
   );
