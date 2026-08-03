@@ -13,8 +13,12 @@ export default function FAQPage() {
       a: "We do not sell unlicensed collegiate or brand logos. Personalization with names, dates, and original artwork is welcome. Licensed work requires the proper rights path.",
     },
     {
-      q: "Who are the desk accessories for?",
-      a: "Desk sliders and multi-mechanism boards are intended for ages 13+. Small parts can be a hazard for younger children. We do not market toys for children under 12.",
+      q: "Who are fidget & sensory items for?",
+      a: "Fidget and sensory products (sliders, boards, squish fills, mesh, cubes) are marketed for ages 13+. Many include small parts or soft fills that are a choking hazard for younger children. We do not market toys primarily for under 12.",
+    },
+    {
+      q: "Can I choose the fill in a custom squish?",
+      a: "Yes. On Custom Squish — Choice Fill you pick foam beads, microbeads, cotton, or weighted fill, plus shell color and optional name tag. Same idea as building a blank wholesale shell to your spec.",
     },
     {
       q: "Can I pick up locally in Cullman?",

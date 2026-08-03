@@ -160,8 +160,12 @@ export default function HomePage() {
           {[
             { href: "/shop?cat=drinkware", label: "Drinkware", desc: "Tumblers, bottles, mugs" },
             { href: "/shop?cat=home", label: "Home & gifts", desc: "Signs, boards, coasters" },
+            {
+              href: "/shop?cat=fidget-sensory",
+              label: "Fidget & Sensory",
+              desc: "Custom squish, fills, desk tools",
+            },
             { href: "/shop?cat=3d-printed", label: "Fabricated", desc: "Parts, forms, sets" },
-            { href: "/shop?cat=fidget-sensory", label: "Accessories", desc: "Tags, desk, keychains" },
             { href: "/shop?cat=custom", label: "Commission", desc: "Your exact specification" },
           ].map((c) => (
             <Link

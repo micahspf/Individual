@@ -14,8 +14,13 @@ const suggestions = [
     href: '/shop?q=cutting',
   },
   {
+    trigger: 'fidget',
+    text: 'Build a custom squish with your choice of fill — or grab a sensory favor pack for events',
+    href: '/shop?cat=fidget-sensory',
+  },
+  {
     trigger: 'form',
-    text: 'Event sets pair well with bag tags for favors and place settings',
+    text: 'Event sets pair well with sensory favor packs and bag tags',
     href: '/shop?cat=fidget-sensory',
   },
   {

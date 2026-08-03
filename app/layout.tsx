@@ -88,6 +88,11 @@ export default function RootLayout({
                   </a>
                 </li>
                 <li>
+                  <a href="/shop?cat=fidget-sensory" className="hover:text-pink-300">
+                    Fidget & Sensory
+                  </a>
+                </li>
+                <li>
                   <a href="/shop?cat=3d-printed" className="hover:text-pink-300">
                     Fabricated
                   </a>
