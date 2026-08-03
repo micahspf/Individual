@@ -1,39 +1,46 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import EmailCapture from "@/components/ui/EmailCapture";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-/** Self-hosted via next/font — two weights max */
-const inter = Inter({
+/** Elegant display + simple modern body */
+const cormorant = Cormorant({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "600"],
+  weight: ["400", "500", "600"],
+  variable: "--font-display",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600"],
   variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.madebyindividual.com"),
   title: {
-    default: "Made by Individual — Custom 3D print & laser engraving · Cullman, AL",
-    template: "%s · Made by Individual",
+    default: "Individual — Individual manufacturer · Cullman, AL",
+    template: "%s · Individual",
   },
   description:
-    "Custom 3D-printed and laser-engraved products made to order in Cullman, Alabama. Tumblers, signs, flexi packs, pet tags. Made for you. No waste inventory.",
+    "Individual manufacturer of made-to-order drinkware, home pieces, and custom commissions in Cullman, Alabama. Clear quotes. Honest timelines. No waste inventory.",
   openGraph: {
-    title: "Made by Individual — Custom 3D print & laser engraving",
+    title: "Individual — Individual manufacturer",
     description:
-      "Custom 3D-printed and laser-engraved goods made to order in Cullman, Alabama. Made for you.",
+      "Made-to-order goods from a single manufacturer in Cullman, Alabama. Drinkware, home pieces, precision fabrication, and commissions.",
     url: "https://www.madebyindividual.com",
-    siteName: "Made by Individual",
+    siteName: "Individual",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Made by Individual",
-    description: "Custom 3D print & laser engraving · Cullman, AL",
+    title: "Individual",
+    description: "Individual manufacturer · made to order · Cullman, AL",
   },
   robots: {
     index: true,
@@ -47,19 +54,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={`${inter.className} min-h-screen text-zinc-100 antialiased`}>
+    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+      <body className={`${dmSans.className} min-h-screen text-zinc-100 antialiased`}>
         <Header />
         {children}
         <SpeedInsights />
         <footer className="mt-20 border-t border-white/10">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 text-sm sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <div className="mb-3 font-bold">
-                Made by <span className="text-pink-400">Individual</span>
+              <div className="font-display mb-3 text-xl font-medium tracking-wide">
+                <span className="text-pink-400">Individual</span>
               </div>
-              <p className="text-zinc-400">
-                Custom 3D print & laser engraving. Made for you in Cullman, Alabama.
+              <p className="leading-relaxed text-zinc-400">
+                Individual manufacturer. Made-to-order goods in Cullman, Alabama.
               </p>
             </div>
             <div>
@@ -67,7 +74,7 @@ export default function RootLayout({
               <ul className="space-y-2 text-zinc-400">
                 <li>
                   <a href="/shop" className="hover:text-pink-300">
-                    All Products
+                    Catalog
                   </a>
                 </li>
                 <li>
@@ -82,7 +89,7 @@ export default function RootLayout({
                 </li>
                 <li>
                   <a href="/shop?cat=3d-printed" className="hover:text-pink-300">
-                    3D Printed
+                    Fabricated
                   </a>
                 </li>
               </ul>
@@ -133,12 +140,12 @@ export default function RootLayout({
               </ul>
             </div>
             <div>
-              <div className="mb-3 font-medium text-zinc-200">Stay in the loop</div>
+              <div className="mb-3 font-medium text-zinc-200">Stay informed</div>
               <EmailCapture />
             </div>
           </div>
           <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">
-            © {new Date().getFullYear()} Made by Individual · Cullman, AL ·{" "}
+            © {new Date().getFullYear()} Individual · Cullman, AL ·{" "}
             <a href="/privacy" className="hover:text-pink-300">
               Privacy
             </a>{" "}

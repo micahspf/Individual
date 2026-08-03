@@ -14,13 +14,13 @@ const suggestions = [
     href: '/shop?cat=home',
   },
   {
-    trigger: 'flexi',
-    text: 'Party planners often add a second multipack for goodie bags',
+    trigger: 'form',
+    text: 'Clients who order articulated form sets often add a second batch for events',
     href: '/shop?cat=3d-printed',
   },
   {
     trigger: 'default',
-    text: 'Most customers start with a personalized tumbler or a custom wood sign',
+    text: 'Most clients start with personalized drinkware or a custom wood sign',
     href: '/shop?cat=drinkware',
   },
 ];

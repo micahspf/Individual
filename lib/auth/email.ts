@@ -32,7 +32,7 @@ export async function sendPasswordResetEmail(
     <div class="card">
       <h1>Reset your password</h1>
       <p>Hey ${displayName},</p>
-      <p>We received a request to reset the password for your Made by Individual account.</p>
+      <p>We received a request to reset the password for your Individual account.</p>
       <p style="text-align:center;">
         <a href="${resetUrl}" class="btn">Set new password</a>
       </p>

@@ -63,14 +63,14 @@ export default function RequestForm() {
         />
       </div>
       <div>
-        <label className="mb-1.5 block text-sm text-zinc-400">What would you like made? *</label>
+        <label className="mb-1.5 block text-sm text-zinc-400">Commission brief *</label>
         <textarea
           required
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-pink-500/50 focus:outline-none"
-          placeholder="Describe size, material preference, color, quantity, any text/logo, and deadline if you have one..."
+          placeholder="Size, material, finish, quantity, text or artwork, and target date if you have one…"
         />
       </div>
       <button
@@ -78,7 +78,7 @@ export default function RequestForm() {
         disabled={status === 'sending'}
         className="btn-pill-pink w-full py-3.5 disabled:opacity-60"
       >
-        {status === 'sending' ? 'Sending…' : 'Send Request'}
+        {status === 'sending' ? 'Sending…' : 'Request quote'}
       </button>
     </form>
   );

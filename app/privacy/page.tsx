@@ -12,7 +12,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-semibold text-white mb-2">Who we are</h2>
             <p>
-              Made by Individual (“Individual,” “we,” “us”) is a made-to-order custom
+              Individual (“we,” “us”) is a made-to-order custom
               manufacturing business based in Cullman, Alabama. Contact:{" "}
               <a
                 href="mailto:founder@madebyindividual.com"
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             <ul className="list-disc pl-5 space-y-1 text-zinc-400">
               <li>Contact details you provide (name, email, shipping address, phone if given)</li>
               <li>Order and payment details processed by Stripe (we do not store full card numbers)</li>
-              <li>Messages and custom request content you send us</li>
+              <li>Messages and commission brief content you send us</li>
               <li>Basic site analytics (e.g. Vercel Speed Insights) about page performance</li>
             </ul>
           </section>
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
               Mobile opt-in data and consent are{" "}
               <strong>not shared or sold to third parties or lead generators</strong>.
               Text message opt-in information is used only to deliver messages you requested
-              from Made by Individual (for example order updates or alerts you explicitly
+              from Individual (for example order updates or alerts you explicitly
               subscribed to). Message and data rates may apply. Reply STOP to opt out and
               HELP for help. {/* [FOUNDER: confirm SMS program name/frequency when live] */}
             </p>

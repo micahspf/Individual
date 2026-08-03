@@ -12,7 +12,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-lg font-semibold text-white mb-2">Agreement</h2>
             <p className="text-zinc-400">
-              By using madebyindividual.com and placing an order with Made by Individual
+              By using madebyindividual.com and placing an order with Individual
               (Cullman, Alabama), you agree to these terms.
             </p>
           </section>

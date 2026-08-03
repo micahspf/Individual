@@ -27,8 +27,11 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#1c1c21]/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link href="/" className="shrink-0 text-lg font-bold tracking-tight">
-            Made by <span className="text-pink-400">Individual</span>
+          <Link
+            href="/"
+            className="font-display shrink-0 text-xl font-medium tracking-wide text-pink-400"
+          >
+            Individual
           </Link>
 
           <div className="mx-4 hidden max-w-sm flex-1 md:block">

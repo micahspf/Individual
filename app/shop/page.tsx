@@ -66,19 +66,21 @@ function ShopContent() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
             <div>
-              <p className="text-pink-400 text-sm font-medium mb-2 tracking-wide">✦ SHOP</p>
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-                Find your <span className="text-pink-400">thing</span>
+              <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-pink-400">
+                Catalog
+              </p>
+              <h1 className="font-display text-4xl font-medium tracking-tight sm:text-5xl">
+                Made to <span className="text-pink-400">order</span>
               </h1>
-              <p className="text-zinc-400 mt-2 max-w-md">
-                Everything is made to order in Cullman, Alabama. No waste. Just yours.
+              <p className="mt-2 max-w-md text-zinc-400">
+                Individual manufacturer in Cullman, Alabama. Produced after you order — not stocked for the shelf.
               </p>
             </div>
             <Link
               href="/#request"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-400 text-black text-sm font-semibold shadow-[0_0_20px_rgba(250,204,21,0.25)] hover:bg-yellow-300 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_20px_rgba(250,204,21,0.25)] transition hover:bg-yellow-300"
             >
-              Start Custom Request →
+              Request a commission →
             </Link>
           </div>
           <CategoryTabs active={activeCategory} onChange={setActiveCategory} categories={categories} />
@@ -139,17 +141,16 @@ function ShopContent() {
           <Recommendations context={activeCategory} />
         </div>
         {activeCategory === 'custom' ? (
-          <div className="text-center py-24">
-            <div className="text-6xl mb-6">✨</div>
-            <h2 className="text-3xl font-bold mb-3">Fully Custom</h2>
-            <p className="text-neutral-400 max-w-md mx-auto mb-8">
-              Tell us exactly what you want. We’ll design and make only that — nothing extra.
+          <div className="py-24 text-center">
+            <h2 className="font-display mb-3 text-3xl font-medium tracking-tight">Commission</h2>
+            <p className="mx-auto mb-8 max-w-md text-neutral-400">
+              Specify the piece. We quote price and lead time, then manufacture only what you ordered.
             </p>
             <Link
               href="/#request"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-pink-500 px-8 py-3.5 font-medium text-white transition hover:bg-pink-400"
             >
-              Start Your Custom Request
+              Request a quote
             </Link>
           </div>
         ) : filtered.length === 0 ? (

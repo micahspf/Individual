@@ -139,10 +139,10 @@ export default function AccountPage() {
             href="/#request"
             className="glass p-5 transition hover:border-pink-500/40 group"
           >
-            <div className="font-medium group-hover:text-pink-300 transition">
-              Custom request
+            <div className="font-medium transition group-hover:text-pink-300">
+              Commission
             </div>
-            <p className="text-sm text-zinc-400 mt-1">Tell us exactly what to make</p>
+            <p className="mt-1 text-sm text-zinc-400">Request a manufactured piece</p>
           </Link>
         </div>
       </div>

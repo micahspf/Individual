@@ -23,6 +23,21 @@ body {
     var(--background);
   color: var(--foreground);
   min-height: 100vh;
+  font-feature-settings: "ss01" on, "kern" on;
+}
+
+/* Elegant display face for headings — paired with DM Sans body */
+.font-display {
+  font-family: var(--font-display), "Times New Roman", serif;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.015em;
 }
 
 ::selection {

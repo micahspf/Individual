@@ -63,7 +63,7 @@ export default async function ProductPage({
     name: product.name,
     description: product.description,
     image: `https://www.madebyindividual.com${product.image}`,
-    brand: { "@type": "Brand", name: "Made by Individual" },
+    brand: { "@type": "Brand", name: "Individual" },
     offers: {
       "@type": "Offer",
       url: `https://www.madebyindividual.com/shop/${product.slug}`,
