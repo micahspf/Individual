@@ -24,7 +24,7 @@ Token exclusives exist in `lib/data/products.ts` but are **hidden** until reward
 ## Local run
 
 ```powershell
-cd rootnova
+cd Individual
 npm install
 npm run dev
 ```

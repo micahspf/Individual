@@ -65,7 +65,7 @@ Vercel → Deployments → Redeploy → wait **Ready**.
 
 ```powershell
 # Terminal A
-cd C:\Users\micah\Documents\rootnova
+cd C:\Users\micah\Documents\Individual
 npm run dev
 
 # Terminal B
@@ -92,4 +92,4 @@ Test card: `4242 4242 4242 4242` · any future expiry · any CVC.
 - Checkout API: `app/api/checkout/route.ts`
 - Webhook: `app/api/webhooks/stripe/route.ts`
 - Fulfill: `lib/orders/fulfill.ts`
-- Project: `C:\Users\micah\Documents\rootnova` · GitHub `micahspf/Individual`
+- Project: `C:\Users\micah\Documents\Individual` · GitHub `micahspf/Individual`
