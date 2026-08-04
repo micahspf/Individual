@@ -12,7 +12,7 @@ export default function ContactPage() {
             <p className="text-zinc-400">
               Cullman, Alabama
               <br />
-              Individual manufacturer · Local pickup by arrangement
+              Individual · Local Cullman pickup by arrangement
             </p>
           </div>
           <div>

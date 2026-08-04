@@ -53,6 +53,9 @@ function CheckoutContent() {
           name: i.name,
           price: i.price,
           quantity: i.quantity,
+          line1: i.line1,
+          line2: i.line2,
+          font: i.font,
         })),
     };
 
@@ -221,15 +224,24 @@ function CheckoutContent() {
         <div className="lg:col-span-2">
           <div className="glass sticky top-24 p-5">
             <h2 className="font-medium mb-4">Order summary</h2>
-            <ul className="space-y-3 mb-4">
+            <ul className="mb-4 space-y-3">
               {items.map((i) => (
-                <li key={i.id} className="flex justify-between text-sm">
-                  <span className="text-zinc-300">
-                    {i.name} × {i.quantity}
-                  </span>
-                  <span className="text-yellow-300">
-                    ${(i.price * i.quantity).toFixed(2)}
-                  </span>
+                <li key={i.lineKey} className="text-sm">
+                  <div className="flex justify-between gap-3">
+                    <span className="text-zinc-300">
+                      {i.name} × {i.quantity}
+                    </span>
+                    <span className="shrink-0 text-yellow-300">
+                      ${(i.price * i.quantity).toFixed(2)}
+                    </span>
+                  </div>
+                  {i.line1 && (
+                    <p className="mt-1 text-xs text-zinc-400">
+                      Engraving: &ldquo;{i.line1}&rdquo;
+                      {i.line2 ? ` / “${i.line2}”` : ""}
+                      {i.font ? ` · ${i.font}` : ""}
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>

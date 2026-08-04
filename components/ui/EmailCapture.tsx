@@ -28,7 +28,7 @@ export default function EmailCapture() {
   return (
     <form onSubmit={submit} className="space-y-2">
       <p className="text-zinc-400 text-sm mb-2">
-        Get drop alerts + token bonuses
+        Get new product alerts and Cullman pickup dates.
       </p>
       <input
         type="email"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
@@ -24,7 +25,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.madebyindividual.com"),
   title: {
-    default: "Individual — Individual manufacturer · Cullman, AL",
+    default: "Individual — Personalized goods, made to order in Cullman, AL",
     template: "%s · Individual",
   },
   description:
@@ -35,27 +36,28 @@ export const metadata: Metadata = {
     shortcut: "/brand/logo-mark.png",
   },
   openGraph: {
-    title: "Individual — Personalized, made to order",
+    title: "Individual — Personalized goods, made to order",
     description:
-      "Personalized gifts and home goods from an individual manufacturer in Cullman, Alabama. Drinkware, signs, boards, and commissions.",
+      "Personalized gifts and home goods made to order in Cullman, Alabama. Drinkware, signs, boards, and commissions.",
     url: "https://www.madebyindividual.com",
     siteName: "Individual",
     locale: "en_US",
     type: "website",
+    // Uses app/opengraph-image.png via file convention; keep explicit for consumers that need URL
     images: [
       {
-        url: "/brand/logo-og.jpg",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Individual",
+        alt: "Individual — made to order in Cullman, Alabama",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Individual",
-    description: "Individual manufacturer · made to order · Cullman, AL",
-    images: ["/brand/logo-og.jpg"],
+    title: "Individual — Personalized goods, made to order",
+    description: "Made to order in Cullman, Alabama",
+    images: ["/opengraph-image.png"],
   },
   robots: {
     index: true,
@@ -71,7 +73,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body className={`${dmSans.className} min-h-screen text-zinc-100 antialiased`}>
-        <Header />
+        <Suspense
+          fallback={
+            <div className="h-16 border-b border-white/10 bg-[#0a0a12]/85" aria-hidden />
+          }
+        >
+          <Header />
+        </Suspense>
         {children}
         <SpeedInsights />
         <footer className="mt-20 border-t border-white/10">
@@ -81,7 +89,7 @@ export default function RootLayout({
                 <BrandLogo size="md" />
               </div>
               <p className="leading-relaxed text-zinc-400">
-                Individual manufacturer. Made-to-order goods in Cullman, Alabama.
+                Individual · Made to order in Cullman, Alabama.
               </p>
             </div>
             <div>
@@ -161,7 +169,11 @@ export default function RootLayout({
             </div>
             <div>
               <div className="mb-3 font-medium text-zinc-200">Stay informed</div>
-              <EmailCapture />
+              <Suspense
+                fallback={<div className="h-24 rounded-lg bg-white/5" aria-hidden />}
+              >
+                <EmailCapture />
+              </Suspense>
             </div>
           </div>
           <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">

@@ -4,7 +4,7 @@ export default function AboutPage() {
     "@type": "LocalBusiness",
     name: "Individual",
     description:
-      "Individual manufacturer of made-to-order goods in Cullman, Alabama.",
+      "Individual — personalized goods made to order in Cullman, Alabama.",
     url: "https://www.madebyindividual.com",
     // [FOUNDER: add telephone when public]
     // telephone: "+1-...",

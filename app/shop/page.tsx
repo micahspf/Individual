@@ -34,8 +34,8 @@ function ShopContent() {
         (p) =>
           p.name.toLowerCase().includes(q) ||
           p.category.toLowerCase().includes(q) ||
-          (p.badge && p.badge.toLowerCase().includes(q)) ||
-          p.description.toLowerCase().includes(q)
+          p.description.toLowerCase().includes(q) ||
+          (p.occasions && p.occasions.some((o) => o.toLowerCase().includes(q)))
       );
     }
 

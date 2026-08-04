@@ -1,12 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
 import BrandLogo from "@/components/ui/BrandLogo";
 import { giftOccasions, shopProducts } from "@/lib/data/products";
 
 export default function HomePage() {
-  const featured = shopProducts.filter((p) => p.badge).slice(0, 4);
+  const featured = shopProducts.slice(0, 4);
 
   return (
     <main>
@@ -16,11 +15,10 @@ export default function HomePage() {
 
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pb-20 pt-12 lg:grid-cols-2 lg:gap-20 lg:pb-28 lg:pt-20">
           <div>
-            {/* Floating wordmark + aura — centered above maker line */}
             <div className="mb-5 flex flex-col items-center text-center lg:items-start lg:text-left">
               <BrandLogo size="lg" link={false} hero priority />
-              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#ff7ab8]/90 sm:text-xs">
-                Individual manufacturer · Cullman, Alabama
+              <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.22em] text-[#ff7ab8] sm:text-xs">
+                Individual · Made to order in Cullman, Alabama
               </p>
             </div>
             <h1 className="font-display mx-auto max-w-xl text-center text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl lg:mx-0 lg:text-left lg:text-[3.25rem]">
@@ -53,39 +51,44 @@ export default function HomePage() {
                 { k: "Origin", v: "Cullman, AL" },
               ].map((item) => (
                 <div key={item.k}>
-                  <dt className="text-[11px] uppercase tracking-wider text-zinc-500">{item.k}</dt>
+                  <dt className="text-[11px] uppercase tracking-wider text-zinc-400">{item.k}</dt>
                   <dd className="mt-1 text-sm font-medium text-zinc-200">{item.v}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          {/* Hero visual */}
+          {/* Hero visual — text-only capability panels (no stock photos) */}
           <div className="relative">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
               <div className="glass-pink relative overflow-hidden">
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=900&q=80"
-                    alt="Personalized engraved drinkware by Individual"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width:640px) 100vw, 280px"
-                    priority
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1c1c21]/95 to-transparent p-5">
+                <div className="flex aspect-[3/4] flex-col justify-between bg-gradient-to-br from-[#ff2d8a]/15 via-transparent to-[#ff2d8a]/5 p-6">
+                  <div>
                     <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-pink-300">
+                      Drinkware
+                    </p>
+                    <p className="font-display mt-3 text-2xl font-medium leading-snug text-zinc-100">
                       Engraved finish
                     </p>
-                    <p className="font-display mt-1 text-lg font-medium tracking-wide">Drinkware</p>
                   </div>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    <li className="flex gap-2">
+                      <span className="text-pink-400">—</span> Names & monograms
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-pink-400">—</span> Dates & short messages
+                    </li>
+                    <li className="flex gap-2">
+                      <span className="text-pink-400">—</span> Tumblers, bottles, mugs
+                    </li>
+                  </ul>
                 </div>
               </div>
 
               <div className="glass-yellow relative overflow-hidden">
                 <div className="flex aspect-[3/4] flex-col justify-between bg-gradient-to-br from-[#ff2d8a]/10 via-[#ff8c42]/5 to-[#ffe14a]/10 p-6">
                   <div>
-                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#ffe14a]/90">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#ffe14a]">
                       Capability
                     </p>
                     <p className="font-display mt-3 text-2xl font-medium leading-snug text-zinc-100">
@@ -115,23 +118,23 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-12 gap-y-3 px-6 py-5 text-sm text-zinc-400">
           <span>Personalized · made to order</span>
           <span className="hidden text-zinc-600 sm:inline">·</span>
-          <span>Individual manufacturer</span>
+          <span>Cullman, Alabama</span>
           <span className="hidden text-zinc-600 sm:inline">·</span>
-          <span>Free shipping $75+</span>
+          <span>Local Cullman pickup available</span>
         </div>
       </div>
 
-      {/* Occasions — gift-site idea, our glass layout */}
+      {/* Occasions */}
       <section className="relative mx-auto max-w-7xl px-6 py-16">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
           Occasions
         </p>
         <h2 className="font-display text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
           Gift ideas that stay personal
         </h2>
         <p className="mt-3 max-w-xl text-zinc-400">
-          Same spirit as big personalized gift shops — weddings, housewarmings, corporate sets —
-          executed here as small-batch manufacturing in Cullman.
+          Weddings, housewarmings, corporate sets, memorials — made one at a time, here in
+          Cullman.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
           {giftOccasions.map((o) => (
@@ -143,7 +146,7 @@ export default function HomePage() {
               <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
                 {o.label}
               </div>
-              <div className="mt-1.5 text-sm leading-snug text-zinc-500">{o.hint}</div>
+              <div className="mt-1.5 text-sm leading-snug text-zinc-400">{o.hint}</div>
             </Link>
           ))}
         </div>
@@ -151,7 +154,7 @@ export default function HomePage() {
 
       {/* Categories */}
       <section className="relative mx-auto max-w-7xl px-6 py-16">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
           Catalog
         </p>
         <h2 className="font-display text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
@@ -181,62 +184,60 @@ export default function HomePage() {
               <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
                 {c.label}
               </div>
-              <div className="mt-1.5 text-sm leading-snug text-zinc-500">{c.desc}</div>
+              <div className="mt-1.5 text-sm leading-snug text-zinc-400">{c.desc}</div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Featured personalized products */}
-      {featured.length > 0 && (
-        <section className="border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-6 py-16">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
-                  Featured
-                </p>
-                <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
-                  Popular to personalize
-                </h2>
-              </div>
-              <Link
-                href="/shop"
-                className="text-sm font-medium text-pink-400 transition hover:text-pink-300"
-              >
-                Full catalog →
-              </Link>
+      {/* Featured products */}
+      <section className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
+                Featured
+              </p>
+              <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl">
+                Start here
+              </h2>
             </div>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              {featured.map((p) => (
-                <Link
-                  key={p.id}
-                  href={`/shop/${p.slug}`}
-                  className="glass group p-4 transition hover:border-pink-500/40"
-                >
-                  {p.badge && (
-                    <span className="mb-2 inline-block rounded-full bg-pink-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-pink-300">
-                      {p.badge}
-                    </span>
-                  )}
-                  <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
-                    {p.name}
-                  </div>
-                  <div className="mt-1 text-sm text-yellow-300">${p.price.toFixed(2)}</div>
-                  <div className="mt-2 line-clamp-2 text-xs text-zinc-500">
-                    {p.personalize?.[0] ?? "Made to order"}
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <Link
+              href="/shop"
+              className="text-sm font-medium text-pink-400 transition hover:text-pink-300"
+            >
+              Full catalog →
+            </Link>
           </div>
-        </section>
-      )}
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {featured.map((p) => (
+              <Link
+                key={p.id}
+                href={`/shop/${p.slug}`}
+                className="glass group p-4 transition hover:border-pink-500/40"
+              >
+                {p.occasions?.[0] && (
+                  <span className="mb-2 inline-block rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-zinc-400">
+                    {p.occasions[0]}
+                  </span>
+                )}
+                <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
+                  {p.name}
+                </div>
+                <div className="mt-1 text-sm text-yellow-300">${p.price.toFixed(2)}</div>
+                <div className="mt-2 line-clamp-2 text-xs text-zinc-400">
+                  {p.personalize?.[0] ?? "Made to order"}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* How it works */}
       <section id="how" className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-20">
-          <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
             Process
           </p>
           <h2 className="font-display mb-12 text-center text-3xl font-medium tracking-tight sm:text-4xl">
@@ -274,7 +275,7 @@ export default function HomePage() {
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="glass-strong p-8 sm:p-12 lg:p-14">
-            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-yellow-300/90">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-yellow-300">
               Cullman, Alabama
             </p>
             <h2 className="font-display max-w-2xl text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
@@ -303,7 +304,7 @@ export default function HomePage() {
       {/* Commission form */}
       <section id="request" className="border-t border-white/10">
         <div className="mx-auto max-w-2xl px-6 py-20">
-          <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-500">
+          <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
             Commission
           </p>
           <h2 className="font-display mb-3 text-center text-3xl font-medium tracking-tight">

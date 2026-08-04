@@ -2,12 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe, stripeEnabled } from "@/lib/stripe";
 
 export const runtime = "nodejs";
+export const maxDuration = 20;
 
 type CheckoutItem = {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  line1?: string;
+  line2?: string;
+  font?: string;
 };
 
 type Body = {
@@ -39,26 +43,53 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const lineItems = items
-      .filter((i) => i.price > 0 && i.quantity > 0)
-      .map((i) => ({
-        quantity: i.quantity,
-        price_data: {
-          currency: "usd",
-          unit_amount: Math.round(i.price * 100),
-          product_data: {
-            name: i.name,
-            metadata: { product_id: i.id },
-          },
-        },
-      }));
-
-    if (lineItems.length === 0) {
+    const payable = items.filter((i) => i.price > 0 && i.quantity > 0);
+    if (payable.length === 0) {
       return NextResponse.json(
         { error: "No payable items in cart" },
         { status: 400 }
       );
     }
+
+    const lineItems = payable.map((i) => {
+      const engravingParts = [
+        i.line1 ? `L1: "${i.line1}"` : "",
+        i.line2 ? `L2: "${i.line2}"` : "",
+        i.font ? `Font: ${i.font}` : "",
+      ].filter(Boolean);
+      const description =
+        engravingParts.length > 0
+          ? engravingParts.join(" · ")
+          : undefined;
+
+      return {
+        quantity: i.quantity,
+        price_data: {
+          currency: "usd",
+          unit_amount: Math.round(i.price * 100),
+          product_data: {
+            name: i.line1 ? `${i.name} — "${i.line1}"` : i.name,
+            description,
+            metadata: {
+              product_id: i.id,
+              line1: (i.line1 || "").slice(0, 500),
+              line2: (i.line2 || "").slice(0, 500),
+              font: i.font || "",
+            },
+          },
+        },
+      };
+    });
+
+    // Session-level personalization summary for webhook (Stripe metadata max 500 chars/value)
+    const personalizationSummary = payable
+      .map((i, idx) => {
+        if (!i.line1 && !i.line2) return null;
+        return `${idx + 1}. ${i.name}: "${i.line1 || ""}"${i.line2 ? ` / "${i.line2}"` : ""} (${i.font || "sans"})`;
+      })
+      .filter(Boolean)
+      .join(" | ")
+      .slice(0, 500);
 
     const origin =
       process.env.NEXT_PUBLIC_APP_URL ||
@@ -84,11 +115,13 @@ export async function POST(req: NextRequest) {
         ship_city: city || "",
         ship_state: state || "",
         ship_zip: zip || "",
+        personalization: personalizationSummary || "",
       },
       payment_intent_data: {
         metadata: {
           order_ref: orderRef,
           customer_name: name,
+          personalization: personalizationSummary || "",
         },
       },
     });

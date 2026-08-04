@@ -8,9 +8,9 @@ interface Product {
   name: string;
   price: number;
   category: string;
-  badge?: string;
   slug: string;
   image: string;
+  occasions?: string[];
 }
 
 export default function ProductCard({
@@ -34,12 +34,12 @@ export default function ProductCard({
           className="object-cover transition duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-yellow-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-pink-500/10 via-transparent to-yellow-400/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-        {product.badge && (
+        {product.occasions?.[0] && (
           <div className="absolute top-3 left-3 z-10">
-            <div className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-pink-500 text-white">
-              {product.badge}
+            <div className="rounded-full border border-white/15 bg-[#0a0a12]/75 px-2.5 py-1 text-[11px] font-medium text-zinc-200 backdrop-blur">
+              {product.occasions[0]}
             </div>
           </div>
         )}
@@ -53,8 +53,8 @@ export default function ProductCard({
           <span className="text-lg font-semibold text-yellow-300">
             ${product.price.toFixed(2)}
           </span>
-          <span className="text-xs uppercase tracking-wider text-zinc-500">
-            Personalize
+          <span className="text-xs uppercase tracking-wider text-zinc-400">
+            Made to order
           </span>
         </div>
       </div>

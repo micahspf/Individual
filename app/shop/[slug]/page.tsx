@@ -101,7 +101,7 @@ export default async function ProductPage({
   };
 
   return (
-    <main className="max-w-7xl mx-auto px-6 py-10">
+    <main className="mx-auto max-w-7xl px-6 py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
@@ -110,7 +110,7 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <nav className="text-sm text-zinc-500 mb-8 flex items-center gap-2">
+      <nav className="mb-8 flex items-center gap-2 text-sm text-zinc-400">
         <Link href="/" className="hover:text-pink-300">
           Home
         </Link>
@@ -122,8 +122,8 @@ export default async function ProductPage({
         <span className="text-zinc-300">{product.name}</span>
       </nav>
 
-      <div className="grid lg:grid-cols-2 gap-12">
-        <div className="glass aspect-square relative overflow-hidden">
+      <div className="grid gap-12 lg:grid-cols-2">
+        <div className="glass relative aspect-square overflow-hidden">
           <ProductImage
             src={product.image}
             alt={product.name}
@@ -132,21 +132,14 @@ export default async function ProductPage({
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
           />
-          {product.badge && (
-            <div className="absolute top-4 left-4 z-10">
-              <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-pink-500 text-white">
-                {product.badge}
-              </span>
-            </div>
-          )}
         </div>
 
         <div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+          <h1 className="mb-3 text-3xl font-bold tracking-tight sm:text-4xl">
             {product.name}
           </h1>
 
-          <div className="text-2xl font-semibold text-yellow-300 mb-6">
+          <div className="mb-6 text-2xl font-semibold text-yellow-300">
             ${product.price.toFixed(2)}
           </div>
 
@@ -167,28 +160,24 @@ export default async function ProductPage({
 
           <dl className="mb-8 space-y-3 text-sm">
             <div className="flex gap-3">
-              <dt className="w-28 shrink-0 text-zinc-500">Materials</dt>
+              <dt className="w-28 shrink-0 text-zinc-400">Materials</dt>
               <dd className="text-zinc-300">{product.materials}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-28 shrink-0 text-zinc-500">Turnaround</dt>
+              <dt className="w-28 shrink-0 text-zinc-400">Turnaround</dt>
               <dd className="text-zinc-300">{product.turnaround}</dd>
             </div>
             <div className="flex gap-3">
-              <dt className="w-28 shrink-0 text-zinc-500">Made in</dt>
+              <dt className="w-28 shrink-0 text-zinc-400">Made in</dt>
               <dd className="text-zinc-300">Cullman, Alabama</dd>
             </div>
           </dl>
 
-          {product.personalize && product.personalize.length > 0 && (
-            <div className="glass-pink mb-8 p-5">
-              <h3 className="font-display mb-1 text-lg font-medium text-zinc-50">
-                Personalize this piece
+          {product.personalize && product.personalize.length > 0 && !product.personalizable && (
+            <div className="glass mb-8 p-5">
+              <h3 className="font-display mb-2 text-lg font-medium text-zinc-50">
+                Options
               </h3>
-              <p className="mb-3 text-sm text-zinc-400">
-                After checkout, reply with your details — or note them at checkout if available.
-                We confirm engraving text before production.
-              </p>
               <ul className="space-y-1.5 text-sm text-zinc-300">
                 {product.personalize.map((line) => (
                   <li key={line} className="flex gap-2">
@@ -197,6 +186,9 @@ export default async function ProductPage({
                   </li>
                 ))}
               </ul>
+              <p className="mt-3 text-sm text-zinc-400">
+                Note preferences in your order email or commission form after checkout.
+              </p>
             </div>
           )}
 
@@ -205,6 +197,8 @@ export default async function ProductPage({
             slug={product.slug}
             name={product.name}
             price={product.price}
+            personalizable={product.personalizable}
+            maxChars={product.maxChars ?? 30}
           />
 
           <div className="glass mt-6 p-4 text-sm text-zinc-400">
@@ -229,7 +223,7 @@ export default async function ProductPage({
 
           <div className="glass mt-8 p-5">
             <h3 className="mb-2 font-medium">Reviews</h3>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-zinc-400">
               No reviews yet — be the first after your order ships.
             </p>
           </div>
@@ -237,20 +231,20 @@ export default async function ProductPage({
       </div>
 
       <div className="mt-16">
-        <h2 className="text-xl font-bold mb-6">You may also like</h2>
+        <h2 className="mb-6 text-xl font-bold">You may also like</h2>
         <div className="mb-6">
           <Recommendations context={product.category} />
         </div>
         {related.length > 0 && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {related.map((p) => (
               <Link
                 key={p.id}
                 href={`/shop/${p.slug}`}
                 className="glass p-4 transition hover:border-pink-500/40"
               >
-                <div className="font-medium text-sm mb-1 line-clamp-1">{p.name}</div>
-                <div className="text-yellow-300 text-sm">${p.price}</div>
+                <div className="mb-1 line-clamp-1 text-sm font-medium">{p.name}</div>
+                <div className="text-sm text-yellow-300">${p.price}</div>
               </Link>
             ))}
           </div>

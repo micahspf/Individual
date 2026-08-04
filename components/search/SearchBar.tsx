@@ -20,7 +20,7 @@ export default function SearchBar() {
           p.name.toLowerCase().includes(term) ||
           p.category.toLowerCase().includes(term) ||
           p.description.toLowerCase().includes(term) ||
-          (p.badge && p.badge.toLowerCase().includes(term))
+          (p.occasions && p.occasions.some((o) => o.toLowerCase().includes(term)))
       )
       .slice(0, 6);
   }, [q]);
