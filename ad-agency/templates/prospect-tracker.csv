@@ -1,0 +1,4 @@
+Company,City,Owner/GM Name,Phone,Website,Rating,Reviews,Running Ads?,Phone Test Passed?,ICP Pass?,Specific Observation,Touch 1 Date,Touch 2 Date,Touch 3 Date,Touch 4 Date,Touch 5 Date,Status,Next Action
+EXAMPLE - Rocket City Comfort,Huntsville,Sample Owner Name,256-555-0101,example-hvac-one.com,4.6,187,Yes,Yes,Yes,"Running ads on ""ac repair huntsville"" but the click lands on the homepage, not a repair page",2026-08-10,2026-08-13,,,,Audit sent,Follow up day 7 with new observation
+EXAMPLE - Valley Heating & Air,Madison,Sample Owner Name,256-555-0102,example-hvac-two.com,4.8,94,No,Yes,Yes,"Ranks organically for replacement terms but has zero paid presence - the $10k tickets are uncontested",2026-08-10,,,,,Touch 1 sent,Send audit day 3 unrequested
+,,,,,,,,,,,,,,,,,
