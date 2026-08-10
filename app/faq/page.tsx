@@ -28,6 +28,10 @@ export default function FAQPage() {
       q: "What if I need something that is not listed?",
       a: "Use the commission request form. Describe the piece and we will quote price and lead time before any work starts.",
     },
+    {
+      q: "Do you take AI or automation work?",
+      a: "Yes. Use the same request form and describe the task you want handled. Small automations generally run $75–250; larger tools and monthly systems are quoted per job. You get a price and lead time before any work starts.",
+    },
   ];
 
   return (

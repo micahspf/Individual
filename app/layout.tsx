@@ -126,6 +126,11 @@ export default function RootLayout({
               <div className="mb-3 font-medium text-zinc-200">Info</div>
               <ul className="space-y-2 text-zinc-400">
                 <li>
+                  <a href="/ai" className="hover:text-pink-300">
+                    AI services
+                  </a>
+                </li>
+                <li>
                   <a href="/about" className="hover:text-pink-300">
                     About
                   </a>

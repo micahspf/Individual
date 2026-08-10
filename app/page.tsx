@@ -271,6 +271,67 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* AI services */}
+      <section className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-20">
+          <div className="glass-strong p-8 sm:p-12 lg:p-14">
+            <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+              <div>
+                <div className="mb-5">
+                  <BrandLogo size="sm" link={false} />
+                </div>
+                <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
+                  AI Services
+                </p>
+                <h2 className="font-display max-w-xl text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
+                  Individual also offers AI services.
+                </h2>
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
+                  The same practice, applied to systems. Custom AI tools and automations built
+                  for one business — yours. Specified, quoted, and built to order, exactly like
+                  everything else here.
+                </p>
+                <div className="mt-9 flex flex-wrap gap-3">
+                  <Link href="/ai" className="btn-pill-pink px-6 py-3 text-sm">
+                    See AI services
+                  </Link>
+                  <Link
+                    href="#request"
+                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-medium text-zinc-100 transition hover:border-[#ffe14a]/40 hover:bg-[#ffe14a]/10"
+                  >
+                    Request a quote
+                  </Link>
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.16em] text-zinc-500">
+                  Common starting points
+                </p>
+                <ul className="space-y-2.5">
+                  {[
+                    { c: "#ff2d8a", t: "Instant lead response and follow-up" },
+                    { c: "#ff8c42", t: "Booking, reminders, and review requests" },
+                    { c: "#ffe14a", t: "Invoice and receipt processing" },
+                    { c: "#ff7ab8", t: "Internal dashboards and intake forms" },
+                    { c: "#ff2d8a", t: "Agents that handle a recurring task end to end" },
+                  ].map((i) => (
+                    <li key={i.t} className="flex gap-2 text-sm leading-snug text-zinc-400">
+                      <span style={{ color: i.c }}>—</span> {i.t}
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 border-t border-white/10 pt-5 text-sm text-zinc-400">
+                  Small automations{" "}
+                  <span className="font-medium text-yellow-300">$75–250</span>. Larger tools
+                  and monthly systems quoted per job.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Positioning CTA */}
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-20">
@@ -305,14 +366,15 @@ export default function HomePage() {
       <section id="request" className="border-t border-white/10">
         <div className="mx-auto max-w-2xl px-6 py-20">
           <p className="mb-3 text-center text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
-            Commission
+            Commission or AI project
           </p>
           <h2 className="font-display mb-3 text-center text-3xl font-medium tracking-tight">
             Request a quote
           </h2>
           <p className="mb-10 text-center text-sm leading-relaxed text-zinc-400">
-            Share what to personalize (names, monogram, date, message), size, material,
-            quantity, and target date. We reply with price and timeline before work begins.
+            Tell us what you need made — a personalized piece, or an automation that handles
+            something you keep doing by hand. Share the details and a target date. We reply
+            with price and timeline before work begins.
           </p>
           <div className="glass-strong p-6 sm:p-8">
             <RequestForm />

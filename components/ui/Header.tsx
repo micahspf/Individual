@@ -37,6 +37,7 @@ export default function Header() {
           <nav className="ml-auto flex items-center gap-2 text-sm sm:gap-3">
             {[
               { href: "/shop", label: "Shop", hide: "sm" },
+              { href: "/ai", label: "AI", hide: "sm" },
               { href: "/about", label: "About", hide: "md" },
               { href: "/contact", label: "Contact", hide: "md" },
               { href: "/account", label: "Account", hide: "" },
