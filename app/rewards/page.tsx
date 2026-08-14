@@ -17,7 +17,7 @@ export default function RewardsPage() {
         <p className="mx-auto mt-4 max-w-md text-zinc-400 leading-relaxed">
           Individual Tokens, daily check-ins, and exclusives will return when they
           sit on a durable database — not memory that vanishes on every deploy.
-          For now we ship the catalog: made-to-order goods from an individual manufacturer in Cullman, Alabama.
+          For now we ship the catalog: made-to-order goods from a two-person workshop in Cullman, Alabama.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="/shop" className="btn-pill-pink px-7 py-3 text-sm">

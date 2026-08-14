@@ -37,7 +37,7 @@ export async function sendPasswordResetEmail(
         <a href="${resetUrl}" class="btn">Set new password</a>
       </p>
       <p>This link expires in <strong>1 hour</strong>. If you didn’t ask for this, you can safely ignore the email.</p>
-      <p>— Micah<br><span style="color:#666;">Founder, Individual</span></p>
+      <p>— Micah<br><span style="color:#666;">Co-founder, Individual</span></p>
       <div class="footer">
         If the button doesn’t work, copy and paste this link:<br>
         ${resetUrl}

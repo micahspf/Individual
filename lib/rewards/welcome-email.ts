@@ -32,9 +32,9 @@ export function buildWelcomeEmail(name: string | null, tokens: number) {
     <div class="card">
       <h1>Hey ${displayName},</h1>
       
-      <p>Micah here — founder of <span class="pink">Individual</span>.</p>
-      
-      <p>I just wanted to personally welcome you. This isn’t a big company. It’s me building custom products one at a time, with zero waste.</p>
+      <p>Micah here — co-founder of <span class="pink">Individual</span>.</p>
+
+      <p>I just wanted to personally welcome you. This isn’t a big company. It’s the two of us building custom products one at a time, with zero waste.</p>
       
       <div class="tokens">
         <div style="color:#a3a3a3; font-size:13px; margin-bottom:4px;">Your welcome gift</div>
@@ -50,7 +50,7 @@ export function buildWelcomeEmail(name: string | null, tokens: number) {
       <p>If you ever need anything, just reply to this email. I read every one.</p>
       
       <p>— Micah<br>
-      <span style="color:#666;">Founder, Individual</span></p>
+      <span style="color:#666;">Co-founder, Individual</span></p>
       
       <div class="footer">
         You’re receiving this because you created an account at madebyindividual.com
@@ -64,9 +64,9 @@ export function buildWelcomeEmail(name: string | null, tokens: number) {
   const text = `
 Hey ${displayName},
 
-Micah here — founder of Individual.
+Micah here — co-founder of Individual.
 
-I just wanted to personally welcome you. This isn’t a big company. It’s me building custom products one at a time, with zero waste.
+I just wanted to personally welcome you. This isn’t a big company. It’s the two of us building custom products one at a time, with zero waste.
 
 Your welcome gift: +${tokens} Individual Tokens
 
@@ -77,7 +77,7 @@ Start exploring: https://www.madebyindividual.com/shop
 If you ever need anything, just reply to this email. I read every one.
 
 — Micah
-Founder, Individual
+Co-founder, Individual
 `;
 
   return { subject, html, text };
