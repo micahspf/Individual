@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   // Root layout applies the "%s · Individual" template
   title: "About",
   description:
-    "Individual is one person with a workshop in Cullman, Alabama. Personalized goods made to order for neighbors and local businesses — quotes and honest timelines before anything is made.",
+    "Individual is a two-person workshop in Cullman, Alabama — founded by Micah and Emma. Personalized goods made to order for neighbors and local businesses, with quotes and honest timelines before anything is made.",
   alternates: { canonical: "https://www.madebyindividual.com/about" },
 };
 
@@ -15,10 +15,13 @@ export default function AboutPage() {
     "@type": "LocalBusiness",
     name: "Individual",
     description:
-      "Individual — personalized goods made to order in Cullman, Alabama. A one-person workshop serving Cullman County neighbors and local businesses.",
+      "Individual — personalized goods made to order in Cullman, Alabama. A two-person workshop serving Cullman County neighbors and local businesses.",
     url: "https://www.madebyindividual.com",
     email: "founder@madebyindividual.com",
-    founder: { "@type": "Person", name: "Micah" },
+    founder: [
+      { "@type": "Person", name: "Micah" },
+      { "@type": "Person", name: "Emma" },
+    ],
     // [FOUNDER: add telephone when public]
     // telephone: "+1-...",
     address: {
@@ -38,26 +41,26 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
       />
 
-      {/* Intro. The right-hand panel is where a photo of the workshop or bench
-          can drop in later without changing the layout. */}
+      {/* Intro. The right-hand panel is where a photo of the two of us or the
+          workshop can drop in later without changing the layout. */}
       <div className="glass-strong p-8 sm:p-10 lg:p-12">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-pink-400">
           About
         </p>
         <h1 className="font-display mb-8 max-w-2xl text-4xl font-medium leading-[1.15] tracking-tight sm:text-[2.75rem]">
-          I’m Micah. I make things here in Cullman.
+          We’re Micah and Emma. We make things here in Cullman.
         </h1>
 
         <div className="grid gap-10 lg:grid-cols-[1.45fr_1fr] lg:gap-12">
           <div className="space-y-5 leading-relaxed text-zinc-300">
             <p>
-              Individual is one person — me — with a workshop in Cullman, Alabama. Cullman is
-              home. When you order something, it gets made a few miles from wherever you’re
-              reading this, and you’re welcome to come pick it up instead of waiting on a
-              shipping label.
+              Individual is the two of us and a workshop in Cullman, Alabama. Cullman is home.
+              When you order something, it gets made a few miles from wherever you’re reading
+              this, and you’re welcome to come pick it up instead of waiting on a shipping
+              label.
             </p>
             <p>
-              I started this for two reasons. The first is that I wanted to make useful things
+              We started this for two reasons. The first is that we wanted to make useful things
               properly, close to home, instead of drop-shipping generic goods in from somewhere
               far away. The second is that if you live around here and you want something
               personalized — a name on a tumbler, a sign for the porch, a run of tags for your
@@ -73,6 +76,7 @@ export default function AboutPage() {
             </p>
             <dl className="space-y-4">
               {[
+                { k: "Founded by", v: "Micah & Emma" },
                 { k: "Workshop", v: "Cullman, Alabama" },
                 { k: "Made", v: "To order, one job at a time" },
                 { k: "Turnaround", v: "7–10 days" },
@@ -95,15 +99,15 @@ export default function AboutPage() {
           What being small actually means
         </h2>
         <p className="mb-7 max-w-2xl leading-relaxed text-zinc-400">
-          I’d rather tell you the constraints up front than have you find them out after you’ve
+          We’d rather tell you the constraints up front than have you find them out after you’ve
           ordered.
         </p>
         <ul className="grid gap-5 sm:grid-cols-2">
           {[
             {
               c: "#ff2d8a",
-              t: "This runs alongside a day job",
-              d: "Evenings and weekends. That’s the honest reason turnaround is 7–10 days and not two. If you have a hard date, tell me and I’ll say yes or no before you pay anything.",
+              t: "We build this around other work",
+              d: "Evenings and weekends. That’s the honest reason turnaround is 7–10 days and not two. If you have a hard date, tell us and we’ll say yes or no before you pay anything.",
             },
             {
               c: "#ff8c42",
@@ -117,8 +121,8 @@ export default function AboutPage() {
             },
             {
               c: "#ff7ab8",
-              t: "You’re talking to me",
-              d: "Not a ticket queue and not a chatbot. The person answering your email is the person making your order.",
+              t: "You’re talking to us",
+              d: "Not a ticket queue and not a chatbot. The person answering your email is one of the two people making your order.",
             },
           ].map((i) => (
             <li key={i.t}>
@@ -145,7 +149,7 @@ export default function AboutPage() {
             family and nothing to anybody else.
           </p>
           <p className="text-sm leading-relaxed text-zinc-400">
-            Bring me the words. I’ll tell you what it costs and when it’ll be ready — and if
+            Bring us the words. We’ll tell you what it costs and when it’ll be ready — and if
             you’re in town, you can pick it up rather than trusting it to a box.
           </p>
         </div>
@@ -164,7 +168,7 @@ export default function AboutPage() {
           </p>
           <p className="text-sm leading-relaxed text-zinc-400">
             And if what’s slowing you down isn’t a physical object — it’s the invoicing, the
-            follow-up, the same email answered twenty times a week — I also build{" "}
+            follow-up, the same email answered twenty times a week — we also build{" "}
             <Link href="/ai" className="text-[#ffe14a] underline-offset-4 hover:underline">
               AI tools and automations
             </Link>
@@ -179,8 +183,8 @@ export default function AboutPage() {
           If you’re in Cullman, you’re not a support ticket.
         </h2>
         <p className="mb-8 max-w-2xl leading-relaxed text-zinc-400">
-          You’re a neighbor with a project. Tell me what you’re trying to make — even if you’re
-          not sure it’s possible yet — and I’ll tell you straight whether I can do it, what it
+          You’re a neighbor with a project. Tell us what you’re trying to make — even if you’re
+          not sure it’s possible yet — and we’ll tell you straight whether we can do it, what it
           costs, and how long it takes.
         </p>
         <div className="flex flex-wrap gap-3">
@@ -195,9 +199,9 @@ export default function AboutPage() {
           </Link>
         </div>
         <p className="mt-9 border-t border-white/10 pt-6 text-sm text-zinc-500">
-          — Micah
+          — Micah &amp; Emma
           <br />
-          Founder, Individual
+          Founders, Individual
           <br />
           Cullman, Alabama
         </p>
