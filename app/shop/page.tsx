@@ -2,7 +2,10 @@
 
 import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { shopProducts, categories } from '@/lib/data/products';
+import { shopProducts } from '@/lib/data/products';
+import { catalogTabs, findTab } from '@/lib/catalog';
+import { forYouProducts, recordCategoryTap } from '@/lib/recs';
+import { useRecsIdentity, resolveRecsIdentity } from '@/components/shop/recs-client';
 import ProductCard from '@/components/shop/ProductCard';
 import CategoryTabs from '@/components/shop/CategoryTabs';
 import Link from 'next/link';
@@ -10,23 +13,54 @@ import Recommendations from '@/components/shop/Recommendations';
 
 type SortOption = 'newest' | 'price-asc' | 'price-desc' | 'name';
 
+/** Old links use ?cat=home; the tab id is home-office now. */
+function normalizeCat(raw: string): string {
+  return raw === 'home' ? 'home-office' : raw;
+}
+
 function ShopContent() {
   const searchParams = useSearchParams();
-  const initialCat = searchParams.get('cat') || 'all';
+  const initialCat = normalizeCat(searchParams.get('cat') || 'all');
   const initialQ = searchParams.get('q') || '';
 
-  const [activeCategory, setActiveCategory] = useState(initialCat);
+  const [activeTab, setActiveTab] = useState(initialCat);
   const [search, setSearch] = useState(initialQ);
   const [sort, setSort] = useState<SortOption>('newest');
   const [priceRange, setPriceRange] = useState('all');
+  const who = useRecsIdentity();
+
+  const tab = findTab(activeTab);
+
+  function handleTabChange(id: string) {
+    setActiveTab(id);
+    const next = findTab(id);
+    if (next?.kind === 'category') {
+      resolveRecsIdentity().then((w) => recordCategoryTap(w, next.category!));
+    }
+  }
+
+  /** Products belonging to the tab, before search/price/sort. */
+  const baseForTab = useMemo(() => {
+    if (activeTab === 'custom') return [];
+    if (!tab) {
+      // Legacy ?cat= values without their own tab (drinkware, 3d-printed)
+      return shopProducts.filter((p) => p.category === activeTab);
+    }
+    if (tab.kind === 'all') return [...shopProducts];
+    if (tab.id === 'trending') return shopProducts.filter((p) => p.trending);
+    if (tab.id === 'for-you') return forYouProducts(who, shopProducts);
+    return shopProducts.filter((p) => p.category === tab.category);
+  }, [activeTab, tab, who]);
+
+  /** Category tab with zero products → made-to-order invite. */
+  const isEmptyCategory =
+    tab?.kind === 'category' && !shopProducts.some((p) => p.category === tab.category);
+
+  /** For You with no browsing history yet → friendly start + trending. */
+  const forYouIsNew = tab?.id === 'for-you' && baseForTab.length === 0;
 
   const filtered = useMemo(() => {
-    let result = [...shopProducts];
-
-    if (activeCategory === 'custom') return [];
-    if (activeCategory !== 'all') {
-      result = result.filter((p) => p.category === activeCategory);
-    }
+    let result = [...baseForTab];
 
     if (search.trim()) {
       const q = search.toLowerCase();
@@ -54,11 +88,13 @@ function ShopContent() {
       if (sort === 'price-asc') return a.price - b.price;
       if (sort === 'price-desc') return b.price - a.price;
       if (sort === 'name') return a.name.localeCompare(b.name);
-      return 0;
+      return 0; // 'newest' keeps tab order (For You keeps its ranking)
     });
 
     return result;
-  }, [activeCategory, search, sort, priceRange]);
+  }, [baseForTab, search, sort, priceRange]);
+
+  const trendingFallback = useMemo(() => shopProducts.filter((p) => p.trending), []);
 
   return (
     <main className="min-h-screen">
@@ -83,7 +119,7 @@ function ShopContent() {
               Request a commission →
             </Link>
           </div>
-          <CategoryTabs active={activeCategory} onChange={setActiveCategory} categories={categories} />
+          <CategoryTabs active={activeTab} onChange={handleTabChange} categories={catalogTabs} />
         </div>
       </div>
 
@@ -95,7 +131,8 @@ function ShopContent() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products..."
+              placeholder="Search the catalog…"
+              aria-label="Search the catalog"
               className="input-glass-pill"
             />
           </div>
@@ -138,9 +175,10 @@ function ShopContent() {
       {/* Results */}
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <Recommendations context={activeCategory} />
+          <Recommendations context={activeTab} />
         </div>
-        {activeCategory === 'custom' ? (
+
+        {activeTab === 'custom' ? (
           <div className="py-24 text-center">
             <h2 className="font-display mb-3 text-3xl font-medium tracking-tight">Commission</h2>
             <p className="mx-auto mb-8 max-w-md text-neutral-400">
@@ -153,6 +191,49 @@ function ShopContent() {
               Request a quote
             </Link>
           </div>
+        ) : isEmptyCategory ? (
+          <div className="mx-auto max-w-xl py-20 text-center">
+            <div className="mb-5 text-5xl" aria-hidden="true">
+              {tab!.icon}
+            </div>
+            <h2 className="font-display mb-3 text-3xl font-medium tracking-tight">
+              {tab!.label} — made to order
+            </h2>
+            <p className="mx-auto mb-8 max-w-md leading-relaxed text-zinc-400">
+              We build these one at a time, exactly how you want them. Tell us what you’re
+              after and we’ll reply with a price and a timeline before anything is made.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Link href="/#request" className="btn-pill-pink px-8 py-3.5 text-sm">
+                Tell us what you want
+              </Link>
+              <button
+                onClick={() => handleTabChange('all')}
+                className="rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-sm font-medium text-zinc-100 transition hover:border-[#ffe14a]/40 hover:bg-[#ffe14a]/10"
+              >
+                Browse everything
+              </button>
+            </div>
+          </div>
+        ) : forYouIsNew ? (
+          <>
+            <div className="mb-10 rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm">
+              <div className="mb-2 text-3xl" aria-hidden="true">💖</div>
+              <h2 className="font-display mb-2 text-2xl font-medium tracking-tight">
+                This tab learns what you like
+              </h2>
+              <p className="mx-auto max-w-md text-sm leading-relaxed text-zinc-400">
+                Tap around the catalog and your favorites collect here. Recommendations stay on
+                this device{who !== 'guest' ? ', saved to your account name' : ''}. Here’s
+                what’s trending to get you started:
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+              {trendingFallback.map((product, i) => (
+                <ProductCard key={product.id} product={product} priority={i === 0} />
+              ))}
+            </div>
+          </>
         ) : filtered.length === 0 ? (
           <div className="text-center py-24">
             <h3 className="text-xl font-medium mb-2">No products found</h3>
@@ -161,7 +242,7 @@ function ShopContent() {
               onClick={() => {
                 setSearch('');
                 setPriceRange('all');
-                setActiveCategory('all');
+                setActiveTab('all');
               }}
               className="text-pink-400 text-sm"
             >
@@ -175,11 +256,7 @@ function ShopContent() {
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filtered.map((product, i) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  priority={i === 0}
-                />
+                <ProductCard key={product.id} product={product} priority={i === 0} />
               ))}
             </div>
           </>

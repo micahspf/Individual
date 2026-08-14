@@ -5,6 +5,7 @@ import { shopProducts, products } from "@/lib/data/products";
 import Recommendations from "@/components/shop/Recommendations";
 import AddToCartButton from "@/components/shop/AddToCartButton";
 import ProductImage from "@/components/shop/ProductImage";
+import TrackView from "@/components/shop/TrackView";
 
 /** ISR: rebuild product pages at most once per hour */
 export const revalidate = 3600;
@@ -102,6 +103,7 @@ export default async function ProductPage({
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
+      <TrackView productId={product.id} category={product.category} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}

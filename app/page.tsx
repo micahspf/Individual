@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
+import CatalogStrip from "@/components/home/CatalogStrip";
 import BrandLogo from "@/components/ui/BrandLogo";
 import { giftOccasions, shopProducts } from "@/lib/data/products";
 
@@ -162,31 +163,11 @@ export default function HomePage() {
         </h2>
         <p className="mt-3 max-w-lg text-zinc-400">
           Drinkware, home keepsakes, fabricated forms, and desk accessories — each piece
-          produced after you order, with clear personalization options.
+          produced after you order, with clear personalization options. Tap a category and
+          browse.
         </p>
-        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {[
-            { href: "/shop?cat=drinkware", label: "Drinkware", desc: "Tumblers, bottles, mugs" },
-            { href: "/shop?cat=home", label: "Home & gifts", desc: "Signs, boards, coasters" },
-            {
-              href: "/shop?cat=fidget-sensory",
-              label: "Fidget & Sensory",
-              desc: "Custom squish, fills, desk tools",
-            },
-            { href: "/shop?cat=3d-printed", label: "Fabricated", desc: "Parts, forms, sets" },
-            { href: "/shop?cat=custom", label: "Commission", desc: "Your exact specification" },
-          ].map((c) => (
-            <Link
-              key={c.href}
-              href={c.href}
-              className="glass group p-5 transition hover:border-pink-500/35"
-            >
-              <div className="font-medium text-zinc-100 transition group-hover:text-pink-300">
-                {c.label}
-              </div>
-              <div className="mt-1.5 text-sm leading-snug text-zinc-400">{c.desc}</div>
-            </Link>
-          ))}
+        <div className="mt-8">
+          <CatalogStrip />
         </div>
       </section>
 

@@ -29,6 +29,8 @@ export interface Product {
   edition?: EditionType;
   /** Real remaining count only — never invent scarcity. */
   remainingQuantity?: number;
+  /** Curated: shown in the Trending catalog tab. Edit freely — no data behind it yet. */
+  trending?: boolean;
 }
 
 function img(slug: string): string {
@@ -44,6 +46,7 @@ export const products: Product[] = [
     id: "1",
     name: "Personalized Tumbler",
     slug: "personalized-tumbler",
+    trending: true,
     price: 32,
     category: "drinkware",
     description:
@@ -60,6 +63,7 @@ export const products: Product[] = [
     id: "2",
     name: "Personalized Can Cooler",
     slug: "personalized-can-cooler",
+    trending: true,
     price: 28,
     category: "drinkware",
     description:
@@ -108,6 +112,7 @@ export const products: Product[] = [
     id: "3",
     name: "Family Name Wood Sign",
     slug: "custom-wood-sign",
+    trending: true,
     price: 45,
     category: "home",
     description:
@@ -220,6 +225,7 @@ export const products: Product[] = [
     id: "7",
     name: "Pet ID Tag",
     slug: "pet-id-tag",
+    trending: true,
     price: 16,
     category: "home",
     description:
@@ -300,6 +306,7 @@ export const products: Product[] = [
     id: "30",
     name: "Custom Squish — Choice Fill",
     slug: "custom-squish-choice-fill",
+    trending: true,
     price: 18,
     category: "fidget-sensory",
     description:
@@ -459,6 +466,7 @@ export const products: Product[] = [
     id: "5",
     name: "Articulated Form Set (12)",
     slug: "flexi-animal-multipack-12",
+    trending: true,
     price: 18,
     category: "3d-printed",
     description:
