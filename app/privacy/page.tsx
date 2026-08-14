@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy",
+  description:
+    "Privacy policy for madebyindividual.com.",
+};
+
 export default function PrivacyPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">

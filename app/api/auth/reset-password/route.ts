@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { consumeResetToken, updatePassword, revokeAllRefreshTokensForUser } from '@/lib/auth/tokenStore';
-import { blacklistToken } from '@/lib/auth/tokenStore';
 
 /**
  * POST /api/auth/reset-password

@@ -40,7 +40,7 @@ export default function EmailCapture() {
       />
       <button
         type="submit"
-        className="w-full py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-zinc-300 transition hover:border-pink-500/40 hover:bg-pink-500 hover:text-white"
+        className="w-full py-2 rounded-lg border border-white/10 bg-white/5 text-sm text-zinc-300 transition hover:border-pink-500/40 hover:bg-[#ff2d8a] hover:text-white"
       >
         Subscribe
       </button>

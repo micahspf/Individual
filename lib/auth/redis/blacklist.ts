@@ -24,7 +24,7 @@ export async function blacklistToken(
   });
 
   // Atomic + idempotent via Lua
-  await (redis as any).eval(BLACKLIST_SCRIPT, 1, key, value, String(ttl));
+  await redis.eval(BLACKLIST_SCRIPT, 1, key, value, String(ttl));
 }
 
 export async function isBlacklisted(jti: string): Promise<boolean> {
@@ -49,7 +49,7 @@ export async function blacklistMany(
       const ttl = Math.max(1, exp - now);
       const key = `${PREFIX}${jti}`;
       const value = JSON.stringify({ reason });
-      return (redis as any).eval(BLACKLIST_SCRIPT, 1, key, value, String(ttl));
+      return redis.eval(BLACKLIST_SCRIPT, 1, key, value, String(ttl));
     })
   );
 }

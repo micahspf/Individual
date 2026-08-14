@@ -10,7 +10,9 @@
 
 type RedisLike = {
   get(key: string): Promise<string | null>;
-  set(key: string, value: string, ...args: any[]): Promise<'OK' | null>;
+  set(key: string, value: string, ...args: Array<string | number>): Promise<'OK' | null>;
+  /** Lua script execution — args are KEYS then ARGV values */
+  eval(script: string, numKeys: number, ...args: Array<string | number>): Promise<unknown>;
   del(...keys: string[]): Promise<number>;
   exists(...keys: string[]): Promise<number>;
   sadd(key: string, ...members: string[]): Promise<number>;

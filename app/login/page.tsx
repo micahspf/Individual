@@ -31,8 +31,8 @@ export default function LoginPage() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       router.push('/account');
-    } catch (err: any) {
-      setError(err.message || 'Invalid email or password');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Invalid email or password');
       setLoading(false);
     }
   }

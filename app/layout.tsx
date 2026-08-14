@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { Cormorant, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
@@ -96,29 +97,29 @@ export default function RootLayout({
               <div className="mb-3 font-medium text-zinc-200">Shop</div>
               <ul className="space-y-2 text-zinc-400">
                 <li>
-                  <a href="/shop" className="hover:text-pink-300">
+                  <Link href="/shop" className="hover:text-pink-300">
                     Catalog
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/shop?cat=drinkware" className="hover:text-pink-300">
+                  <Link href="/shop?cat=drinkware" className="hover:text-pink-300">
                     Drinkware
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/shop?cat=home" className="hover:text-pink-300">
+                  <Link href="/shop?cat=home" className="hover:text-pink-300">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/shop?cat=fidget-sensory" className="hover:text-pink-300">
+                  <Link href="/shop?cat=fidget-sensory" className="hover:text-pink-300">
                     Fidget & Sensory
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/shop?cat=3d-printed" className="hover:text-pink-300">
+                  <Link href="/shop?cat=3d-printed" className="hover:text-pink-300">
                     Fabricated
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -126,49 +127,49 @@ export default function RootLayout({
               <div className="mb-3 font-medium text-zinc-200">Info</div>
               <ul className="space-y-2 text-zinc-400">
                 <li>
-                  <a href="/ai" className="hover:text-pink-300">
+                  <Link href="/ai" className="hover:text-pink-300">
                     AI services
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/about" className="hover:text-pink-300">
+                  <Link href="/about" className="hover:text-pink-300">
                     About
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/contact" className="hover:text-pink-300">
+                  <Link href="/contact" className="hover:text-pink-300">
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/faq" className="hover:text-pink-300">
+                  <Link href="/faq" className="hover:text-pink-300">
                     FAQ
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/shipping" className="hover:text-pink-300">
+                  <Link href="/shipping" className="hover:text-pink-300">
                     Shipping
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/returns" className="hover:text-pink-300">
+                  <Link href="/returns" className="hover:text-pink-300">
                     Returns
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/orders/track" className="hover:text-pink-300">
+                  <Link href="/orders/track" className="hover:text-pink-300">
                     Track order
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/privacy" className="hover:text-pink-300">
+                  <Link href="/privacy" className="hover:text-pink-300">
                     Privacy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/terms" className="hover:text-pink-300">
+                  <Link href="/terms" className="hover:text-pink-300">
                     Terms
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -183,13 +184,13 @@ export default function RootLayout({
           </div>
           <div className="border-t border-white/10 py-6 text-center text-xs text-zinc-500">
             © {new Date().getFullYear()} Individual · Cullman, AL ·{" "}
-            <a href="/privacy" className="hover:text-pink-300">
+            <Link href="/privacy" className="hover:text-pink-300">
               Privacy
-            </a>{" "}
+            </Link>{" "}
             ·{" "}
-            <a href="/terms" className="hover:text-pink-300">
+            <Link href="/terms" className="hover:text-pink-300">
               Terms
-            </a>
+            </Link>
           </div>
         </footer>
       </body>

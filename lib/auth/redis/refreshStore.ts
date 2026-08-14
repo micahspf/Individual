@@ -31,7 +31,7 @@ export async function storeRefreshToken(
   const emailKey = email.toLowerCase().trim();
   const record = JSON.stringify({ email: emailKey, exp: expiresAtMs });
 
-  await (redis as any).eval(
+  await redis.eval(
     STORE_REFRESH_SCRIPT,
     2,
     `${JTI_PREFIX}${jti}`,
@@ -51,7 +51,7 @@ export async function isRefreshTokenValid(
   if (!redis) return false;
 
   const emailKey = email.toLowerCase().trim();
-  const result = (await (redis as any).eval(
+  const result = (await redis.eval(
     VALIDATE_REFRESH_SCRIPT,
     2,
     `${JTI_PREFIX}${jti}`,
@@ -79,7 +79,7 @@ export async function rotateRefreshToken(
   const emailKey = email.toLowerCase().trim();
   const record = JSON.stringify({ email: emailKey, exp: expiresAtMs });
 
-  const result = (await (redis as any).eval(
+  const result = (await redis.eval(
     ROTATE_REFRESH_SCRIPT,
     3,
     `${JTI_PREFIX}${oldJti}`,
@@ -121,7 +121,7 @@ export async function revokeAllRefreshTokensForUser(
 
   const emailKey = email.toLowerCase().trim();
 
-  await (redis as any).eval(
+  await redis.eval(
     REVOKE_ALL_SCRIPT,
     1,
     `${USER_PREFIX}${emailKey}`,

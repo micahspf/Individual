@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Shipping",
+  description:
+    "Shipping and local pickup for Individual orders — timelines, carriers, and Cullman pickup by arrangement.",
+};
+
 export default function ShippingPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">

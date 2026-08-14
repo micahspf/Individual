@@ -114,7 +114,7 @@ function ShopContent() {
             </div>
             <Link
               href="/#request"
-              className="inline-flex items-center gap-2 rounded-full bg-yellow-400 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_20px_rgba(250,204,21,0.25)] transition hover:bg-yellow-300"
+              className="inline-flex items-center gap-2 rounded-full bg-[#ffe14a] px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_20px_rgba(255,225,74,0.25)] transition hover:bg-[#fff08a]"
             >
               Request a commission →
             </Link>
@@ -186,7 +186,7 @@ function ShopContent() {
             </p>
             <Link
               href="/#request"
-              className="inline-flex items-center gap-2 rounded-full bg-pink-500 px-8 py-3.5 font-medium text-white transition hover:bg-pink-400"
+              className="inline-flex items-center gap-2 rounded-full bg-[#ff2d8a] px-8 py-3.5 font-medium text-white transition hover:bg-[#ff4da0]"
             >
               Request a quote
             </Link>

@@ -1,13 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {
-  getCart,
-  updateQuantity,
-  removeFromCart,
-  type CartItem,
-} from '@/lib/cart/store';
+import { updateQuantity, removeFromCart } from '@/lib/cart/store';
+import { useCart } from '@/lib/cart/useCart';
 
 interface CartDrawerProps {
   open: boolean;
@@ -15,16 +10,7 @@ interface CartDrawerProps {
 }
 
 export default function CartDrawer({ open, onClose }: CartDrawerProps) {
-  const [items, setItems] = useState<CartItem[]>([]);
-
-  useEffect(() => {
-    setItems(getCart());
-    function sync() {
-      setItems(getCart());
-    }
-    window.addEventListener('cart-updated', sync);
-    return () => window.removeEventListener('cart-updated', sync);
-  }, [open]);
+  const items = useCart();
 
   const total = items.reduce((s, i) => s + (i.isTokenOnly ? 0 : i.price) * i.quantity, 0);
 
@@ -88,7 +74,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                     <div className="mt-2 flex items-center gap-3">
                       <button
                         onClick={() =>
-                          setItems(updateQuantity(item.lineKey, item.quantity - 1))
+                          updateQuantity(item.lineKey, item.quantity - 1)
                         }
                         className="h-7 w-7 rounded-full border border-white/15 bg-white/5 text-sm hover:border-pink-500"
                       >
@@ -97,14 +83,14 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
                       <span className="w-6 text-center text-sm">{item.quantity}</span>
                       <button
                         onClick={() =>
-                          setItems(updateQuantity(item.lineKey, item.quantity + 1))
+                          updateQuantity(item.lineKey, item.quantity + 1)
                         }
                         className="h-7 w-7 rounded-full border border-white/15 bg-white/5 text-sm hover:border-pink-500"
                       >
                         +
                       </button>
                       <button
-                        onClick={() => setItems(removeFromCart(item.lineKey))}
+                        onClick={() => removeFromCart(item.lineKey)}
                         className="ml-auto text-xs text-zinc-400 hover:text-red-400"
                       >
                         Remove

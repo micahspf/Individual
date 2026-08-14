@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Returns",
+  description:
+    "Return policy for made-to-order and personalized goods from Individual.",
+};
+
 export default function ReturnsPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">

@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms",
+  description:
+    "Terms of service for madebyindividual.com.",
+};
+
 export default function TermsPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">

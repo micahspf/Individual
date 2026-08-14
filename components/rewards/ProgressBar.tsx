@@ -20,7 +20,7 @@ export default function ProgressBar({ current, target, label = 'Next Exclusive D
 
       <div className="h-3 overflow-hidden rounded-full border border-white/10 bg-white/5">
         <div
-          className="h-full rounded-full bg-gradient-to-r from-pink-500 via-yellow-400 to-pink-500 shadow-[0_0_12px_rgba(236,72,153,0.5)] transition-all duration-700"
+          className="h-full rounded-full bg-gradient-to-r from-[#ff2d8a] via-[#ffe14a] to-[#ff2d8a] shadow-[0_0_12px_rgba(255,45,138,0.5)] transition-all duration-700"
           style={{ width: `${pct}%` }}
         />
       </div>

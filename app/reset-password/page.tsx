@@ -43,9 +43,9 @@ function ResetPasswordForm() {
       if (!res.ok) throw new Error(data.error || 'Reset failed');
 
       setStatus('success');
-    } catch (err: any) {
+    } catch (err) {
       setStatus('error');
-      setErrorMsg(err.message || 'Something went wrong. The link may have expired.');
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. The link may have expired.');
     }
   }
 
@@ -59,7 +59,7 @@ function ResetPasswordForm() {
         </p>
         <Link
           href="/login"
-          className="inline-flex px-6 py-2.5 rounded-full bg-pink-500 text-white text-sm font-medium hover:bg-pink-400 transition"
+          className="inline-flex px-6 py-2.5 rounded-full bg-[#ff2d8a] text-white text-sm font-medium hover:bg-[#ff4da0] transition"
         >
           Go to login
         </Link>
@@ -102,7 +102,7 @@ function ResetPasswordForm() {
       <button
         type="submit"
         disabled={status === 'saving'}
-        className="w-full py-3.5 rounded-full bg-pink-500 text-white font-medium hover:bg-pink-400 transition disabled:opacity-60"
+        className="w-full py-3.5 rounded-full bg-[#ff2d8a] text-white font-medium hover:bg-[#ff4da0] transition disabled:opacity-60"
       >
         {status === 'saving' ? 'Updating…' : 'Update password'}
       </button>

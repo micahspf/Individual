@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Rewards",
+  description:
+    "Individual Tokens and rewards — returning after real orders. For now, the made-to-order catalog ships from Cullman, Alabama.",
+};
+
 import Link from "next/link";
 
 /**

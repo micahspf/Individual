@@ -4,11 +4,22 @@
  * Output: public/products/{slug}.avif (1600px long edge, q55)
  */
 import sharp from "sharp";
-import { readdirSync, mkdirSync, existsSync, copyFileSync } from "fs";
+import { readdirSync, mkdirSync, existsSync, writeFileSync } from "fs";
 import { join, extname, basename } from "path";
 
 const INPUT = "raw-photos";
 const OUTPUT = "public/products";
+const MANIFEST = "lib/data/product-images.json";
+
+/** Keep the manifest of real photos in sync so img() never links a 404. */
+function writeManifest() {
+  const slugs = readdirSync(OUTPUT)
+    .filter((f) => f.endsWith(".avif") && !f.startsWith("placeholder"))
+    .map((f) => basename(f, ".avif"))
+    .sort();
+  writeFileSync(MANIFEST, JSON.stringify(slugs, null, 2) + "\n");
+  console.log(`Manifest: ${slugs.length} product photos → ${MANIFEST}`);
+}
 const PLACEHOLDER = join(OUTPUT, "placeholder.avif");
 const EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff", ".avif"]);
 
@@ -25,7 +36,7 @@ const files = existsSync(INPUT)
 
 if (files.length === 0) {
   console.log(`No images in ${INPUT}/. Drop photos named {slug}.jpg then re-run.`);
-  console.log("Ensuring product slugs have a fallback image path (placeholder).");
+  writeManifest();
   process.exit(0);
 }
 
@@ -52,4 +63,5 @@ for (const file of files) {
   }
 }
 
+writeManifest();
 console.log(`Done. ${ok}/${files.length} optimized.`);

@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const profile = awardWelcomeBonus(email);
 
     // Build personal welcome email from Micah
-    const { subject, html, text } = buildWelcomeEmail(name || null, WELCOME_BONUS);
+    const { subject, html } = buildWelcomeEmail(name || null, WELCOME_BONUS);
 
     // Send welcome email to the customer
     // (Uses the existing email helper – safe if Resend key is missing)
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
         subject,
         html,
       });
-    } catch (e) {
+    } catch {
       console.log('Welcome email skipped (email service not configured)');
     }
 
@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
         'New account + welcome tokens',
         `New user: ${name || 'Unknown'} <${email}>\nTokens awarded: ${WELCOME_BONUS}\nFounder status: ${profile.isFounder}`
       );
-    } catch (e) {
+    } catch {
       // silent
     }
 

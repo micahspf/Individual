@@ -1,28 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import SearchBar from "@/components/search/SearchBar";
 import BrandLogo from "@/components/ui/BrandLogo";
-import { cartCount } from "@/lib/cart/store";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { useCartCount } from "@/lib/cart/useCart";
 
-const CartDrawer = dynamic(() => import("@/components/cart/CartDrawer"), {
-  ssr: false,
-});
+// CartDrawer is imported statically: it renders null when closed, so the
+// previous dynamic(..., { ssr: false }) lazy-load saved almost nothing and
+// added a lazy Suspense inside the header for no benefit.
 
 export default function Header() {
-  const [count, setCount] = useState(0);
+  const count = useCartCount();
   const [cartOpen, setCartOpen] = useState(false);
-
-  useEffect(() => {
-    setCount(cartCount());
-    function sync() {
-      setCount(cartCount());
-    }
-    window.addEventListener("cart-updated", sync);
-    return () => window.removeEventListener("cart-updated", sync);
-  }, []);
 
   return (
     <>
@@ -65,7 +56,7 @@ export default function Header() {
             >
               <span className="text-sm">🛒</span>
               {count > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-pink-500 px-1 text-[10px] font-bold text-white">
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ff2d8a] px-1 text-[10px] font-bold text-white">
                   {count}
                 </span>
               )}

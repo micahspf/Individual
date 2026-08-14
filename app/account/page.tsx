@@ -74,7 +74,10 @@ export default function AccountPage() {
   }, [router]);
 
   useEffect(() => {
-    load();
+    // Async auth check: every setState in load() happens after an await,
+    // not synchronously — the rule can't see through the call.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    void load();
   }, [load]);
 
   async function logout() {

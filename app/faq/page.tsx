@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAQ",
+  description:
+    "Answers about turnaround, materials, personalization, local Cullman pickup, and commissions at Individual.",
+};
+
 export default function FAQPage() {
   const faqs = [
     {

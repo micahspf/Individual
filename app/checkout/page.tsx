@@ -1,16 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
-import { getCart, clearCart, type CartItem } from '@/lib/cart/store';
+import { clearCart } from '@/lib/cart/store';
+import { useCart } from '@/lib/cart/useCart';
 import { createOrder } from '@/lib/orders/store';
 
 function CheckoutContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [items, setItems] = useState<CartItem[]>([]);
+  const items = useCart();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -20,10 +21,6 @@ function CheckoutContent() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const canceled = searchParams.get('canceled') === '1';
-
-  useEffect(() => {
-    setItems(getCart());
-  }, []);
 
   const total = items.reduce(
     (s, i) => s + (i.isTokenOnly ? 0 : i.price) * i.quantity,
@@ -72,7 +69,7 @@ function CheckoutContent() {
       if (res.ok && data.url) {
         // Do NOT create the order here — webhook fulfills after payment.
         // Cart clears on success page after Stripe returns.
-        window.location.href = data.url;
+        window.location.assign(data.url);
         return;
       }
 

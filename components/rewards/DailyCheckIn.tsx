@@ -45,7 +45,7 @@ export default function DailyCheckIn({
               key={i}
               className={`h-2 flex-1 rounded-full transition-all ${
                 i < fill
-                  ? "bg-gradient-to-r from-pink-500 to-yellow-400 shadow-[0_0_8px_rgba(236,72,153,0.5)]"
+                  ? "bg-gradient-to-r from-[#ff2d8a] to-[#ffe14a] shadow-[0_0_8px_rgba(255,45,138,0.5)]"
                   : "bg-neutral-800"
               }`}
             />
@@ -70,7 +70,7 @@ export default function DailyCheckIn({
             type="button"
             onClick={onCheckIn}
             disabled={loading}
-            className="w-full rounded-xl bg-gradient-to-r from-pink-500 to-yellow-400 py-3 text-sm font-semibold text-black shadow-[0_0_20px_rgba(236,72,153,0.3)] transition hover:opacity-90 disabled:opacity-60"
+            className="w-full rounded-xl bg-gradient-to-r from-[#ff2d8a] to-[#ffe14a] py-3 text-sm font-semibold text-black shadow-[0_0_20px_rgba(255,45,138,0.3)] transition hover:opacity-90 disabled:opacity-60"
           >
             {loading ? "Claiming…" : "Claim Daily Tokens"}
           </button>

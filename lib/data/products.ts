@@ -33,8 +33,17 @@ export interface Product {
   trending?: boolean;
 }
 
+import availableImages from "./product-images.json";
+
+/** Slugs that actually have a photo in /public/products (see npm run images). */
+const imageSet = new Set<string>(availableImages);
+
+/**
+ * Product photo path, or the neutral placeholder when no photo exists yet —
+ * avoids a guaranteed 404 per card. `npm run images` regenerates the manifest.
+ */
 function img(slug: string): string {
-  return `/products/${slug}.avif`;
+  return imageSet.has(slug) ? `/products/${slug}.avif` : PRODUCT_IMAGE_PLACEHOLDER;
 }
 
 /**

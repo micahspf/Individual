@@ -32,8 +32,8 @@ export default function RegisterPage() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       router.push('/account');
-    } catch (err: any) {
-      setError(err.message || 'Could not create account');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not create account');
       setLoading(false);
     }
   }

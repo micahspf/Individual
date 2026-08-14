@@ -1,3 +1,13 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Get in touch with Individual — email, location, commission requests, and response times. Cullman, Alabama.",
+};
+
+import Link from "next/link";
+
 export default function ContactPage() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">
@@ -30,9 +40,9 @@ export default function ContactPage() {
             <h2 className="mb-2 font-medium text-white">Commissions</h2>
             <p className="text-zinc-400">
               Prefer the{" "}
-              <a href="/#request" className="text-pink-400 hover:text-pink-300">
+              <Link href="/#request" className="text-pink-400 hover:text-pink-300">
                 quote form
-              </a>
+              </Link>
               . Include size, material, finish, quantity, any text or artwork, and a target date if you have one.
             </p>
           </div>

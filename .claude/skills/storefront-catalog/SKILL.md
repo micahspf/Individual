@@ -38,11 +38,13 @@ Trending, or debugging the /shop tabs or For You recommendations.
 
 ## Common mistakes
 
-- **Testing tabs with `npm run dev` and concluding they're broken.** The dev server can
-  leave /shop stuck on "Loading shop…" (Suspense + useSearchParams dev quirk). Always
-  judge with `npm run build && npm start` or a Vercel preview.
+- **Testing in a hidden or backgrounded browser pane and concluding the site is broken.**
+  React 19 reveals streamed Suspense boundaries on requestAnimationFrame; a hidden
+  document gets no frames, so pages look stuck on fallbacks ("Loading shop…", skeleton
+  header, inert tabs) even though nothing is wrong. Check `document.hidden` before
+  diagnosing — test with a visible browser window.
 - **Testing with curl only.** curl proves the server HTML, not that the page is
-  interactive. Click a tab in a real browser and confirm the grid changes.
+  interactive. Click a tab in a real visible browser and confirm the grid changes.
 - **Renaming a tab `id` that old links use.** `?cat=home`, `?cat=drinkware`,
   `?cat=3d-printed`, `?cat=custom` are legacy params handled in `app/shop/page.tsx`
   (`normalizeCat`) — keep them working.

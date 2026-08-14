@@ -97,7 +97,7 @@ function TrackForm() {
                 <div
                   className={`mx-auto w-3 h-3 rounded-full mb-2 ${
                     i <= stepIndex
-                      ? 'bg-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.6)]'
+                      ? 'bg-[#ff2d8a] shadow-[0_0_10px_rgba(255,45,138,0.6)]'
                       : 'bg-white/15'
                   }`}
                 />

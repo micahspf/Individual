@@ -82,10 +82,10 @@ export async function POST(req: NextRequest) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error) {
     console.error('Register error:', error);
     return NextResponse.json(
-      { error: error.message || 'Registration failed' },
+      { error: error instanceof Error ? error.message : 'Registration failed' },
       { status: 500 }
     );
   }

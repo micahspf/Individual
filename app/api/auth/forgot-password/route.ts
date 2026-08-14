@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       // Fire-and-forget email (safe if Resend not configured)
       try {
         await sendPasswordResetEmail(email, resetUrl, user.name);
-      } catch (e) {
+      } catch {
         console.log('Password reset email skipped (email service not ready)');
       }
     }
