@@ -200,6 +200,7 @@ export default async function ProductPage({
             name={product.name}
             price={product.price}
             personalizable={product.personalizable}
+            personalizationOptional={product.personalizationOptional}
             maxChars={product.maxChars ?? 30}
           />
 

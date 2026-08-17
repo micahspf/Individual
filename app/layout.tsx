@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   description:
     "Personalized drinkware, home gifts, and keepsakes manufactured to order in Cullman, Alabama. Names, monograms, dates — clear quotes and honest timelines.",
   icons: {
-    icon: [{ url: "/brand/logo-mark.png", type: "image/png" }],
-    apple: [{ url: "/brand/logo-mark.png" }],
-    shortcut: "/brand/logo-mark.png",
+    icon: [{ url: "/brand/icon-32.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/brand/apple-icon-180.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: "Individual — Personalized goods, made to order",
