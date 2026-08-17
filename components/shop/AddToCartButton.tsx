@@ -9,6 +9,8 @@ type Props = {
   name: string;
   price: number;
   personalizable?: boolean;
+  /** Engraving is an optional add-on — blank Line 1 adds the plain item */
+  personalizationOptional?: boolean;
   maxChars?: number;
 };
 
@@ -18,6 +20,7 @@ export default function AddToCartButton({
   name,
   price,
   personalizable = false,
+  personalizationOptional = false,
   maxChars = 30,
 }: Props) {
   const [added, setAdded] = useState(false);
@@ -28,9 +31,9 @@ export default function AddToCartButton({
 
   function handleAdd() {
     setError("");
+    const t = line1.trim();
     if (personalizable) {
-      const t = line1.trim();
-      if (!t) {
+      if (!t && !personalizationOptional) {
         setError("Line 1 is required for engraving.");
         return;
       }
@@ -39,6 +42,7 @@ export default function AddToCartButton({
         return;
       }
     }
+    const engraving = personalizable && t.length > 0;
 
     addToCart({
       id,
@@ -46,9 +50,9 @@ export default function AddToCartButton({
       name,
       price,
       isTokenOnly: false,
-      line1: personalizable ? line1.trim() : undefined,
-      line2: personalizable ? line2.trim() || undefined : undefined,
-      font: personalizable ? font : undefined,
+      line1: engraving ? t : undefined,
+      line2: engraving ? line2.trim() || undefined : undefined,
+      font: engraving ? font : undefined,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -63,14 +67,21 @@ export default function AddToCartButton({
               Engraving details
             </h3>
             <p className="mt-1 text-sm text-zinc-400">
-              Exactly what you type is what gets engraved. Check spelling before adding to cart.
+              {personalizationOptional
+                ? "Optional — leave blank for no engraving. Exactly what you type is what gets engraved."
+                : "Exactly what you type is what gets engraved. Check spelling before adding to cart."}
             </p>
           </div>
 
           <div>
             <label className="mb-1.5 flex justify-between text-sm text-zinc-300">
               <span>
-                Line 1 <span className="text-pink-400">*</span>
+                Line 1{" "}
+                {personalizationOptional ? (
+                  <span className="text-zinc-400">(optional)</span>
+                ) : (
+                  <span className="text-pink-400">*</span>
+                )}
               </span>
               <span className="tabular-nums text-zinc-400">
                 {line1.length}/{maxChars}
@@ -78,7 +89,7 @@ export default function AddToCartButton({
             </label>
             <input
               type="text"
-              required
+              required={!personalizationOptional}
               maxLength={maxChars}
               value={line1}
               onChange={(e) => setLine1(e.target.value.slice(0, maxChars))}

@@ -21,6 +21,8 @@ export interface Product {
   personalize?: string[];
   /** When true, Line 1 engraving is required at add-to-cart */
   personalizable?: boolean;
+  /** With personalizable: engraving is an optional add-on — blank Line 1 is allowed */
+  personalizationOptional?: boolean;
   maxChars?: number;
   /** Occasion / gift framing (display only) */
   occasions?: string[];
@@ -293,6 +295,7 @@ export const products: Product[] = [
     turnaround: "7–10 days",
     image: img("fidget-slider"),
     personalizable: true,
+    personalizationOptional: true,
     maxChars: 30,
     personalize: ["Optional monogram or initials", "Color preference"],
     occasions: ["Desk", "Office", "Everyday"],
@@ -343,6 +346,7 @@ export const products: Product[] = [
     turnaround: "7–10 days",
     image: img("custom-stress-ball"),
     personalizable: true,
+    personalizationOptional: true,
     maxChars: 30,
     personalize: ["Color", "Name / monogram / short word", "Optional simple icon"],
     occasions: ["Corporate", "Events", "Desk", "Favor packs"],
@@ -373,6 +377,7 @@ export const products: Product[] = [
     turnaround: "7–10 days",
     image: img("sensory-putty-tin"),
     personalizable: true,
+    personalizationOptional: true,
     maxChars: 30,
     personalize: ["Lid name or monogram", "Putty firmness", "Optional scent note (if available)"],
     occasions: ["Sensory", "Desk", "Gift"],
@@ -417,6 +422,7 @@ export const products: Product[] = [
     turnaround: "7–10 days",
     image: img("magnetic-fidget-slider"),
     personalizable: true,
+    personalizationOptional: true,
     maxChars: 30,
     personalize: ["Finish color", "Optional monogram plate"],
     occasions: ["Desk", "Office", "Gift"],
@@ -453,6 +459,7 @@ export const products: Product[] = [
     turnaround: "7–10 days",
     image: img("quiet-click-pad"),
     personalizable: true,
+    personalizationOptional: true,
     maxChars: 30,
     personalize: ["Top plate initials", "Color"],
     occasions: ["Desk", "Classroom quiet use", "Travel"],
