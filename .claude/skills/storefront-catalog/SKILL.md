@@ -20,7 +20,8 @@ Trending, or debugging the /shop tabs or For You recommendations.
 | For You logic (localStorage) | `lib/recs.ts` |
 | Who is browsing (account email or guest) | `components/shop/recs-client.ts` |
 | Records a product view | `components/shop/TrackView.tsx` (in `app/shop/[slug]/page.tsx`) |
-| The shop page itself | `app/shop/page.tsx` |
+| The shop page (server shell: reads `?cat=`/`?q=`, `normalizeCat`) | `app/shop/page.tsx` |
+| Grid, tabs, filters, sort (client) | `components/shop/ShopClient.tsx` |
 | Homepage strip | `components/home/CatalogStrip.tsx` |
 
 ## Steps
@@ -48,6 +49,15 @@ Trending, or debugging the /shop tabs or For You recommendations.
 - **Renaming a tab `id` that old links use.** `?cat=home`, `?cat=drinkware`,
   `?cat=3d-printed`, `?cat=custom` are legacy params handled in `app/shop/page.tsx`
   (`normalizeCat`) — keep them working.
+- **Calling `useSearchParams` anywhere under /shop's page tree.** In production it
+  bails the whole page out to client-side rendering, so the static HTML ships only a
+  fallback — no product names for search engines. `app/shop/page.tsx` is a server
+  component that reads `searchParams` and passes them to `ShopClient` as props; keep
+  it that way. Check with `curl` that product names appear in the built page's HTML.
+- **Reading localStorage during a render that the server also produces.** The shop
+  page is server-rendered now; For You gates its localStorage read behind a
+  `useSyncExternalStore` hydration flag in `ShopClient.tsx` so the server HTML and
+  the hydration pass match. New client code under /shop needs the same care.
 - **Expecting For You to sync across devices.** History is localStorage only, keyed to
   the account email at `individual-recs:<email-or-guest>`. Cross-device needs a real
   database — a separate project, not a tweak.
