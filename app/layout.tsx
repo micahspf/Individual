@@ -72,7 +72,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${cormorant.variable} ${dmSans.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        {/*
+          Applies the saved theme before first paint so a returning light-mode
+          visitor never sees a flash of dark. Dark is the default when nothing
+          is stored — it is the brand, not a fallback for system preference.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}`,
+          }}
+        />
+      </head>
       <body className={`${dmSans.className} min-h-screen text-zinc-100 antialiased`}>
         <Suspense
           fallback={

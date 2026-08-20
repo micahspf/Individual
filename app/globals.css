@@ -16,6 +16,11 @@
   --border-glass: rgba(255, 255, 255, 0.1);
   --glass: rgba(255, 255, 255, 0.05);
   --glass-strong: rgba(255, 255, 255, 0.08);
+  /* Accent colors for inline-styled marks; darkened in light so bullets stay visible */
+  --accent-pink: #ff2d8a;
+  --accent-orange: #ff8c42;
+  --accent-yellow: #ffe14a;
+  --accent-pink-soft: #ff7ab8;
 }
 
 body {
@@ -292,4 +297,140 @@ h3 {
   .brand-logo--hero {
     max-width: 42rem;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Light theme
+   ---------------------------------------------------------------------------
+   Dark is the brand default; light is opt-in via the header toggle, which sets
+   data-theme="light" on <html> (see the no-flash script in app/layout.tsx).
+
+   Two mechanisms are needed, because Tailwind v4 treats them differently:
+
+   1. Palette utilities (text-zinc-400, bg-white/5 …) compile to
+      `color: var(--color-zinc-400)`, so overriding the variable re-themes every
+      usage at once. The zinc scale is INVERTED so each class keeps its role —
+      zinc-50 stays "primary text", zinc-400 stays "muted text".
+
+   2. Arbitrary values (text-[#ffe14a] …) compile to literal hex with no
+      variable, so they need explicit class overrides. Only the ones that
+      actually break on a light background are listed.
+
+   Backgrounds are a light version of the dark theme's own #0a0a12 — same
+   240deg blue-violet hue, lifted to 93% lightness. Not white, and not tinted
+   from the pink accent. Brand yellow is kept bright for FILLS but swapped
+   to an ink yellow for TEXT — #ffe14a on near-white is ~1.6:1 and unreadable.
+--------------------------------------------------------------------------- */
+[data-theme="light"] {
+  /* Inverted zinc: same role, opposite end of the scale */
+  --color-zinc-50: #1a1a20;
+  --color-zinc-100: #24242c;
+  --color-zinc-200: #33333d;
+  --color-zinc-300: #45454f;
+  --color-zinc-400: #55555f;
+  --color-zinc-500: #5a5a64;
+  --color-zinc-600: #61616b;
+
+  --color-neutral-300: #45454f;
+  --color-neutral-400: #55555f;
+  --color-neutral-500: #5a5a64;
+  --color-neutral-600: #61616b;
+  --color-neutral-800: #b8b8c0;
+
+  /* White overlays become subtle dark tints; text-white becomes dark ink.
+     --color-black is deliberately NOT inverted: text-black only appears on
+     brand-colored buttons, where black is correct in both themes. */
+  --color-white: #17171d;
+
+  /* Accents darkened enough to read on a light ground */
+  --color-yellow-200: #634e00;
+  --color-yellow-300: #6e5700;
+  --color-yellow-400: #634e00;
+  --color-pink-200: #9c1256;
+  --color-pink-300: #a3145b;
+  --color-pink-400: #ad155f;
+  --color-pink-500: #a3145b;
+  --color-purple-300: #7c3aed;
+  --color-purple-500: #6d28d9;
+  --color-red-400: #c81e2a;
+
+  /* Brand surface tokens */
+  --background: #e8e8f2;
+  --background-elevated: #f3f3f9;
+  --background-soft: #dcdce9;
+  --foreground: #17171d;
+  --muted: #55555f;
+  --border-glass: rgba(23, 23, 29, 0.12);
+  --glass: rgba(23, 23, 29, 0.035);
+  --glass-strong: rgba(23, 23, 29, 0.06);
+  --accent-pink: #ad155f;
+  --accent-orange: #8a4a0e;
+  --accent-yellow: #6e5700;
+  --accent-pink-soft: #a3145b;
+}
+
+/* The ambient glows are tuned for a black ground and turn muddy on light. */
+[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse 70% 45% at 8% 0%, rgba(255, 45, 138, 0.06), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 92% 8%, rgba(255, 225, 74, 0.05), transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(255, 140, 66, 0.04), transparent 50%),
+    var(--background);
+}
+
+[data-theme="light"] .glass-strong {
+  border-color: rgba(23, 23, 29, 0.1);
+  box-shadow: 0 1px 3px rgba(23, 23, 29, 0.06);
+}
+[data-theme="light"] .glass {
+  box-shadow: 0 1px 2px rgba(23, 23, 29, 0.04);
+}
+[data-theme="light"] .glass-pink {
+  background: linear-gradient(145deg, rgba(255, 45, 138, 0.1), rgba(255, 140, 66, 0.04));
+  border-color: rgba(255, 45, 138, 0.28);
+}
+[data-theme="light"] .glass-yellow {
+  background: linear-gradient(145deg, rgba(255, 200, 0, 0.14), rgba(255, 140, 66, 0.05));
+  border-color: rgba(201, 160, 0, 0.35);
+}
+
+/* Form controls are written with literal rgba, so they need their own pass. */
+[data-theme="light"] .input-glass,
+[data-theme="light"] .input-glass-pill {
+  border-color: rgba(23, 23, 29, 0.16);
+  background: rgba(23, 23, 29, 0.03);
+  color: #17171d;
+}
+[data-theme="light"] .input-glass::placeholder,
+[data-theme="light"] .input-glass-pill::placeholder {
+  color: #6b6b76;
+}
+[data-theme="light"] .input-glass:focus,
+[data-theme="light"] .input-glass-pill:focus {
+  background: rgba(23, 23, 29, 0.05);
+}
+
+/* The wordmark aura reads as smoke on a light ground. */
+[data-theme="light"] .brand-logo__glow,
+[data-theme="light"] .brand-logo__glow--soft {
+  opacity: 0.45;
+}
+
+/* --- Arbitrary-value classes: literal hex, so remapped by class --- */
+[data-theme="light"] .text-\[\#ffe14a\] { color: #6e5700; }
+[data-theme="light"] .text-\[\#fff08a\] { color: #634e00; }
+[data-theme="light"] .text-\[\#ff7ab8\] { color: #a3145b; }
+[data-theme="light"] .hover\:text-\[\#fff08a\]:hover { color: #634e00; }
+/* Substring match rather than exact class names: these appear with several
+   opacity suffixes (/70 /75 /80 /85 /95), and enumerating them missed the
+   mobile menu panel, which stayed dark on a light page. */
+[data-theme="light"] [class*="bg-[#0a0a12]"] { background-color: rgb(232 232 242 / 0.92); }
+[data-theme="light"] [class*="bg-[#24242b]"] { background-color: rgb(220 220 233 / 0.96); }
+[data-theme="light"] [class*="bg-[#1c1c21]"] { background-color: rgb(227 227 238 / 0.92); }
+
+/* HeroDecor draws its sparkles with a literal fill="white" SVG attribute, which
+   is invisible on a light ground — no Tailwind class to remap. */
+[data-theme="light"] svg circle[fill="white"],
+[data-theme="light"] svg path[fill="white"] {
+  fill: #8f8fa8;
 }
