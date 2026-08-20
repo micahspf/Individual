@@ -113,21 +113,25 @@ export default function Header() {
               </Link>
             ))}
 
-            <div className="mt-2 flex items-center justify-between gap-3 border-t border-white/10 pt-3">
+            <div className="mt-2 border-t border-white/10 pt-3">
               <a
                 href="tel:+12565906534"
                 className="rounded-xl px-3 py-2 text-base font-medium text-zinc-100 transition hover:text-pink-300"
               >
                 256-590-6534
               </a>
-              <ThemeToggle />
             </div>
           </nav>
         </div>
       )}
 
-      <div className="px-4 pb-3 md:hidden">
-        <SearchBar />
+      {/* Row below the header bar. The theme toggle lives here on small screens
+          rather than inside the menu, so switching does not require opening it. */}
+      <div className="flex items-center gap-2 px-4 pb-3 md:hidden">
+        <div className="min-w-0 flex-1">
+          <SearchBar />
+        </div>
+        <ThemeToggle className="shrink-0" />
       </div>
     </header>
   );
