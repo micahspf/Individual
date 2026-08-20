@@ -53,5 +53,5 @@ docs/          architecture + ops notes
 
 1. Wire cart/orders/auth users to Postgres (Neon).
 2. Real product photos.
-3. Resend + `founder@madebyindividual.com` mailbox.
+3. Resend + `madebyindividual@gmail.com` mailbox.
 4. Then decide if tokens/rewards are worth building with durable storage.

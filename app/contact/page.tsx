@@ -29,10 +29,18 @@ export default function ContactPage() {
             <h2 className="mb-2 font-medium text-white">Email</h2>
             <p className="text-zinc-400">
               <a
-                href="mailto:founder@madebyindividual.com"
+                href="mailto:madebyindividual@gmail.com"
                 className="text-pink-400 hover:text-pink-300"
               >
-                founder@madebyindividual.com
+                madebyindividual@gmail.com
+              </a>
+            </p>
+          </div>
+          <div>
+            <h2 className="mb-2 font-medium text-white">Phone</h2>
+            <p className="text-zinc-400">
+              <a href="tel:+12565906534" className="text-pink-400 hover:text-pink-300">
+                256-590-6534
               </a>
             </p>
           </div>

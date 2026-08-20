@@ -23,8 +23,8 @@ export default function ReturnsPage() {
         </p>
         <p className="text-neutral-500 text-sm">
           Email:{' '}
-          <a href="mailto:founder@madebyindividual.com" className="text-pink-400">
-            founder@madebyindividual.com
+          <a href="mailto:madebyindividual@gmail.com" className="text-pink-400">
+            madebyindividual@gmail.com
           </a>
         </p>
       </div>

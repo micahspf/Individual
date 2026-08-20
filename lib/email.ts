@@ -32,7 +32,7 @@ export async function sendEmail({
 }
 
 export async function notifyFounder(subject: string, body: string) {
-  const founderEmail = process.env.FOUNDER_EMAIL || 'founder@madebyindividual.com';
+  const founderEmail = process.env.FOUNDER_EMAIL || 'madebyindividual@gmail.com';
   return sendEmail({
     to: founderEmail,
     subject: `[Individual] ${subject}`,

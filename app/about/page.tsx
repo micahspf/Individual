@@ -17,7 +17,7 @@ export default function AboutPage() {
     description:
       "Individual — personalized goods made to order in Cullman, Alabama. A two-person workshop serving Cullman County neighbors and local businesses.",
     url: "https://www.madebyindividual.com",
-    email: "founder@madebyindividual.com",
+    email: "madebyindividual@gmail.com",
     founder: [
       { "@type": "Person", name: "Micah" },
       { "@type": "Person", name: "Emma" },

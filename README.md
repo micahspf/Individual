@@ -37,7 +37,8 @@ Open http://localhost:3000
 - **No spin wheel** — removed (paid chance mechanic).
 - **Rewards UI paused** — `/rewards` is a coming-soon page; code kept under `lib/rewards/`.
 - **No fake scarcity** — no hardcoded “X left” without order-backed counters.
-- **Public email** — `founder@madebyindividual.com` (not personal Gmail in committed files).
+- **Public contact** — `madebyindividual@gmail.com` and `256-590-6534`. Never the
+  personal address (`micahspf@`) in committed files.
 
 See `docs/ARCHITECTURE.md`.
 

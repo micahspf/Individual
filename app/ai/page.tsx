@@ -411,6 +411,28 @@ export default function AIPage() {
               </span>
             </a>
 
+            <a
+              href="/ai-systems-for-local-business.pdf"
+              className="glass group p-8 transition hover:border-[#ff7ab8]/40"
+              download
+            >
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
+                Free download · PDF
+              </p>
+              <h3 className="font-display mb-2 text-2xl font-medium text-zinc-50">
+                AI Systems for Local Business
+              </h3>
+              <p className="text-sm leading-relaxed text-zinc-400">
+                The one-page version: what it does, what it costs, and what is not included.
+                Printable, if you would rather hand it to someone.
+              </p>
+              <span className="mt-5 inline-block text-sm font-medium text-[#ff7ab8]">
+                Download the one-pager →
+              </span>
+            </a>
+          </div>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
             <div className="glass-strong flex flex-col justify-center p-8">
               <h3 className="font-display mb-3 text-2xl font-medium text-zinc-50">
                 Start with one task.
@@ -423,6 +445,30 @@ export default function AIPage() {
                 <Link href="/#request" className="btn-pill-pink inline-block px-7 py-3.5 text-sm">
                   Request a quote
                 </Link>
+              </div>
+            </div>
+
+            <div className="glass-strong flex flex-col justify-center p-8">
+              <h3 className="font-display mb-3 text-2xl font-medium text-zinc-50">
+                Or just call.
+              </h3>
+              <p className="text-sm leading-relaxed text-zinc-400">
+                It is a fifteen-minute conversation about one task, not a sales call. You will
+                know quickly whether this is worth doing.
+              </p>
+              <div className="mt-7 space-y-1.5">
+                <a
+                  href="tel:+12565906534"
+                  className="block text-xl font-semibold tracking-tight text-zinc-50 hover:text-pink-300"
+                >
+                  256-590-6534
+                </a>
+                <a
+                  href="mailto:madebyindividual@gmail.com"
+                  className="block text-sm text-zinc-400 hover:text-pink-300"
+                >
+                  madebyindividual@gmail.com
+                </a>
               </div>
             </div>
           </div>

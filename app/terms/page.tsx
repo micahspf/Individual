@@ -84,10 +84,10 @@ export default function TermsPage() {
             <p className="text-zinc-400">
               Questions:{" "}
               <a
-                href="mailto:founder@madebyindividual.com"
+                href="mailto:madebyindividual@gmail.com"
                 className="text-pink-400 hover:text-pink-300"
               >
-                founder@madebyindividual.com
+                madebyindividual@gmail.com
               </a>
             </p>
           </section>

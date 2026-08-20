@@ -23,10 +23,10 @@ export default function PrivacyPage() {
               Individual (“we,” “us”) is a made-to-order custom
               manufacturing business based in Cullman, Alabama. Contact:{" "}
               <a
-                href="mailto:founder@madebyindividual.com"
+                href="mailto:madebyindividual@gmail.com"
                 className="text-pink-400 hover:text-pink-300"
               >
-                founder@madebyindividual.com
+                madebyindividual@gmail.com
               </a>
               . {/* [FOUNDER: add phone if used for SMS] */}
             </p>
@@ -85,10 +85,10 @@ export default function PrivacyPage() {
             <p className="text-zinc-400">
               Privacy questions:{" "}
               <a
-                href="mailto:founder@madebyindividual.com"
+                href="mailto:madebyindividual@gmail.com"
                 className="text-pink-400 hover:text-pink-300"
               >
-                founder@madebyindividual.com
+                madebyindividual@gmail.com
               </a>
             </p>
           </section>
