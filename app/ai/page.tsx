@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   // Root layout applies the "%s · Individual" template
   title: "AI Services",
   description:
-    "Custom AI tools and automations built for your exact business — no bloat. Specified, quoted, and built to order in Cullman, Alabama.",
+    "Custom AI tools and automations built for your exact business — or just for you. No bloat. Specified, quoted, and built to order in Cullman, Alabama.",
   alternates: { canonical: "https://www.madebyindividual.com/ai" },
 };
 
@@ -146,7 +146,7 @@ export default function AIPage() {
     name: "AI Coding & Business Systems",
     serviceType: "Custom AI tools, automations, and business systems",
     description:
-      "Custom AI tools and automations built for local small businesses — lead response, booking, invoicing, reporting, internal dashboards, and connected AI agent ecosystems.",
+      "Custom AI tools and automations for local small businesses and individuals — lead response, booking, invoicing, reporting, personal admin, internal dashboards, and connected AI agent ecosystems.",
     provider: {
       "@type": "LocalBusiness",
       name: "Individual",
@@ -182,9 +182,10 @@ export default function AIPage() {
             Individual also offers AI services.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Most small businesses get offered the same two things: enterprise software priced
-            for a company ten times their size, or a generic tool that almost fits. Neither is
-            built for how you actually work.
+            Most people get offered the same two things: enterprise software priced for a
+            company ten times their size, or a generic tool that almost fits. Neither is built
+            for how you actually work — whether that is a business with six trucks or just you
+            and a task you keep redoing.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-zinc-400">
             This is the other option. Automations, internal tools, and AI agents specified
@@ -248,11 +249,12 @@ export default function AIPage() {
           Capabilities
         </p>
         <h2 className="font-display text-3xl font-medium tracking-tight text-zinc-50 sm:text-4xl">
-          What AI can do for a local business
+          What AI can do for a business — or for you
         </h2>
         <p className="mt-3 max-w-xl text-zinc-400">
-          Practical uses, grouped. Most businesses start with one item on this list and add
-          from there.
+          Practical uses, grouped. Most of this is bought by local businesses, but the same
+          builds work for one person with a task that keeps eating their evenings. Nearly
+          everyone starts with a single item on this list.
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {capabilityGroups.map((g) => (
@@ -400,7 +402,7 @@ export default function AIPage() {
                 Free download · PDF
               </p>
               <h3 className="font-display mb-2 text-2xl font-medium text-zinc-50">
-                What AI Can Actually Do for Your Local Business
+                What AI Can Actually Do — Business or Personal
               </h3>
               <p className="text-sm leading-relaxed text-zinc-400">
                 The full list, in plain language. No jargon, no hype — two pages you can read
@@ -420,7 +422,7 @@ export default function AIPage() {
                 Free download · PDF
               </p>
               <h3 className="font-display mb-2 text-2xl font-medium text-zinc-50">
-                AI Systems for Local Business
+                AI Systems for Business or Personal
               </h3>
               <p className="text-sm leading-relaxed text-zinc-400">
                 The one-page version: what it does, what it costs, and what is not included.
