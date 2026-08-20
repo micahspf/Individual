@@ -83,7 +83,7 @@ const process = [
   },
 ];
 
-/** Smaller on-ramps for businesses not ready for a monthly system. */
+/** On-ramps for anyone who would rather start with one thing than a system. */
 const smallOptions = [
   {
     name: "One task, one time",
@@ -94,7 +94,7 @@ const smallOptions = [
     name: "Essentials",
     price: "$150",
     unit: "/ month",
-    d: "One system running — usually missed-call capture — kept working and adjusted as you go. The smallest sensible monthly.",
+    d: "One system running — usually missed-call capture — kept working and adjusted as you go. The lightest way to keep something running.",
   },
 ];
 
@@ -358,14 +358,15 @@ export default function AIPage() {
           {/* Smaller on-ramps */}
           <div className="mt-14 border-t border-white/10 pt-10">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
-              Start smaller
+              Just getting started
             </p>
             <h3 className="font-display text-2xl font-medium tracking-tight text-zinc-50 sm:text-3xl">
-              Too small for a monthly system? Start with one.
+              New business? Starting out? Start with one thing.
             </h3>
             <p className="mt-3 max-w-2xl text-zinc-400">
-              A one-person shop does not need an ecosystem. It needs the one job that eats
-              every Thursday to stop eating every Thursday.
+              Nobody needs a whole ecosystem on day one. Pick the one job that eats every
+              Thursday and make it stop eating every Thursday. Add more when it earns its
+              place, or never — plenty of people stay right here.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {smallOptions.map((o) => (
