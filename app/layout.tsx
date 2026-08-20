@@ -92,6 +92,20 @@ export default function RootLayout({
               <p className="leading-relaxed text-zinc-400">
                 Individual · Made to order in Cullman, Alabama.
               </p>
+              <p className="mt-3 space-y-1 leading-relaxed">
+                <a
+                  href="tel:+12565906534"
+                  className="block font-medium text-zinc-200 hover:text-pink-300"
+                >
+                  256-590-6534
+                </a>
+                <a
+                  href="mailto:madebyindividual@gmail.com"
+                  className="block text-zinc-400 hover:text-pink-300"
+                >
+                  madebyindividual@gmail.com
+                </a>
+              </p>
             </div>
             <div>
               <div className="mb-3 font-medium text-zinc-200">Shop</div>
