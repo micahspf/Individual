@@ -51,7 +51,7 @@ export default function SearchBar() {
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="Search products…"
+          placeholder="Search past work…"
           className="w-full rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 transition focus:border-pink-500/50 focus:outline-none"
         />
       </form>
