@@ -317,7 +317,7 @@ h3 {
       actually break on a light background are listed.
 
    Backgrounds are a light version of the dark theme's own #0a0a12 — same
-   240deg blue-violet hue, lifted to 93% lightness. Not white, and not tinted
+   240deg blue-violet hue, lifted to 89% lightness. Not white, and not tinted
    from the pink accent. Brand yellow is kept bright for FILLS but swapped
    to an ink yellow for TEXT — #ffe14a on near-white is ~1.6:1 and unreadable.
 --------------------------------------------------------------------------- */
@@ -327,14 +327,14 @@ h3 {
   --color-zinc-100: #24242c;
   --color-zinc-200: #33333d;
   --color-zinc-300: #45454f;
-  --color-zinc-400: #55555f;
-  --color-zinc-500: #5a5a64;
-  --color-zinc-600: #61616b;
+  --color-zinc-400: #50505a;
+  --color-zinc-500: #545460;
+  --color-zinc-600: #5a5a64;
 
-  --color-neutral-300: #45454f;
-  --color-neutral-400: #55555f;
-  --color-neutral-500: #5a5a64;
-  --color-neutral-600: #61616b;
+  --color-neutral-300: #40404a;
+  --color-neutral-400: #50505a;
+  --color-neutral-500: #545460;
+  --color-neutral-600: #5a5a64;
   --color-neutral-800: #b8b8c0;
 
   /* White overlays become subtle dark tints; text-white becomes dark ink.
@@ -343,30 +343,30 @@ h3 {
   --color-white: #17171d;
 
   /* Accents darkened enough to read on a light ground */
-  --color-yellow-200: #634e00;
-  --color-yellow-300: #6e5700;
-  --color-yellow-400: #634e00;
-  --color-pink-200: #9c1256;
-  --color-pink-300: #a3145b;
-  --color-pink-400: #ad155f;
-  --color-pink-500: #a3145b;
+  --color-yellow-200: #5c4900;
+  --color-yellow-300: #665100;
+  --color-yellow-400: #5c4900;
+  --color-pink-200: #8f1049;
+  --color-pink-300: #96114f;
+  --color-pink-400: #a01356;
+  --color-pink-500: #96114f;
   --color-purple-300: #7c3aed;
   --color-purple-500: #6d28d9;
   --color-red-400: #c81e2a;
 
   /* Brand surface tokens */
-  --background: #e8e8f2;
-  --background-elevated: #f3f3f9;
-  --background-soft: #dcdce9;
+  --background: #dbdbeb;
+  --background-elevated: #e6e6f1;
+  --background-soft: #cdcde0;
   --foreground: #17171d;
-  --muted: #55555f;
+  --muted: #50505a;
   --border-glass: rgba(23, 23, 29, 0.12);
   --glass: rgba(23, 23, 29, 0.035);
   --glass-strong: rgba(23, 23, 29, 0.06);
-  --accent-pink: #ad155f;
-  --accent-orange: #8a4a0e;
-  --accent-yellow: #6e5700;
-  --accent-pink-soft: #a3145b;
+  --accent-pink: #a01356;
+  --accent-orange: #7d420c;
+  --accent-yellow: #665100;
+  --accent-pink-soft: #96114f;
 }
 
 /* The ambient glows are tuned for a black ground and turn muddy on light. */
@@ -417,16 +417,16 @@ h3 {
 }
 
 /* --- Arbitrary-value classes: literal hex, so remapped by class --- */
-[data-theme="light"] .text-\[\#ffe14a\] { color: #6e5700; }
-[data-theme="light"] .text-\[\#fff08a\] { color: #634e00; }
-[data-theme="light"] .text-\[\#ff7ab8\] { color: #a3145b; }
-[data-theme="light"] .hover\:text-\[\#fff08a\]:hover { color: #634e00; }
+[data-theme="light"] .text-\[\#ffe14a\] { color: #665100; }
+[data-theme="light"] .text-\[\#fff08a\] { color: #5c4900; }
+[data-theme="light"] .text-\[\#ff7ab8\] { color: #96114f; }
+[data-theme="light"] .hover\:text-\[\#fff08a\]:hover { color: #5c4900; }
 /* Substring match rather than exact class names: these appear with several
    opacity suffixes (/70 /75 /80 /85 /95), and enumerating them missed the
    mobile menu panel, which stayed dark on a light page. */
-[data-theme="light"] [class*="bg-[#0a0a12]"] { background-color: rgb(232 232 242 / 0.92); }
-[data-theme="light"] [class*="bg-[#24242b]"] { background-color: rgb(220 220 233 / 0.96); }
-[data-theme="light"] [class*="bg-[#1c1c21]"] { background-color: rgb(227 227 238 / 0.92); }
+[data-theme="light"] [class*="bg-[#0a0a12]"] { background-color: rgb(219 219 235 / 0.92); }
+[data-theme="light"] [class*="bg-[#24242b]"] { background-color: rgb(205 205 224 / 0.96); }
+[data-theme="light"] [class*="bg-[#1c1c21]"] { background-color: rgb(214 214 230 / 0.92); }
 
 /* HeroDecor draws its sparkles with a literal fill="white" SVG attribute, which
    is invisible on a light ground — no Tailwind class to remap. */
