@@ -172,11 +172,6 @@ export default function RootLayout({
                   </Link>
                 </li>
                 <li>
-                  <Link href="/orders/track" className="hover:text-pink-300">
-                    Track order
-                  </Link>
-                </li>
-                <li>
                   <Link href="/privacy" className="hover:text-pink-300">
                     Privacy
                   </Link>
