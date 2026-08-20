@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { shopProducts, products } from "@/lib/data/products";
 import Recommendations from "@/components/shop/Recommendations";
-import AddToCartButton from "@/components/shop/AddToCartButton";
 import ProductImage from "@/components/shop/ProductImage";
 import TrackView from "@/components/shop/TrackView";
 
@@ -55,9 +54,9 @@ export default async function ProductPage({
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
 
-  const priceValidUntil = new Date();
-  priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
-
+  // Portfolio examples while the shop is paused. There is no purchasable offer,
+  // so no `offers` block — publishing a price (or a zero) for something nobody
+  // can buy would misrepresent the page in search results.
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -65,15 +64,8 @@ export default async function ProductPage({
     description: product.description,
     image: `https://www.madebyindividual.com${product.image}`,
     brand: { "@type": "Brand", name: "Individual" },
-    offers: {
-      "@type": "Offer",
-      url: `https://www.madebyindividual.com/shop/${product.slug}`,
-      priceCurrency: "USD",
-      price: product.price.toFixed(2),
-      availability: "https://schema.org/MadeToOrder",
-      priceValidUntil: priceValidUntil.toISOString().slice(0, 10),
-      itemCondition: "https://schema.org/NewCondition",
-    },
+    material: product.materials,
+    url: `https://www.madebyindividual.com/shop/${product.slug}`,
   };
 
   const breadcrumbJsonLd = {
@@ -89,7 +81,7 @@ export default async function ProductPage({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Shop",
+        name: "Work",
         item: "https://www.madebyindividual.com/shop",
       },
       {
@@ -118,7 +110,7 @@ export default async function ProductPage({
         </Link>
         <span>/</span>
         <Link href="/shop" className="hover:text-pink-300">
-          Shop
+          Work
         </Link>
         <span>/</span>
         <span className="text-zinc-300">{product.name}</span>
@@ -141,8 +133,14 @@ export default async function ProductPage({
             {product.name}
           </h1>
 
-          <div className="mb-6 text-2xl font-semibold text-yellow-300">
-            ${product.price.toFixed(2)}
+          <div className="mb-6">
+            <div className="text-lg font-medium text-yellow-300">
+              Example of past work
+            </div>
+            <p className="mt-1 text-sm text-zinc-400">
+              Priced per commission — tell me the details and you get a quote before
+              anything is made.
+            </p>
           </div>
 
           <p className="mb-6 leading-relaxed text-zinc-300">{product.description}</p>
@@ -189,20 +187,39 @@ export default async function ProductPage({
                 ))}
               </ul>
               <p className="mt-3 text-sm text-zinc-400">
-                Note preferences in your order email or commission form after checkout.
+                Include your preferences in the commission request and they get quoted with it.
               </p>
             </div>
           )}
 
-          <AddToCartButton
-            id={product.id}
-            slug={product.slug}
-            name={product.name}
-            price={product.price}
-            personalizable={product.personalizable}
-            personalizationOptional={product.personalizationOptional}
-            maxChars={product.maxChars ?? 30}
-          />
+          <div className="glass-pink p-6">
+            <h3 className="font-display text-xl font-medium text-zinc-50">
+              Request one like this
+            </h3>
+            <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+              Your name, your wording, your material. Say what you want changed and you
+              get a price and a timeline before anything is produced.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-300">
+              <span className="font-medium text-[#ffe14a]">First piece may be free.</span>{" "}
+              On custom projects and prototypes the first sample is on me — ask when you
+              send the details.
+            </p>
+            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
+              <Link
+                href="/#request"
+                className="btn-pill-pink px-7 py-3.5 text-center text-sm"
+              >
+                Request a quote
+              </Link>
+              <a
+                href="tel:+12565906534"
+                className="rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-center text-sm font-medium text-zinc-100 transition hover:border-[#ffe14a]/40 hover:bg-[#ffe14a]/10"
+              >
+                Call 256-590-6534
+              </a>
+            </div>
+          </div>
 
           <div className="glass mt-6 p-4 text-sm text-zinc-400">
             <p>
@@ -247,7 +264,7 @@ export default async function ProductPage({
                 className="glass p-4 transition hover:border-pink-500/40"
               >
                 <div className="mb-1 line-clamp-1 text-sm font-medium">{p.name}</div>
-                <div className="text-sm text-yellow-300">${p.price}</div>
+                <div className="text-sm text-zinc-400">{p.materials}</div>
               </Link>
             ))}
           </div>

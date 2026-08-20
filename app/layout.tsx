@@ -108,32 +108,33 @@ export default function RootLayout({
               </p>
             </div>
             <div>
-              <div className="mb-3 font-medium text-zinc-200">Shop</div>
+              <div className="mb-3 font-medium text-zinc-200">Work</div>
+              {/* Category filters removed while the shop is paused — they all
+                  landed on the same coming-soon page. */}
               <ul className="space-y-2 text-zinc-400">
                 <li>
                   <Link href="/shop" className="hover:text-pink-300">
-                    Catalog
+                    Past work
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop?cat=drinkware" className="hover:text-pink-300">
-                    Drinkware
+                  <Link href="/#request" className="hover:text-pink-300">
+                    Request a commission
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop?cat=home" className="hover:text-pink-300">
-                    Home
+                  <Link href="/ai" className="hover:text-pink-300">
+                    AI systems
                   </Link>
                 </li>
                 <li>
-                  <Link href="/shop?cat=fidget-sensory" className="hover:text-pink-300">
-                    Fidget & Sensory
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/shop?cat=3d-printed" className="hover:text-pink-300">
-                    Fabricated
-                  </Link>
+                  <a
+                    href="/what-ai-can-do-for-your-local-business.pdf"
+                    className="hover:text-pink-300"
+                    download
+                  >
+                    Free AI guide (PDF)
+                  </a>
                 </li>
               </ul>
             </div>

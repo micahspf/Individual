@@ -1,20 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/search/SearchBar";
 import BrandLogo from "@/components/ui/BrandLogo";
-import CartDrawer from "@/components/cart/CartDrawer";
-import { useCartCount } from "@/lib/cart/useCart";
 
-// CartDrawer is imported statically: it renders null when closed, so the
-// previous dynamic(..., { ssr: false }) lazy-load saved almost nothing and
-// added a lazy Suspense inside the header for no benefit.
+// The cart is switched off while the shop is paused. components/cart/CartDrawer
+// and lib/cart/ are left in place — re-import them here to bring it back.
 
 export default function Header() {
-  const count = useCartCount();
-  const [cartOpen, setCartOpen] = useState(false);
-
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0a0a12]/85 backdrop-blur-xl">
@@ -27,7 +20,7 @@ export default function Header() {
 
           <nav className="ml-auto flex items-center gap-2 text-sm sm:gap-3">
             {[
-              { href: "/shop", label: "Shop", hide: "sm" },
+              { href: "/shop", label: "Work", hide: "sm" },
               { href: "/ai", label: "AI", hide: "sm" },
               { href: "/about", label: "About", hide: "md" },
               { href: "/contact", label: "Contact", hide: "md" },
@@ -48,19 +41,15 @@ export default function Header() {
               </Link>
             ))}
 
-            <button
-              type="button"
-              onClick={() => setCartOpen(true)}
-              className="relative flex h-9 w-9 items-center justify-center rounded-full bg-[#ffe14a] text-black shadow-[0_0_16px_rgba(255,225,74,0.4)] transition hover:bg-[#fff08a]"
-              aria-label="Open cart"
+            {/* Cart is hidden while the shop is paused — nothing is purchasable,
+                so the icon would only ever open an empty drawer. Restore this
+                block (and the CartDrawer below) when the catalog returns. */}
+            <Link
+              href="/#request"
+              className="rounded-full bg-[#ffe14a] px-4 py-2 text-sm font-medium text-black shadow-[0_0_16px_rgba(255,225,74,0.35)] transition hover:bg-[#fff08a]"
             >
-              <span className="text-sm">🛒</span>
-              {count > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#ff2d8a] px-1 text-[10px] font-bold text-white">
-                  {count}
-                </span>
-              )}
-            </button>
+              Get a quote
+            </Link>
           </nav>
         </div>
 
@@ -69,7 +58,6 @@ export default function Header() {
         </div>
       </header>
 
-      <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
     </>
   );
 }
