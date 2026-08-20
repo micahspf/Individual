@@ -71,17 +71,17 @@ export default function HomePage() {
               className="glass-yellow group flex flex-col p-7 transition hover:border-[#ffe14a]/50 sm:p-8"
             >
               <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#ffe14a]">
-                AI systems for business
+                AI systems for business or personal
               </p>
               <h2 className="font-display mt-3 text-2xl font-medium leading-snug text-zinc-50 sm:text-3xl">
                 The call you miss at 6 p.m. is the customer somebody else keeps.
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-                Automations and AI agents built around how your business actually runs.
-                You own it, and it keeps working if we stop.
+                Automations and AI agents built around how you actually work — a business
+                or just you. You own it, and it keeps working if we stop.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-zinc-300">
-                {["Missed calls get an instant text back", "Follow-up on leads that went quiet", "Invoices and receipts read and filed"].map(
+                {["Missed calls get an instant text back", "Follow-up on leads that went quiet", "Paperwork read, sorted, and filed for you"].map(
                   (i) => (
                     <li key={i} className="flex gap-2">
                       <span className="text-[#ffe14a]">—</span> {i}
@@ -251,16 +251,16 @@ export default function HomePage() {
             <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
               <div>
                 <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
-                  AI systems for local business
+                  AI systems for business or personal
                 </p>
                 <h2 className="font-display max-w-xl text-3xl font-medium leading-[1.15] tracking-tight text-zinc-50 sm:text-4xl">
                   The call you miss at 6 p.m. is the customer somebody else keeps.
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
-                  Every business has work that never gets done because nobody was free to do
-                  it — the call that went to voicemail, the quote nobody followed up on, the
-                  review nobody asked for. That is what a small, purpose-built system handles
-                  without complaint.
+                  Everybody has work that never gets done because nobody was free to do it —
+                  the call that went to voicemail, the quote nobody followed up on, the pile of
+                  paperwork nobody sorted. Most of this is built for local businesses, but the
+                  same thing works for one person with a task that keeps eating their evenings.
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-white/10 pt-6">
@@ -299,7 +299,7 @@ export default function HomePage() {
                       { c: "var(--accent-orange)", t: "Follow-up on leads that went quiet" },
                       { c: "var(--accent-yellow)", t: "Review request after every finished job" },
                       { c: "var(--accent-pink-soft)", t: "Invoices and receipts read and filed" },
-                      { c: "var(--accent-pink)", t: "Agents that run a recurring job end to end" },
+                      { c: "var(--accent-pink)", t: "Personal: inbox, paperwork, and reminders handled" },
                     ].map((i) => (
                       <li key={i.t} className="flex gap-2 text-sm leading-snug text-zinc-400">
                         <span style={{ color: i.c }}>—</span> {i.t}
