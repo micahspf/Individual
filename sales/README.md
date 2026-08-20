@@ -32,6 +32,8 @@ These prices appear in four places and must stay in sync:
 - [`templates/prospect-tracker.csv`](templates/prospect-tracker.csv) — the list itself
 - [`templates/daily-scoreboard.csv`](templates/daily-scoreboard.csv) — daily activity log
 - [`templates/client-report.csv`](templates/client-report.csv) — monthly summary per client
+- [`manufacturing-catalog.md`](manufacturing-catalog.md) — what custom manufacturing work
+  we take, by process and material; doubles as a quoting intake checklist
 
 Import the CSVs into Google Sheets with **File → Import → Upload**.
 
