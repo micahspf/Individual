@@ -24,12 +24,19 @@ export default function RequestForm() {
   const [requestType, setRequestType] = useState<RequestType>('product');
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [error, setError] = useState('');
+  /** Direct-contact routes returned by the API when delivery fails. */
+  const [fallback, setFallback] = useState<{
+    phone: string;
+    email: string;
+    mailto: string;
+  } | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !message) return;
     setStatus('sending');
     setError('');
+    setFallback(null);
 
     try {
       const res = await fetch('/api/request', {
@@ -41,6 +48,8 @@ export default function RequestForm() {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         setError(data.error || 'Something went wrong. Please try again.');
+        // Keep whatever they typed — they may need it for the mailto fallback.
+        if (data.fallback) setFallback(data.fallback);
         setStatus('error');
         return;
       }
@@ -140,10 +149,42 @@ export default function RequestForm() {
         />
       </div>
 
-      {status === 'error' && error && (
+      {status === 'error' && error && !fallback && (
         <p role="alert" className="text-sm text-pink-300">
           {error}
         </p>
+      )}
+
+      {status === 'error' && fallback && (
+        <div
+          role="alert"
+          className="rounded-2xl border border-pink-400/30 bg-pink-500/5 p-5"
+        >
+          <p className="text-sm font-medium text-pink-200">{error}</p>
+          <p className="mt-1.5 text-sm text-zinc-400">
+            What you typed is still in the form — nothing was lost.
+          </p>
+          <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:items-center">
+            <a
+              href={fallback.mailto}
+              className="btn-pill-pink inline-block px-6 py-3 text-center text-sm"
+            >
+              Send it as an email
+            </a>
+            <a
+              href={`tel:+1${fallback.phone.replace(/\D/g, '')}`}
+              className="inline-block rounded-full border border-white/15 bg-white/5 px-6 py-3 text-center text-sm font-medium text-zinc-100 transition hover:border-[#ffe14a]/40 hover:bg-[#ffe14a]/10"
+            >
+              Call {fallback.phone}
+            </a>
+          </div>
+          <p className="mt-3 break-words text-xs text-zinc-500">
+            Or write to{' '}
+            <a href={`mailto:${fallback.email}`} className="text-pink-300">
+              {fallback.email}
+            </a>
+          </p>
+        </div>
       )}
 
       <button

@@ -17,6 +17,22 @@ const MAX_NAME = 120;
 const MAX_EMAIL = 200;
 const MAX_MESSAGE = 5000;
 
+/** Same numbers shown in the footer and on /contact. */
+const CONTACT_PHONE = '256-590-6534';
+const CONTACT_EMAIL = 'madebyindividual@gmail.com';
+
+/**
+ * A mailto the visitor can send themselves, pre-filled with what they typed.
+ * Used only when delivery fails — better than asking them to retype it.
+ */
+function fallbackMailto(typeLabel: string, name: string, message: string) {
+  const subject = `Request — ${typeLabel}`;
+  const body = [`Name: ${name}`, '', message].join('\n');
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(body)}`;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -50,14 +66,34 @@ export async function POST(req: NextRequest) {
 
     // Without a key the helper only logs. Fine locally, a lost lead in production.
     if (!result.success) {
+      // Log the whole request, not just the address — this is the only copy left,
+      // and a lead nobody can read is the same as a lead nobody received.
+      console.error(
+        'Request notification failed — lead not delivered. Full request follows:',
+        JSON.stringify({
+          type: typeLabel,
+          name: cleanName,
+          email: email.trim(),
+          message: message.trim(),
+          at: new Date().toISOString(),
+        })
+      );
+
       if (process.env.NODE_ENV === 'production') {
-        console.error('Request notification failed — lead not delivered:', email);
+        // Still a 502 — nothing here pretends the send worked — but the visitor
+        // leaves with two routes that do not depend on our email working.
         return NextResponse.json(
-          { error: 'We could not send that. Please email madebyindividual@gmail.com.' },
+          {
+            error: 'That did not send. Here are two ways to reach me directly.',
+            fallback: {
+              phone: CONTACT_PHONE,
+              email: CONTACT_EMAIL,
+              mailto: fallbackMailto(typeLabel, cleanName, message.trim()),
+            },
+          },
           { status: 502 }
         );
       }
-      console.log('Request captured (email not configured in dev):', { email, typeLabel });
     }
 
     return NextResponse.json({ ok: true });
