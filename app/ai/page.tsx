@@ -92,7 +92,7 @@ const smallOptions = [
   },
   {
     name: "Essentials",
-    price: "$250",
+    price: "$150",
     unit: "/ month",
     d: "One system running — usually missed-call capture — kept working and adjusted as you go. The smallest sensible monthly.",
   },
@@ -101,7 +101,7 @@ const smallOptions = [
 const plans = [
   {
     name: "Starter",
-    price: "$500",
+    price: "$300",
     d: "Core automations for one part of the business — usually lead response and follow-up — with light monthly support.",
     items: [
       "Missed calls get an instant text back, day or night",
@@ -113,7 +113,7 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$1,200",
+    price: "$700",
     d: "Several agents working together across sales, admin, and marketing, tuned every month as the business shifts.",
     items: [
       "Everything in Starter",
@@ -126,7 +126,7 @@ const plans = [
   },
   {
     name: "Full Custom",
-    price: "$2,500",
+    price: "$1,500",
     d: "A system designed end to end around your exact workflow, with ongoing development and priority turnaround.",
     items: [
       "Everything in Growth",
@@ -235,7 +235,7 @@ export default function AIPage() {
             One-off automations start at{" "}
             <span className="font-medium text-yellow-300">$75</span>. Systems that run every
             day are{" "}
-            <span className="font-medium text-yellow-300">$250–$2,500 a month</span>{" "}
+            <span className="font-medium text-yellow-300">$150–$1,500 a month</span>{" "}
             depending on how much is running. You approve the price and timeline before any
             work starts.
           </p>
@@ -347,7 +347,7 @@ export default function AIPage() {
           </div>
 
           <p className="mt-8 max-w-2xl text-sm leading-relaxed text-zinc-400">
-            <span className="font-medium text-yellow-300">Setup: $500–$1,000 one time</span>,
+            <span className="font-medium text-yellow-300">Setup: $250–$500 one time</span>,
             quoted before anything is built. Month to month — no contract, no seat counts.
             Every plan is built for one business. Nothing is shared between clients, and
             nothing is a template with your logo on it.
