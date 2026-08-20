@@ -414,6 +414,26 @@ export default function AIPage() {
             </a>
 
             <a
+              href="/ai-help-for-one-person.pdf"
+              className="glass group p-8 transition hover:border-[#ff7ab8]/40"
+              download
+            >
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
+                Free download · PDF
+              </p>
+              <h3 className="font-display mb-2 text-2xl font-medium text-zinc-50">
+                AI Help for One Person
+              </h3>
+              <p className="text-sm leading-relaxed text-zinc-400">
+                Not a business? The same page, written for one person with a task that keeps
+                eating their evenings. Starts at $75.
+              </p>
+              <span className="mt-5 inline-block text-sm font-medium text-[#ff7ab8]">
+                Download the personal one-pager →
+              </span>
+            </a>
+
+            <a
               href="/ai-systems-for-local-business.pdf"
               className="glass group p-8 transition hover:border-[#ff7ab8]/40"
               download
