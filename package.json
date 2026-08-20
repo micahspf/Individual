@@ -9,6 +9,7 @@
     "lint": "eslint",
     "images": "node scripts/optimize-images.mjs",
     "images:placeholder": "node scripts/make-placeholder.mjs",
+    "leave-behind": "node scripts/make-leave-behind.mjs",
     "analyze": "next build"
   },
   "dependencies": {
