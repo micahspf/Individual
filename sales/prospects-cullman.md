@@ -1,8 +1,8 @@
 # Cullman prospect list — AI systems offer
 
-The same 30-name method as [`02-prospecting.md`](02-prospecting.md), pointed at the AI
-offer instead of ad management. Leave-behind:
-`public/ai-systems-for-local-business.pdf`.
+How to build and work a 30-name list for the AI systems offer in Cullman.
+Leave-behind: `public/ai-systems-for-local-business.pdf` (regenerate with
+`npm run leave-behind`).
 
 **Time: ~90 minutes to build the list. Then 10–20 touches a day.**
 
@@ -11,7 +11,7 @@ offer instead of ad management. Leave-behind:
 
 ---
 
-## Why Cullman is different from the ad-agency list
+## What makes Cullman different
 
 Over 80% of Alabama small businesses are non-employer firms, and Cullman's median
 household income fell while poverty rose. Two consequences that change how you work
@@ -20,7 +20,7 @@ this list:
 1. **Most of your prospects are one person.** They do not have a marketing budget line.
    They have a Thursday that disappears. Sell the Thursday back.
 2. **You will meet them in person before you email them.** In a town of 19,000 the walk-in
-   and the referral beat cold email, which is the opposite of the Huntsville ad play.
+   and the referral beat cold email. Plan for that instead of fighting it.
 
 ---
 
@@ -100,8 +100,30 @@ Call the number you already tested. If a person answers, you have a live convers
 about the exact problem you are selling against.
 
 ### 4. Email — last resort here
-Use the scripts in [`03-outreach.md`](03-outreach.md), swapping the ad observation for
-an AI one. In Cullman this converts worse than walking in.
+In Cullman this converts worse than walking in — use it only for the ones you cannot
+reach any other way. Same three beats as everything else: specific observation, one
+useful idea given free, soft ask.
+
+```
+Subject: quick note on your phone line
+
+Hi [First],
+
+I called [Company] Tuesday around 5:40 and it went to voicemail — no
+judgment, everybody's on a job at that hour. But that's usually where
+the work leaks out.
+
+The fix is small: an automatic text back the second a call is missed,
+so the customer hears something before they call the next place. Takes
+about a week to set up.
+
+I put a one-page rundown together — free, no pitch. Want me to send it?
+
+Micah · Individual · 256-590-6534
+```
+
+Follow up twice, three days and then a week apart. After that, stop and walk in
+instead.
 
 ---
 
@@ -138,8 +160,8 @@ changes for this offer:
 | Follow-ups | 5 |
 | Improvement to the offer or the one-pager | 1 |
 
-Lower than the ad-agency floor of 10–20 because walk-ins take longer than emails and
-the total pool is smaller. Quality of contact is higher too.
+Deliberately lower than an email-based cold outreach floor: walk-ins take longer, the
+total pool is smaller, and the quality of each contact is much higher.
 
 ---
 

@@ -305,7 +305,7 @@ export default function HomePage() {
                 <p className="mt-6 border-t border-white/10 pt-5 text-sm text-zinc-400">
                   One-off automations from{" "}
                   <span className="font-medium text-yellow-300">$75</span>. Monthly systems{" "}
-                  <span className="font-medium text-yellow-300">$150–$1,500</span>, depending
+                  <span className="font-medium text-yellow-300">$150–$1,250</span>, depending
                   on how much is running.
                 </p>
               </div>

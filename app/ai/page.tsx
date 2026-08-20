@@ -126,7 +126,7 @@ const plans = [
   },
   {
     name: "Full Custom",
-    price: "$1,500",
+    price: "$1,250",
     d: "A system designed end to end around your exact workflow, with ongoing development and priority turnaround.",
     items: [
       "Everything in Growth",
@@ -235,7 +235,7 @@ export default function AIPage() {
             One-off automations start at{" "}
             <span className="font-medium text-yellow-300">$75</span>. Systems that run every
             day are{" "}
-            <span className="font-medium text-yellow-300">$150–$1,500 a month</span>{" "}
+            <span className="font-medium text-yellow-300">$150–$1,250 a month</span>{" "}
             depending on how much is running. You approve the price and timeline before any
             work starts.
           </p>
