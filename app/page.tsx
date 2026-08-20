@@ -17,7 +17,7 @@ export default function HomePage() {
               Individual · Cullman, Alabama
             </p>
             <h1 className="font-display mt-6 max-w-2xl text-4xl font-medium leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl">
-              Two things, both made to order.
+              Individually here for you.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
               A tumbler with a name on it, or a system that answers your phone at 7 p.m.
