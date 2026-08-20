@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const capabilityGroups = [
   {
     title: "Customer & sales",
-    accent: "#ff2d8a",
+    accent: "var(--accent-pink)",
     items: [
       "Instant lead response and follow-up",
       "Appointment booking and reminders",
@@ -24,7 +24,7 @@ const capabilityGroups = [
   },
   {
     title: "Operations & admin",
-    accent: "#ff8c42",
+    accent: "var(--accent-orange)",
     items: [
       "Invoice and receipt processing",
       "Expense categorization",
@@ -35,7 +35,7 @@ const capabilityGroups = [
   },
   {
     title: "Marketing & visibility",
-    accent: "#ffe14a",
+    accent: "var(--accent-yellow)",
     items: [
       "Google Business Profile posts and updates",
       "Social media content drafts",
@@ -46,7 +46,7 @@ const capabilityGroups = [
   },
   {
     title: "Custom tools & agents",
-    accent: "#ff7ab8",
+    accent: "var(--accent-pink-soft)",
     items: [
       "Simple internal dashboards",
       "Custom scripts and automations",
@@ -57,7 +57,7 @@ const capabilityGroups = [
   },
   {
     title: "Business ecosystem",
-    accent: "#ff2d8a",
+    accent: "var(--accent-pink)",
     items: [
       "A connected system where your own lightweight agents hand work to each other — lead → follow-up → booking → review → reporting",
       "Managed monthly instead of rebuilt as one-off projects",

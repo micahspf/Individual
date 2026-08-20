@@ -130,7 +130,7 @@ export default function HomePage() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             {
-              accent: "#ff2d8a",
+              accent: "var(--accent-pink)",
               title: "Laser engraving",
               body: "Permanent marking on hard surfaces — names, monograms, dates, logos, coordinates.",
               items: [
@@ -141,7 +141,7 @@ export default function HomePage() {
               ],
             },
             {
-              accent: "#ff8c42",
+              accent: "var(--accent-orange)",
               title: "3D printing",
               body: "Functional plastic parts built to your measurements, in rigid or flexible material.",
               items: [
@@ -152,7 +152,7 @@ export default function HomePage() {
               ],
             },
             {
-              accent: "#ffe14a",
+              accent: "var(--accent-yellow)",
               title: "One-off commissions",
               body: "The thing that does not exist yet, or exists and broke and nobody sells it anymore.",
               items: [
@@ -295,11 +295,11 @@ export default function HomePage() {
                   </p>
                   <ul className="space-y-2.5">
                     {[
-                      { c: "#ff2d8a", t: "Missed calls get an instant text back" },
-                      { c: "#ff8c42", t: "Follow-up on leads that went quiet" },
-                      { c: "#ffe14a", t: "Review request after every finished job" },
-                      { c: "#ff7ab8", t: "Invoices and receipts read and filed" },
-                      { c: "#ff2d8a", t: "Agents that run a recurring job end to end" },
+                      { c: "var(--accent-pink)", t: "Missed calls get an instant text back" },
+                      { c: "var(--accent-orange)", t: "Follow-up on leads that went quiet" },
+                      { c: "var(--accent-yellow)", t: "Review request after every finished job" },
+                      { c: "var(--accent-pink-soft)", t: "Invoices and receipts read and filed" },
+                      { c: "var(--accent-pink)", t: "Agents that run a recurring job end to end" },
                     ].map((i) => (
                       <li key={i.t} className="flex gap-2 text-sm leading-snug text-zinc-400">
                         <span style={{ color: i.c }}>—</span> {i.t}
