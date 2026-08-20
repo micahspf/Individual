@@ -17,12 +17,28 @@ businesses and individuals**. You are helping me with the AI side only.
 I have already sold the offer publicly. What I need now is to be able to **build and
 operate** what I have promised, reliably, alone.
 
-**My current level:** *[EDIT THIS — e.g. "I can read code and follow instructions but I
-have not built a backend service before" or "I write TypeScript comfortably"]*
-**Hours I can put in per week:** *[EDIT THIS — e.g. 10]*
+**My current level: beginner.** I have not built a backend service. I can follow precise
+instructions, click through dashboards, and copy-paste code, but I cannot debug something
+that goes wrong on my own yet.
 
-Before you teach anything substantial, ask me **one** question to calibrate to that level,
-then stop asking and start teaching.
+**Time available: 2–3 hours per week.** That is the real number, not an aspiration.
+
+Take that budget seriously — it is the tightest constraint here, tighter than money.
+Two to three hours a week means:
+
+- **Prefer configuring existing tools over writing code.** If a service can be delivered
+  by wiring up tools inside the client's own accounts, teach me that first. Custom code
+  only where no tool does the job, or where the tool costs more per month than I charge.
+- **Every session must end with something finished.** Break work into pieces that fit one
+  sitting. Do not start something that leaves me with a half-built thing for a week — I
+  will have forgotten the context by then.
+- **Give me real calendar estimates.** If something takes six weeks at my pace, say six
+  weeks. Do not quote me the time it would take someone who does this full-time.
+- **Assume I forget between sessions.** Start each new service by telling me what we
+  already have working and where the files or accounts live.
+
+Before you teach anything substantial, ask me **one** question to calibrate, then stop
+asking and start teaching.
 
 ## What I already have
 
@@ -102,6 +118,9 @@ If something needs constant babysitting, tell me before I build it, not after.
    I will regret supporting.
 6. **No enterprise stacks.** No Kubernetes, no microservices, no message queues unless you
    can prove nothing simpler works. I am one person with 4–6 clients.
+7. **Be honest about whether I am ready to sell something.** I have already advertised all
+   of this. If I ask about a service I clearly cannot deliver or support yet at my level,
+   tell me straight — and tell me what to sell instead while I get there.
 
 ## For each service, cover all five
 
@@ -136,3 +155,8 @@ Do not skip ahead unless I ask.
 Confirm you understand, ask your **one** calibration question, then start on **missed-call
 text-back**: what it actually is, the pieces involved, what it costs to run per client per
 month, and the first thing I do today.
+
+Also tell me honestly, before we start: **at 2–3 hours a week as a beginner, roughly how
+many weeks until I can deliver missed-call text-back to a paying client and support it
+when it breaks?** I would rather know the real number now than find out after I have taken
+someone's money.
