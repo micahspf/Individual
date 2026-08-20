@@ -303,9 +303,10 @@ export default function HomePage() {
                   ))}
                 </ul>
                 <p className="mt-6 border-t border-white/10 pt-5 text-sm text-zinc-400">
-                  Small automations{" "}
-                  <span className="font-medium text-yellow-300">$75–250</span>. Larger tools
-                  and monthly systems quoted per job.
+                  One-off automations from{" "}
+                  <span className="font-medium text-yellow-300">$75</span>. Monthly systems{" "}
+                  <span className="font-medium text-yellow-300">$150–$1,500</span>, depending
+                  on how much is running.
                 </p>
               </div>
             </div>

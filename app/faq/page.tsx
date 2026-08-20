@@ -38,7 +38,7 @@ export default function FAQPage() {
     },
     {
       q: "Do you take AI or automation work?",
-      a: "Yes. Use the same request form and describe the task you want handled. Small automations generally run $75–250; larger tools and monthly systems are quoted per job. You get a price and lead time before any work starts.",
+      a: "Yes. Use the same request form and describe the task you want handled. One-off automations start at $75; systems that run every day are $150–$1,500 a month depending on how much is running. You get a price and lead time before any work starts.",
     },
   ];
 
