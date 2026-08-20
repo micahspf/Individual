@@ -83,20 +83,58 @@ const process = [
   },
 ];
 
+/** Smaller on-ramps for businesses not ready for a monthly system. */
+const smallOptions = [
+  {
+    name: "One task, one time",
+    price: "from $75",
+    d: "Pick the single thing you keep doing by hand. It gets built, handed over, and it's yours — no monthly anything.",
+  },
+  {
+    name: "Essentials",
+    price: "$250",
+    unit: "/ month",
+    d: "One system running — usually missed-call capture — kept working and adjusted as you go. The smallest sensible monthly.",
+  },
+];
+
 const plans = [
   {
-    name: "Starter Ecosystem",
+    name: "Starter",
+    price: "$500",
     d: "Core automations for one part of the business — usually lead response and follow-up — with light monthly support.",
+    items: [
+      "Missed calls get an instant text back, day or night",
+      "After-hours callers captured with name, contact, and what they need",
+      "Booking and quote requests routed straight to your phone",
+      "Urgent messages flagged so real ones reach you fast",
+    ],
     featured: false,
   },
   {
-    name: "Growth Ecosystem",
+    name: "Growth",
+    price: "$1,200",
     d: "Several agents working together across sales, admin, and marketing, tuned every month as the business shifts.",
+    items: [
+      "Everything in Starter",
+      "Automatic follow-up on leads that went quiet",
+      "Review request after every finished job",
+      "Invoices and receipts read and filed",
+      "One-page monthly summary of what came in",
+    ],
     featured: true,
   },
   {
-    name: "Full Custom Ecosystem",
+    name: "Full Custom",
+    price: "$2,500",
     d: "A system designed end to end around your exact workflow, with ongoing development and priority turnaround.",
+    items: [
+      "Everything in Growth",
+      "Intake that knows your hours, services, and schedule",
+      "Agents that run a recurring job start to finish",
+      "A dashboard showing enquiries, jobs, and revenue together",
+      "Priority builds as the business changes",
+    ],
     featured: false,
   },
 ];
@@ -194,10 +232,12 @@ export default function AIPage() {
             ))}
           </ul>
           <p className="mt-8 border-t border-white/10 pt-6 text-sm leading-relaxed text-zinc-400">
-            Small automations and scripts:{" "}
-            <span className="font-medium text-yellow-300">$75–250</span>. Larger tools,
-            dashboards, and agents are quoted per job. You approve the price and timeline
-            before any work starts.
+            One-off automations start at{" "}
+            <span className="font-medium text-yellow-300">$75</span>. Systems that run every
+            day are{" "}
+            <span className="font-medium text-yellow-300">$250–$2,500 a month</span>{" "}
+            depending on how much is running. You approve the price and timeline before any
+            work starts.
           </p>
         </div>
       </section>
@@ -270,25 +310,80 @@ export default function AIPage() {
           <p className="mt-3 max-w-2xl text-zinc-400">
             Not a subscription to someone else’s software — a system built around your
             workflow, maintained and improved every month. Predictable fee, no seat counts, no
-            platform lock-in.
+            platform lock-in. Start anywhere on this list and move when it makes sense.
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {plans.map((p) => (
               <div
                 key={p.name}
-                className={`p-7 ${p.featured ? "glass-pink" : "glass-strong"}`}
+                className={`flex flex-col p-7 ${p.featured ? "glass-pink" : "glass-strong"}`}
               >
-                <div className="font-display mb-3 text-xl font-medium text-zinc-50">
-                  {p.name}
+                <div className="flex items-baseline justify-between gap-3">
+                  <div className="font-display text-xl font-medium text-zinc-50">
+                    {p.name}
+                  </div>
+                  {p.featured && (
+                    <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-pink-400">
+                      Most chosen
+                    </span>
+                  )}
                 </div>
-                <p className="text-sm leading-relaxed text-zinc-400">{p.d}</p>
+                <div className="mt-3 flex items-baseline gap-1.5">
+                  <span className="text-3xl font-semibold tracking-tight text-zinc-50">
+                    {p.price}
+                  </span>
+                  <span className="text-sm text-zinc-400">/ month</span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-400">{p.d}</p>
+                <ul className="mt-5 space-y-2 border-t border-white/10 pt-5">
+                  {p.items.map((item) => (
+                    <li key={item} className="flex gap-2 text-sm leading-snug text-zinc-300">
+                      <span className="text-pink-400">—</span> {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
+
           <p className="mt-8 max-w-2xl text-sm leading-relaxed text-zinc-400">
+            <span className="font-medium text-yellow-300">Setup: $500–$1,000 one time</span>,
+            quoted before anything is built. Month to month — no contract, no seat counts.
             Every plan is built for one business. Nothing is shared between clients, and
             nothing is a template with your logo on it.
           </p>
+
+          {/* Smaller on-ramps */}
+          <div className="mt-14 border-t border-white/10 pt-10">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-[#ff7ab8]">
+              Start smaller
+            </p>
+            <h3 className="font-display text-2xl font-medium tracking-tight text-zinc-50 sm:text-3xl">
+              Too small for a monthly system? Start with one.
+            </h3>
+            <p className="mt-3 max-w-2xl text-zinc-400">
+              A one-person shop does not need an ecosystem. It needs the one job that eats
+              every Thursday to stop eating every Thursday.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {smallOptions.map((o) => (
+                <div key={o.name} className="glass p-7">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <div className="font-display text-xl font-medium text-zinc-50">
+                      {o.name}
+                    </div>
+                    <div className="flex items-baseline gap-1 whitespace-nowrap">
+                      <span className="text-xl font-semibold tracking-tight text-yellow-300">
+                        {o.price}
+                      </span>
+                      {o.unit && <span className="text-xs text-zinc-400">{o.unit}</span>}
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">{o.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
