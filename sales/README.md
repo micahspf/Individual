@@ -41,7 +41,9 @@ Import the CSVs into Google Sheets with **File → Import → Upload**.
 
 Both regenerate with `npm run leave-behind`:
 
-- `public/ai-systems-for-local-business.pdf` — one-page leave-behind
+- `public/ai-systems-for-local-business.pdf` — one-page leave-behind, businesses
+- `public/ai-help-for-one-person.pdf` — one-page leave-behind, individuals; leads with
+  the $75 one-off rather than the monthly tiers, which scare off a personal buyer
 - `public/what-ai-can-do-for-your-local-business.pdf` — two-page guide, linked on `/ai`
 
 Sources are plain HTML in `scripts/leave-behind/` — edit the copy directly.
