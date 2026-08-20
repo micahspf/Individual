@@ -148,7 +148,7 @@ export async function fulfillOrder(
         <p>Total: <strong>$${order.total.toFixed(2)} ${order.currency}</strong></p>
         ${engravingBlock}
         <p style="color:#a1a1aa;font-size:14px;">Standard turnaround is 7–10 days. Local Cullman pickup available by arrangement.</p>
-        <p style="color:#a1a1aa;font-size:13px;">Questions: founder@madebyindividual.com</p>
+        <p style="color:#a1a1aa;font-size:13px;">Questions: madebyindividual@gmail.com</p>
       </div>
     `,
   });

@@ -66,6 +66,7 @@ Phases 2 and 3 overlap on purpose. Audits are proof *and* outreach openers.
 | 10 | 14-day delivery checklist | [`09-delivery-14-days.md`](09-delivery-14-days.md) |
 | 11 | Testimonial request | [`10-testimonial.md`](10-testimonial.md) |
 | 12 | 30-day scoreboard + risks | [`11-scoreboard.md`](11-scoreboard.md) |
+| — | Cullman prospect list — **AI offer** | [`13-ai-prospects-cullman.md`](13-ai-prospects-cullman.md) |
 
 Importable CSVs in [`templates/`](templates/) — drag into Google Sheets via
 **File → Import → Upload**.

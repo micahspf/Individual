@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       if (process.env.NODE_ENV === 'production') {
         console.error('Request notification failed — lead not delivered:', email);
         return NextResponse.json(
-          { error: 'We could not send that. Please email founder@madebyindividual.com.' },
+          { error: 'We could not send that. Please email madebyindividual@gmail.com.' },
           { status: 502 }
         );
       }
