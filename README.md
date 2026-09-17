@@ -45,6 +45,8 @@ See `docs/ARCHITECTURE.md`.
 
 Copy `.env.local.example` → `.env.local`. Never commit real secrets.
 
+MCP servers for this repo are in `.mcp.json` — see `docs/MCP-SERVERS.md`.
+
 ## Next
 
 1. Real product photos  
