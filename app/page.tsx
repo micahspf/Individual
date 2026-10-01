@@ -56,7 +56,7 @@ export default function HomePage() {
               Individually here for you.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-              A tumbler with a name on it, or a system that answers your phone at 7 p.m.
+              A tumbler with a name on it, or a system that answers your phone at 7&nbsp;p.m.
               Nothing here comes off a shelf, and nothing gets built before you have seen
               the price.
             </p>
@@ -110,7 +110,7 @@ export default function HomePage() {
                 AI systems for business or personal
               </p>
               <h2 className="font-display mt-3 text-2xl font-medium leading-snug text-zinc-50 sm:text-3xl">
-                The call you miss at 6 p.m. is the customer somebody else keeps.
+                The call you miss at 6&nbsp;p.m. is the customer somebody else keeps.
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-zinc-400">
                 Automations and AI agents built around how you actually work — a business
@@ -290,7 +290,7 @@ export default function HomePage() {
                   AI systems for business or personal
                 </p>
                 <h2 className="font-display max-w-xl text-3xl font-medium leading-[1.15] tracking-tight text-zinc-50 sm:text-4xl">
-                  The call you miss at 6 p.m. is the customer somebody else keeps.
+                  The call you miss at 6&nbsp;p.m. is the customer somebody else keeps.
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
                   Everybody has work that never gets done because nobody was free to do it —
