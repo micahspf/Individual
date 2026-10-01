@@ -23,6 +23,11 @@ Priced for this market specifically — Cullman's median household income is $61
 falling, and 80%+ of Alabama small businesses are non-employer firms. The same numbers
 would undersell you in Huntsville.
 
+On anything a customer sees, write prices **without the "$" sign** ("300 / month",
+"from 75"). It is deliberate: in Cornell's menu study (Yang, Kimes & Sessarego, 2009)
+people shown plain numerals spent about 8% more than those shown "$" or "dollars".
+The table above keeps "$" because it is internal.
+
 These prices appear in four places and must stay in sync:
 `app/ai/page.tsx` · `app/page.tsx` · `app/faq/page.tsx` · `scripts/leave-behind/*.html`
 

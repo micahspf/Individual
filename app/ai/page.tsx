@@ -87,12 +87,12 @@ const process = [
 const smallOptions = [
   {
     name: "One task, one time",
-    price: "from $75",
+    price: "from 75",
     d: "Pick the single thing you keep doing by hand. It gets built, handed over, and it's yours — no monthly anything.",
   },
   {
     name: "Essentials",
-    price: "$150",
+    price: "150",
     unit: "/ month",
     d: "One system running — usually missed-call capture — kept working and adjusted as you go. The lightest way to keep something running.",
   },
@@ -101,7 +101,7 @@ const smallOptions = [
 const plans = [
   {
     name: "Starter",
-    price: "$300",
+    price: "300",
     d: "Core automations for one part of the business — usually lead response and follow-up — with light monthly support.",
     items: [
       "Missed calls get an instant text back, day or night",
@@ -113,7 +113,7 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$700",
+    price: "700",
     d: "Several agents working together across sales, admin, and marketing, tuned every month as the business shifts.",
     items: [
       "Everything in Starter",
@@ -126,7 +126,7 @@ const plans = [
   },
   {
     name: "Full Custom",
-    price: "$1,250",
+    price: "1,250",
     d: "A system designed end to end around your exact workflow, with ongoing development and priority turnaround.",
     items: [
       "Everything in Growth",
@@ -234,9 +234,9 @@ export default function AIPage() {
           </ul>
           <p className="mt-8 border-t border-white/10 pt-6 text-sm leading-relaxed text-zinc-400">
             One-off automations start at{" "}
-            <span className="font-medium text-yellow-300">$75</span>. Systems that run every
+            <span className="font-medium text-yellow-300">75</span>. Systems that run every
             day are{" "}
-            <span className="font-medium text-yellow-300">$150–$1,250 a month</span>{" "}
+            <span className="font-medium text-yellow-300">150–1,250 a month</span>{" "}
             depending on how much is running. You approve the price and timeline before any
             work starts.
           </p>
@@ -331,7 +331,7 @@ export default function AIPage() {
                   )}
                 </div>
                 <div className="mt-3 flex items-baseline gap-1.5">
-                  <span className="text-3xl font-semibold tracking-tight text-zinc-50">
+                  <span className="font-display text-3xl font-semibold tracking-tight text-zinc-50">
                     {p.price}
                   </span>
                   <span className="text-sm text-zinc-400">/ month</span>
@@ -349,7 +349,7 @@ export default function AIPage() {
           </div>
 
           <p className="mt-8 max-w-2xl text-sm leading-relaxed text-zinc-400">
-            <span className="font-medium text-yellow-300">Setup: $250–$500 one time</span>,
+            <span className="font-medium text-yellow-300">Setup: 250–500 one time</span>,
             quoted before anything is built. Month to month — no contract, no seat counts.
             Every plan is built for one business. Nothing is shared between clients, and
             nothing is a template with your logo on it.
@@ -376,7 +376,7 @@ export default function AIPage() {
                       {o.name}
                     </div>
                     <div className="flex items-baseline gap-1 whitespace-nowrap">
-                      <span className="text-xl font-semibold tracking-tight text-yellow-300">
+                      <span className="font-display text-xl font-semibold tracking-tight text-yellow-300">
                         {o.price}
                       </span>
                       {o.unit && <span className="text-xs text-zinc-400">{o.unit}</span>}
@@ -427,7 +427,7 @@ export default function AIPage() {
               </h3>
               <p className="text-sm leading-relaxed text-zinc-400">
                 Not a business? The same page, written for one person with a task that keeps
-                eating their evenings. Starts at $75.
+                eating their evenings. Starts at 75.
               </p>
               <span className="mt-5 inline-block text-sm font-medium text-[#ff7ab8]">
                 Download the personal one-pager →

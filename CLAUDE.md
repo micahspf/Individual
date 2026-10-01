@@ -37,6 +37,11 @@ Two lines, run by **Micah and Emma** in Cullman, Alabama (see `/about`):
 - **AI systems** — for local businesses *or* individuals. $75 one-off, $150–$1,250/month.
   Priced deliberately for the Cullman market, which is below national rates.
 
+**Prices are shown without "$" on purpose** (site, FAQ, leave-behinds) — numerals only,
+per Yang, Kimes & Sessarego (Cornell, 2009): diners shown plain numbers spent ~8% more
+than with "$" or written-out dollars. Don't "fix" it. Big prices use the headline font
+(`font-display`); the body font draws a slashed zero.
+
 Public contact is **256-590-6534** and **madebyindividual@gmail.com**. Never put the
 personal address (`micahspf@`) in committed files. `founder@madebyindividual.com` is
 dead — do not reintroduce it.
