@@ -2,15 +2,17 @@
 """Pull Cullman Area Chamber of Commerce members into JSON.
 
 Usage:
-  chamber_members.py [--out members.json] [--details NAME ...] [--groups slug,slug]
+  chamber_members.py [--out members.json] [--search TERM ...] [--details NAME ...] [--groups slug,slug]
 
 The chamber's "QuickLink" group pages list member cards: name, street, city, phone.
 Chamber members are established local businesses with a listed phone, which makes
-the directory a good first source. --details NAME fetches a member's own chamber
+the directory a good first source. --search TERM also runs the chamber's keyword search
+(for example "salon", "barber", "towing"), which finds members the groups miss.
+--details NAME fetches a member's own chamber
 page for its website, social links, description and hours (one request each, so
 only for the shortlist). Uses curl, which goes through the session's proxy.
 """
-import argparse, html, json, re, subprocess, sys
+import argparse, html, json, re, subprocess, sys, urllib.parse
 
 BASE = "https://business.cullmanchamber.org/list"
 # QuickLink groups that hold businesses worth pitching. The chamber's grouping is
@@ -62,7 +64,7 @@ def parse_cards(page, group):
 
 SKIP_LINK = re.compile(r"cullmanchamber|chambermaster|growthzone|google\.|sharer|twitter\.com/intent|"
                        r"linkedin\.com/share|micronet|gzapp|mapquest|bing\.com|apple\.com|fonts\.|"
-                       r"cloudflare|jquery|bootstrap|1001-map\.com|facebook\.com/cullmanareachamber")
+                       r"cloudflare|jquery|bootstrap|1001-map\.com|cullmanareachamber")  # the chamber's own pages and socials
 
 
 def details(member_page):
@@ -84,14 +86,17 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--out", default="members.json")
     ap.add_argument("--groups", help="comma-separated group paths (default: the service groups)")
+    ap.add_argument("--search", nargs="*", default=[], metavar="TERM",
+                    help="also run the chamber's keyword search for each term")
     ap.add_argument("--details", nargs="*", default=[], metavar="NAME",
                     help="member names (exact or case-insensitive substring) to fetch details for")
     a = ap.parse_args()
 
-    groups = a.groups.split(",") if a.groups else GROUPS
+    groups = (a.groups.split(",") if a.groups else GROUPS) + \
+             [f"search?q={urllib.parse.quote(t)}" for t in a.search]
     members = {}
     for g in groups:
-        found = parse_cards(fetch(f"{BASE}/{g}"), g)
+        found = parse_cards(fetch(f"{BASE}/{g}"), g if not g.startswith("search?") else "search:" + urllib.parse.unquote(g[9:]))
         print(f"{g}: {len(found)} members", file=sys.stderr)
         for k, v in found.items():
             members.setdefault(k, v)

@@ -1,6 +1,6 @@
 ---
 name: cullman-prospects
-description: Find, verify and add local-business prospects to Micah's Cullman Pipeline tracker for Individual's AI services (missed-call text-back, after-hours capture, quote and booking routing). Use whenever Micah wants more leads, prospects or businesses to call or pitch - "add 15 more prospects", "find roofers in Cullman", "get me plumbers to call", "fill the pipeline to 30", "who else could use the missed-call thing", "add salons to my list" - even if he never says "tracker". Sources from the Cullman Area Chamber directory, confirms every phone number on two sources, skips franchises and captive agents, suggests a Starter or Essentials plan, writes notes with a test-call check, and adds records without duplicates. Never contacts a business.
+description: Find, verify and add local-business prospects to Micah's Cullman Pipeline tracker for Individual's AI services (missed-call text-back, after-hours capture, quote and booking routing). Use whenever Micah wants more leads, prospects or businesses to call or pitch - "add 15 more prospects", "find roofers in Cullman", "get me plumbers to call", "fill the pipeline to 30", "who else could use the missed-call thing", "add salons to my list" - even if he never says "tracker". Sources from the Cullman Area Chamber directory and its keyword search, confirms every phone number on the business's own site or two listings, skips franchises and captive agents, suggests a Starter or Essentials plan, writes notes with a test-call check, and adds records without duplicates. Never contacts a business.
 ---
 
 # Cullman prospects
@@ -16,9 +16,8 @@ like those records, and the tracker already holds them, so check for duplicates 
 
 ## What a good run produces
 
-- Real, reachable businesses: each phone number appears on two sources (the chamber listing,
-  the business's own website, or a listing such as Yelp, BBB, RepairPal or its Facebook page).
-  A wrong number wastes Micah's call and makes the walk-in awkward.
+- Real, reachable businesses with confirmed numbers (see "Confirming the phone" below). A wrong
+  number wastes Micah's call and makes the walk-in awkward.
 - No duplicates of anything already in the tracker, by name or by phone.
 - Notes Micah can act on in ten seconds: why it fits, what to check on the call, a few facts,
   and the sources. The tracker's call script shows the "On the test call" line on screen.
@@ -36,9 +35,11 @@ goes through the session's proxy.
    (details in `references/tracker-schema.md`). Note how many there are, which categories are
    covered, and keep the folder for the duplicate check. The playbook target is 30 businesses;
    if Micah gave no number, aim for 10 to 15 new ones.
-2. **Pull candidates.** `scripts/chamber_members.py --out members.json` collects about 250
-   chamber members across the service groups. Shortlist by category and fit (rules below).
-   Where the chamber is thin (lawn care and pest control usually are), search the web for
+2. **Pull candidates.** `scripts/chamber_members.py --out members.json --search <terms>`
+   collects the chamber members across the service groups, plus the chamber's own keyword
+   search for each term you give (for example `--search salon barber towing`): the groups miss
+   members filed elsewhere. Shortlist by category and fit (rules below). Where the chamber is
+   thin (lawn care, pest control, locksmiths usually are), search the web for
    `locally owned <category> Cullman AL` and shortlist independents from what comes back.
 3. **Get details.** `chamber_members.py --out members.json --details "Name" "Name" ...` adds
    each shortlisted member's website, description and hours from its chamber page.
@@ -46,8 +47,8 @@ goes through the session's proxy.
    whether the phone is on the site and quotes fit signals (24/7, emergency, booking, free
    estimates, years, owner, hours). A site that comes back blocked (status 202, no text):
    search `"Business Name" Cullman AL`, use the Yelp, BBB, RepairPal or Facebook result, and
-   say "via search - the site blocks direct reads" in Sources. Can't confirm a phone on two
-   sources? Drop the business and list it under "left out".
+   say "via search - the site blocks direct reads" in Sources. Can't confirm the phone (next
+   section)? Drop the business and list it under "left out".
 5. **Decide.** Keep or drop with a one-line reason, pick the plan, tick the fit boxes, and
    write the notes in the format below.
 6. **Build.** Put the drafts in a JSON list (`doc_id`, `name`, `category`, `owner`, `phone`,
@@ -60,11 +61,28 @@ goes through the session's proxy.
    `scripts/compare_readback.py OUT_DIR <new out_dir>`; it must report 0 problems.
 8. **Report** (format below), then ask Micah what's next.
 
+## Confirming the phone
+
+A number counts as confirmed when either:
+
+- it is on the business's **own website**, the source they keep current; or
+- **two independent listings agree**: the chamber, BBB, Yelp, Yellow Pages, Google (via
+  Birdeye), Nextdoor, the business's Facebook page, or a booking page such as Booksy or Vagaro.
+
+A chamber-only number is not enough: on 2026-10-01 Parris Fence's chamber number differed
+from five other listings. When sources disagree, put the number most sources share in `phone`
+and the other in the "On the test call" line, so Micah can try both and the call script
+shows it. Match on the street address too: names repeat across towns (there is a Paradise
+Self Storage in Cullman and another in Albertville), and search summaries blend them.
+
 ## Who makes the list
 
 - **Call-driven work, where a missed call is a lost job:** HVAC, plumbers, electricians,
   roofers, towing, auto repair, pest control, lawn care, vets, insurance agencies, salons and
   spas, storage, and home services such as fence, gutters, crawlspace and cleaning.
+- **Towing is an emergency trade, not "auto".** When Micah says he has enough auto shops he
+  means repair and body shops; towing and roadside companies still belong (his call,
+  2026-10-01).
 - **Independent and locally run.** Skip franchises, captive insurance agents (State Farm,
   Allstate, Alfa, COUNTRY Financial) and big multi-branch regional firms (for example Cook's
   Pest Control, Lawn Doctor). They run on corporate phone systems and can't buy locally.
@@ -84,7 +102,8 @@ goes through the session's proxy.
 | What the research shows | Plan |
 |---|---|
 | 24/7 or emergency work, quotes or inspections by phone, crews out on jobs | `starter` |
-| One-person or tiny shop, no website, salon, massage or spa, storage, or already books online | `essentials` |
+| A salon or spa with a front desk or about 6+ stylists sharing one line | `starter` |
+| One-person or tiny shop, one- or two-chair salon, massage, storage, no website, or already books online | `essentials` |
 | A single small job they keep doing by hand | `task` |
 
 When volume is high (hundreds of reviews, several offices, insurance-claim work), still suggest
@@ -93,8 +112,9 @@ and review requests. Never suggest `custom` as a first pitch.
 
 ## Notes format
 
-Four short paragraphs, in this order, separated by blank lines. Plain sentences; numbers
-without "$"; nothing stated as fact that a source didn't say.
+Four short paragraphs, in this order, separated by blank lines, about 400 to 900 characters
+in all: Micah reads them on his phone between calls. Plain sentences; numbers without "$";
+nothing stated as fact that a source didn't say.
 
 ```
 Why it fits: <the evidence that calls get missed or work leaks, and what the plan does about it>.
