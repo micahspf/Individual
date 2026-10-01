@@ -46,6 +46,10 @@ Public contact is **256-590-6534** and **madebyindividual@gmail.com**. Never put
 personal address (`micahspf@`) in committed files. `founder@madebyindividual.com` is
 dead — do not reintroduce it.
 
+New AI-service prospects go into the Cullman Pipeline tracker through the
+`cullman-prospects` skill (`.claude/skills/cullman-prospects/`): chamber directory, phone
+confirmed on two sources, no franchises, Starter or Essentials plans, nobody contacted.
+
 ## Check the checkout before reading code
 
 GitHub's **default branch is `Individual`**; Vercel deploys `main`. `Individual` sat
