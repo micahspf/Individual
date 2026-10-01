@@ -55,6 +55,11 @@ behind. This has produced a false bug report before. Before reviewing or editing
 exists). If not: `git fetch origin && git checkout -B <claude-branch> origin/main`.
 Remove this note once Micah switches the default branch to `main`.
 
+`.claude/hooks/session-start.sh` automates this in web sessions: at startup it
+fast-forwards a stale checkout to `origin/main` when nothing would be lost, otherwise
+prints a warning, then installs packages with `npm ci`. It only runs when it is on the
+branch a session starts from.
+
 ## Accounts are off — do not re-enable
 
 The login/register/account system was taken offline: plain-text passwords, an
