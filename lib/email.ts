@@ -17,12 +17,21 @@ export async function sendEmail({
     const { Resend } = await import('resend');
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    const data = await resend.emails.send({
+    // The Resend SDK does not throw when the API rejects a send (bad key,
+    // sandbox recipient restriction, rate limit) — it returns { data: null,
+    // error }. Treat that as a failure so callers show their fallback and log
+    // the enquiry, instead of telling the visitor it was sent.
+    const { data, error } = await resend.emails.send({
       from: 'Individual <onboarding@resend.dev>',
       to,
       subject,
       html,
     });
+
+    if (error) {
+      console.error('Email rejected by Resend:', { to, subject, error });
+      return { success: false, error };
+    }
 
     return { success: true, data };
   } catch (error) {
