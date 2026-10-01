@@ -63,7 +63,7 @@ export default function EmailCapture() {
           <a href="mailto:madebyindividual@gmail.com" className="text-pink-300 underline">
             madebyindividual@gmail.com
           </a>{' '}
-          and I’ll add you.
+          and we’ll add you.
         </p>
       )}
     </form>
