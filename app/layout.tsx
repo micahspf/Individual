@@ -50,21 +50,14 @@ export const metadata: Metadata = {
     siteName: "Individual",
     locale: "en_US",
     type: "website",
-    // Uses app/opengraph-image.png via file convention; keep explicit for consumers that need URL
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Individual — made to order in Cullman, Alabama",
-      },
-    ],
+    // Image, size, alt text and a cache-busting hash all come from
+    // app/opengraph-image.png + opengraph-image.alt.txt (file convention).
   },
   twitter: {
     card: "summary_large_image",
     title: "Individual — Custom-made pieces and AI tools",
     description: "Custom-made pieces and AI tools · Cullman, Alabama",
-    images: ["/opengraph-image.png"],
+    // No images here: X falls back to og:image, which carries the cache-busting hash.
   },
   robots: {
     index: true,
