@@ -3,6 +3,7 @@ import Link from "next/link";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
 import BrandLogo from "@/components/ui/BrandLogo";
+import { BOOKING_URL } from "@/lib/booking";
 
 // Title and description come from the root layout's defaults.
 export const metadata: Metadata = {
@@ -399,6 +400,16 @@ export default function HomePage() {
 
               <div className="mt-8 border-t border-white/10 pt-7">
                 <p className="text-sm text-zinc-400">Rather not fill in a form?</p>
+                {BOOKING_URL && (
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#ffe14a] px-5 py-2.5 text-sm font-semibold text-black shadow-[0_0_16px_rgba(255,225,74,0.25)] transition hover:bg-[#fff08a]"
+                  >
+                    Book a 15-minute call →
+                  </a>
+                )}
                 <a
                   href="tel:+12565906534"
                   className="mt-2 block text-xl font-semibold tracking-tight text-zinc-50 transition hover:text-pink-300"
