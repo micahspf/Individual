@@ -1,45 +1,20 @@
 'use client';
 
 /**
- * Client-side identity for the For You tab: the logged-in account's email,
- * or "guest". Resolved once per page load and cached module-wide.
+ * Client-side identity for the For You tab.
+ *
+ * Always "guest" while accounts are paused (see app/account/page.tsx). The
+ * /api/auth/me endpoint this used to call no longer exists. When accounts come
+ * back, resolve the signed-in user here again — callers already treat the
+ * result as an opaque key, so nothing else needs to change.
  */
 
-import { useEffect, useState } from 'react';
-
-let cached: string | null = null;
-let inflight: Promise<string> | null = null;
+const GUEST = 'guest';
 
 export function resolveRecsIdentity(): Promise<string> {
-  if (cached) return Promise.resolve(cached);
-  if (!inflight) {
-    // Auth in this app is localStorage-token based (see app/account/page.tsx).
-    // Without a token the /api/auth/me call is a guaranteed 401 — skip it
-    // entirely so guests never log console noise.
-    const token =
-      typeof window !== 'undefined' ? window.localStorage.getItem('accessToken') : null;
-    if (!token) {
-      cached = 'guest';
-      return Promise.resolve(cached);
-    }
-    inflight = fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => (cached = (d?.user?.email as string) || 'guest'))
-      .catch(() => (cached = 'guest'));
-  }
-  return inflight;
+  return Promise.resolve(GUEST);
 }
 
 export function useRecsIdentity(): string {
-  const [who, setWho] = useState<string>(cached ?? 'guest');
-  useEffect(() => {
-    let live = true;
-    resolveRecsIdentity().then((w) => {
-      if (live) setWho(w);
-    });
-    return () => {
-      live = false;
-    };
-  }, []);
-  return who;
+  return GUEST;
 }

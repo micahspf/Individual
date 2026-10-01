@@ -1,4 +1,19 @@
 /**
+ * NOT SAFE TO RE-ENABLE. Kept for reference only — nothing serves this code.
+ *
+ * Accounts were switched off because this store:
+ *   - keeps passwords in plain text (`passwordHash` holds the raw password,
+ *     compared with ===) — no hashing library is installed
+ *   - lives in process memory, which serverless cold starts wipe, so no
+ *     account ever persisted in production
+ * and lib/auth/jwt.ts falls back to a signing secret that is readable in this
+ * public repo when JWT_SECRET is unset, so sessions could be forged.
+ *
+ * When the shop reopens, use a hosted auth provider and a real database
+ * rather than wiring these routes back up. See app/account/page.tsx.
+ */
+
+/**
  * In-memory auth + refresh token store (dev).
  * Replace with DB in production.
  */
@@ -25,15 +40,6 @@ interface RefreshRecord {
 const users = new Map<string, User>();
 const resetTokens = new Map<string, ResetToken>();
 const refreshTokens = new Map<string, RefreshRecord>(); // jti → record
-
-// Demo user
-users.set('demo@individual.com', {
-  email: 'demo@individual.com',
-  name: 'Demo User',
-  passwordHash: 'demo1234',
-  isFounder: true,
-  createdAt: new Date().toISOString(),
-});
 
 export function findUserByEmail(email: string): User | null {
   return users.get(email.toLowerCase().trim()) || null;

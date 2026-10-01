@@ -1,151 +1,40 @@
-'use client';
+import Link from "next/link";
 
-import { useEffect, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-
-interface User {
-  email: string;
-  name?: string;
-  isFounder?: boolean;
-}
-
-async function refreshTokens(): Promise<string | null> {
-  const refreshToken = localStorage.getItem('refreshToken');
-  if (!refreshToken) return null;
-
-  const res = await fetch('/api/auth/refresh', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ refreshToken }),
-  });
-
-  if (!res.ok) {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
-    return null;
-  }
-
-  const data = await res.json();
-  localStorage.setItem('accessToken', data.accessToken);
-  localStorage.setItem('refreshToken', data.refreshToken);
-  return data.accessToken;
-}
-
+/**
+ * Accounts paused until the shop reopens.
+ *
+ * The previous account system is switched off, not just hidden: it stored
+ * passwords in plain text, kept users in memory that serverless cold starts
+ * wipe, and signed sessions with a fallback secret readable in this public
+ * repo. /login, /register, /forgot-password and /reset-password redirect here
+ * (see next.config.ts). lib/auth/ is kept for reference only — see the warning
+ * at the top of lib/auth/store.ts before reusing any of it.
+ *
+ * Bring accounts back on a hosted auth provider and a real database, at the
+ * same time as the shop.
+ */
 export default function AccountPage() {
-  const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  const load = useCallback(async () => {
-    let accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      router.push('/login');
-      return;
-    }
-
-    let res = await fetch('/api/auth/me', {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-
-    if (res.status === 401) {
-      accessToken = await refreshTokens();
-      if (!accessToken) {
-        router.push('/login');
-        return;
-      }
-      res = await fetch('/api/auth/me', {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-    }
-
-    if (!res.ok) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('user');
-      router.push('/login');
-      return;
-    }
-
-    const data = await res.json();
-    setUser(data.user);
-    setLoading(false);
-  }, [router]);
-
-  useEffect(() => {
-    // Async auth check: every setState in load() happens after an await,
-    // not synchronously — the rule can't see through the call.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    void load();
-  }, [load]);
-
-  async function logout() {
-    try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-    } catch {}
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
-    router.push('/');
-  }
-
-  if (loading) {
-    return (
-      <main className="min-h-[60vh] flex items-center justify-center">
-        <p className="text-zinc-500">Loading account…</p>
-      </main>
-    );
-  }
-
-  if (!user) return null;
-
   return (
-    <main className="max-w-3xl mx-auto px-6 py-16">
-      <div className="flex items-start justify-between mb-10">
-        <div>
-          <p className="text-pink-400 text-sm font-medium mb-2">ACCOUNT</p>
-          <h1 className="text-3xl font-bold">
-            {user.name ? `Hey, ${user.name}` : 'Your account'}
-          </h1>
-          <p className="text-zinc-400 text-sm mt-1">{user.email}</p>
-        </div>
-        <button
-          onClick={logout}
-          className="text-sm text-zinc-500 hover:text-pink-400 transition"
-        >
-          Sign out
-        </button>
-      </div>
-
-      <div className="space-y-6">
-        <div className="glass p-5">
-          <h2 className="font-medium mb-2">Orders</h2>
-          <p className="text-sm text-zinc-400 mb-4">
-            Track a guest or account order with the email and order ID from your confirmation.
-          </p>
-          <Link href="/orders/track" className="text-sm text-pink-400 hover:text-pink-300">
-            Track an order →
+    <main className="mx-auto flex min-h-[60vh] max-w-2xl items-center px-6 py-20">
+      <div className="glass-strong w-full p-8 text-center sm:p-12">
+        <p className="mb-3 text-sm font-medium text-pink-400">ACCOUNTS</p>
+        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          Opening with the shop
+        </h1>
+        <p className="mx-auto mt-4 max-w-md text-zinc-400 leading-relaxed">
+          Everything is made to order right now, so there is nothing to log in to.
+          Accounts come back when the shop does. Until then, every commission and AI
+          project starts with a conversation.
+        </p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/#request" className="btn-pill-pink px-7 py-3 text-sm">
+            Get a quote →
           </Link>
-        </div>
-
-        <div className="grid sm:grid-cols-2 gap-4">
           <Link
-            href="/shop"
-            className="glass p-5 transition hover:border-pink-500/40 group"
+            href="/contact"
+            className="rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium transition hover:border-pink-500/40"
           >
-            <div className="font-medium group-hover:text-pink-300 transition">Shop</div>
-            <p className="text-sm text-zinc-400 mt-1">Made-to-order catalog</p>
-          </Link>
-
-          <Link
-            href="/#request"
-            className="glass p-5 transition hover:border-pink-500/40 group"
-          >
-            <div className="font-medium transition group-hover:text-pink-300">
-              Commission
-            </div>
-            <p className="mt-1 text-sm text-zinc-400">Request a manufactured piece</p>
+            Contact
           </Link>
         </div>
       </div>

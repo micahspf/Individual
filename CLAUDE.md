@@ -41,8 +41,27 @@ Public contact is **256-590-6534** and **madebyindividual@gmail.com**. Never put
 personal address (`micahspf@`) in committed files. `founder@madebyindividual.com` is
 dead — do not reintroduce it.
 
+## Check the checkout before reading code
+
+GitHub's **default branch is `Individual`, frozen at `527f43f`** (Aug 2026) — Vercel
+deploys `main`. Fresh cloud sessions can clone that stale commit, which is 100+ files
+behind. This has produced a false bug report before. Before reviewing or editing, run
+`git log --oneline -1` and confirm recent work is present (e.g. `app/ai/page.tsx`
+exists). If not: `git fetch origin && git checkout -B <claude-branch> origin/main`.
+Remove this note once Micah switches the default branch to `main`.
+
+## Accounts are off — do not re-enable
+
+The login/register/account system was taken offline: plain-text passwords, an
+in-memory store that serverless wipes, and a JWT fallback secret readable in this
+public repo. `/login`, `/register`, `/forgot-password`, `/reset-password` redirect to
+`/account`. `lib/auth/` is kept for reference only. Bring accounts back on a hosted
+auth provider and a real database, with the shop.
+
 ## Known outstanding issue
 
-`RESEND_API_KEY` is not set in Vercel, so commission form enquiries never reach the
-inbox. The route logs the full enquiry and shows the visitor a phone/email fallback, so
-nothing is lost, but this is unresolved until Micah sets it.
+`RESEND_API_KEY` is not set in Vercel, so quote-form enquiries and footer signups
+never reach the inbox. The route logs the full enquiry, but **Vercel Hobby keeps
+runtime logs for 1 hour** — after that the log is gone. The only thing that saves a
+lead is the visitor using the phone/email fallback the form shows them. Treat this
+as leads being lost until Micah sets the key.
