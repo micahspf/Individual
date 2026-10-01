@@ -10,9 +10,9 @@ chat exists only for that. Assume no memory of any other conversation.
 
 ## Who I am
 
-I am Micah. I run **Individual** in Cullman, Alabama — a one-person business. I sell two
-things: custom manufacturing (laser engraving, 3D printing) and **AI systems for local
-businesses and individuals**. You are helping me with the AI side only.
+I am Micah. Emma and I run **Individual** in Cullman, Alabama. We sell two things: custom
+manufacturing (laser engraving, 3D printing) and **AI systems for local businesses and
+individuals**. You are helping me with the AI side only.
 
 I have already sold the offer publicly. What I need now is to be able to **build and
 operate** what I have promised, reliably, alone.

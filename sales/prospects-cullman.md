@@ -146,11 +146,11 @@ and every referral they send you.
 
 ## Tracker
 
-Reuse [`templates/prospect-tracker.csv`](templates/prospect-tracker.csv). Two column
-changes for this offer:
-
-- **"Running Ads?"** → **"Phone answered?"** (Y / voicemail / no answer)
-- **"Observation"** → what happened when you called
+Use **[Cullman Pipeline](https://claude.ai/artifact/6EJGyZVdxUm4sVM28bksJJ)**. It is built around this playbook: record the test
+call (answered / voicemail / no answer) and what happened, log each walk-in, call or
+email, and it suggests the next follow-up date (a week after a walk-in, three days after
+an email). Voicemail and no-answer businesses sort to the top, and the daily minimums
+below are counted for you.
 
 ## Daily minimums
 

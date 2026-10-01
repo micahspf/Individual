@@ -30,7 +30,7 @@ brand yellow at 2.36:1 when it looked fine in a screenshot.
 
 ## Business context
 
-Two lines, both run by one person in Cullman, Alabama:
+Two lines, run by **Micah and Emma** in Cullman, Alabama (see `/about`):
 
 - **Custom manufacturing** — laser engraving and 3D printing, commissions only right
   now. The shop catalog is paused; the 29 product pages are portfolio, not for sale.
