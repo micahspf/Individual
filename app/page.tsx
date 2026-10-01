@@ -126,10 +126,10 @@ export default function HomePage() {
                 )}
               </ul>
               <div className="mt-7 flex items-baseline gap-2 border-t border-white/10 pt-5">
-                <span className="text-2xl font-semibold tracking-tight text-zinc-50">
-                  From $150
+                <span className="font-display text-2xl font-semibold tracking-tight text-zinc-50">
+                  From 150
                 </span>
-                <span className="text-sm text-zinc-400">/ month · or $75 one-off</span>
+                <span className="text-sm text-zinc-400">/ month · or 75 one-off</span>
               </div>
               <span className="mt-4 inline-block text-sm font-medium text-[#ffe14a] transition group-hover:text-[#fff08a]">
                 See what it does →
@@ -300,11 +300,11 @@ export default function HomePage() {
                 </p>
 
                 <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-t border-white/10 pt-6">
-                  <span className="text-3xl font-semibold tracking-tight text-zinc-50">
-                    From $150
+                  <span className="font-display text-3xl font-semibold tracking-tight text-zinc-50">
+                    From 150
                   </span>
                   <span className="text-sm text-zinc-400">
-                    / month · or a single task from $75
+                    / month · or a single task from 75
                   </span>
                 </div>
 
