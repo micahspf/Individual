@@ -48,17 +48,20 @@ dead — do not reintroduce it.
 
 ## Check the checkout before reading code
 
-GitHub's **default branch is `Individual`, frozen at `527f43f`** (Aug 2026) — Vercel
-deploys `main`. Fresh cloud sessions can clone that stale commit, which is 100+ files
-behind. This has produced a false bug report before. Before reviewing or editing, run
-`git log --oneline -1` and confirm recent work is present (e.g. `app/ai/page.tsx`
-exists). If not: `git fetch origin && git checkout -B <claude-branch> origin/main`.
-Remove this note once Micah switches the default branch to `main`.
+GitHub's **default branch is `Individual`**; Vercel deploys `main`. `Individual` sat
+frozen at `527f43f` (Aug 2026, 100+ files behind) until 2026-10-01, when it was
+fast-forwarded to `main`. A session that started on that stale commit once produced a
+false bug report. `Individual` is not updated on every merge, so it can lag `main`.
 
-`.claude/hooks/session-start.sh` automates this in web sessions: at startup it
-fast-forwards a stale checkout to `origin/main` when nothing would be lost, otherwise
-prints a warning, then installs packages with `npm ci`. It only runs when it is on the
-branch a session starts from.
+`.claude/hooks/session-start.sh` handles this in web sessions: at startup it
+fast-forwards the checkout to `origin/main` when nothing would be lost, otherwise prints
+a warning, then installs packages with `npm ci`. If you see that warning, or the hook
+didn't run, compare `git log --oneline -1` with `origin/main` before reviewing or
+editing: `git fetch origin && git checkout -B <claude-branch> origin/main`.
+
+New sessions get the hook from `Individual`, so if the hook changes, fast-forward it
+again: `git push origin main:Individual`. Switching the default branch to `main` would
+remove the need.
 
 ## Accounts are off — do not re-enable
 
