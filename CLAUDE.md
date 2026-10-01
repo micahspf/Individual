@@ -58,10 +58,19 @@ public repo. `/login`, `/register`, `/forgot-password`, `/reset-password` redire
 `/account`. `lib/auth/` is kept for reference only. Bring accounts back on a hosted
 auth provider and a real database, with the shop.
 
-## Known outstanding issue
+## Email delivery
 
-`RESEND_API_KEY` is not set in Vercel, so quote-form enquiries and footer signups
-never reach the inbox. The route logs the full enquiry, but **Vercel Hobby keeps
-runtime logs for 1 hour** — after that the log is gone. The only thing that saves a
-lead is the visitor using the phone/email fallback the form shows them. Treat this
-as leads being lost until Micah sets the key.
+`RESEND_API_KEY` was set in Vercel Production on 2026-10-01 (Resend sandbox, sender
+`onboarding@resend.dev`). A test enquiry through the live form returned 200 and Vercel
+logged no rejection. `lib/email.ts` treats Resend's *returned* errors as failures —
+the SDK does not throw on a rejected send — so a 200 from `/api/request` now really
+means Resend accepted it.
+
+- The sandbox only delivers to the Resend account's own signup address. Founder
+  notifications are fine; customer-facing email (order confirmations, when the shop
+  reopens) needs the domain verified in Resend first.
+- The Gmail connector available to Claude sessions is **not** the business inbox, so
+  Claude cannot confirm arrival — ask Micah to check madebyindividual@gmail.com,
+  including spam.
+- Vercel Hobby keeps runtime logs for **1 hour**. If a send fails, the visitor sees the
+  phone/email fallback; the logged enquiry is gone after an hour.
