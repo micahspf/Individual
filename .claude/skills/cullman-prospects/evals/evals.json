@@ -4,13 +4,13 @@
     {
       "id": 1,
       "prompt": "Add 10 more prospects to my Cullman Pipeline. I've got plenty of auto shops already, so focus on trades that get emergency calls.",
-      "expected_output": "About 10 new independent emergency-call trades (HVAC, plumbing, electrical, roofing, towing) not already in the tracker, each with a phone confirmed on two sources, starter-led plans, four-paragraph notes; written in one batch and confirmed by readback; a short report with a table, left-out reasons and sources. No auto shops, no franchises, nobody contacted.",
+      "expected_output": "About 10 new independent emergency-call trades (HVAC, plumbing, electrical, roofing, towing) not already in the tracker, each with a phone confirmed on its own website or two listings that agree, starter-led plans, four-paragraph notes; written in one batch and confirmed by readback; a short report with a table, left-out reasons and sources. Towing counts as an emergency trade. No repair or body shops, no franchises, nobody contacted.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "can you find me a few salons and barbershops around cullman I could pitch the missed call text back to? put them in the tracker",
-      "expected_output": "A few independent salons or barbershops within about 20 miles of Cullman, category Salon, mostly essentials plans, notes explaining that stylists can't answer mid-appointment, phones confirmed, no duplicates of Pamela Jean Studio or The Corner Soak and Spa.",
+      "expected_output": "A few independent salons or barbershops within about 20 miles of Cullman, category Salon, mostly essentials plans (starter for a salon with a front desk or about 6+ stylists on one line), candidates from the chamber's keyword search as well as its groups, notes of about 400 to 900 characters, notes explaining that stylists can't answer mid-appointment, phones confirmed, no duplicates of Pamela Jean Studio or The Corner Soak and Spa.",
       "files": []
     },
     {
