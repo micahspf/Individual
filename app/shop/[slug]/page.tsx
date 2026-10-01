@@ -138,7 +138,7 @@ export default async function ProductPage({
               Example of past work
             </div>
             <p className="mt-1 text-sm text-zinc-400">
-              Priced per commission — tell me the details and you get a quote before
+              Priced per commission — tell us the details and you get a quote before
               anything is made.
             </p>
           </div>
@@ -202,7 +202,7 @@ export default async function ProductPage({
             </p>
             <p className="mt-3 text-sm leading-relaxed text-zinc-300">
               <span className="font-medium text-[#ffe14a]">First piece may be free.</span>{" "}
-              On custom projects and prototypes the first sample is on me — ask when you
+              On custom projects and prototypes the first sample is on us — ask when you
               send the details.
             </p>
             <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">

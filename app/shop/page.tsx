@@ -39,7 +39,7 @@ export default function ShopPage() {
           <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-[#ffe14a]/25 bg-[#ffe14a]/[0.06] p-5">
             <p className="text-sm leading-relaxed text-zinc-300">
               <span className="font-medium text-[#ffe14a]">First piece may be free.</span>{" "}
-              On custom projects and prototypes the first sample is on me — ask when you
+              On custom projects and prototypes the first sample is on us — ask when you
               send the details.
             </p>
           </div>

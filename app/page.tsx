@@ -92,12 +92,12 @@ export default function HomePage() {
                   First piece may be free
                 </span>
                 <p className="mt-1.5 text-sm leading-relaxed text-zinc-400">
-                  On custom projects and prototypes the first sample is on me. Everything
+                  On custom projects and prototypes the first sample is on us. Everything
                   else is quoted before it is made — 7–10 days.
                 </p>
               </div>
               <span className="mt-4 inline-block text-sm font-medium text-pink-300 transition group-hover:text-pink-200">
-                Tell me what you want made →
+                Tell us what you want made →
               </span>
             </Link>
 
@@ -226,12 +226,12 @@ export default function HomePage() {
         <div className="mt-8 rounded-2xl border border-[#ffe14a]/25 bg-[#ffe14a]/[0.06] p-6">
           <p className="text-base leading-relaxed text-zinc-300">
             <span className="font-medium text-[#ffe14a]">First piece may be free.</span>{" "}
-            On custom projects and prototypes the first sample is on me — ask when you send
+            On custom projects and prototypes the first sample is on us — ask when you send
             the details. If it works, we talk about the rest of the run.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/#request" className="btn-pill-pink px-6 py-3 text-sm">
-              Send me the details
+              Send us the details
             </Link>
             <Link
               href="/shop"
@@ -378,7 +378,7 @@ export default function HomePage() {
                 Commission or AI project
               </p>
               <h2 className="font-display text-3xl font-medium leading-[1.15] tracking-tight text-zinc-50 sm:text-4xl">
-                Tell me what you need. You get a price first.
+                Tell us what you need. You get a price first.
               </h2>
               <p className="mt-5 text-base leading-relaxed text-zinc-400">
                 A personalized piece, or something you keep doing by hand that should be
