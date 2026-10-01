@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
-import { Cormorant, DM_Sans } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import BrandLogo from "@/components/ui/BrandLogo";
@@ -9,11 +9,16 @@ import EmailCapture from "@/components/ui/EmailCapture";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
-/** Elegant display + simple modern body */
-const cormorant = Cormorant({
+/**
+ * Display: Bricolage Grotesque, variable, with optical sizing so large
+ * headlines get more character. Replaced Cormorant, whose 1.5px hairlines
+ * faded out on the dark default theme. Weights are set in globals.css.
+ * Body stays DM Sans.
+ */
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  axes: ["opsz"],
   variable: "--font-display",
 });
 
@@ -76,7 +81,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${cormorant.variable} ${dmSans.variable}`}
+      className={`${bricolage.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -34,18 +34,27 @@ body {
   font-feature-settings: "ss01" on, "kern" on;
 }
 
-/* Elegant display face for headings — paired with DM Sans body */
+/* Display face for headings — Bricolage Grotesque, paired with DM Sans body */
 .font-display {
-  font-family: var(--font-display), "Times New Roman", serif;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.01em;
 }
 
+/* Unlayered, so these weights win over Tailwind's font-* utilities on headings.
+   Heavier than the old 500: light strokes bloom and thin out on the dark theme.
+   text-wrap: balance stops single-word last lines ("…here for / you."). */
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), "Times New Roman", serif;
-  font-weight: 500;
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
   letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* Logo gradient text (matches wordmark) */
