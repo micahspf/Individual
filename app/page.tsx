@@ -1,11 +1,46 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import RequestForm from "@/components/RequestForm";
 import HeroDecor from "@/components/home/HeroDecor";
 import BrandLogo from "@/components/ui/BrandLogo";
 
+// Title and description come from the root layout's defaults.
+export const metadata: Metadata = {
+  alternates: { canonical: "https://www.madebyindividual.com" },
+};
+
+/**
+ * Business details for search engines and maps. Kept neutral on who runs it —
+ * see app/about/page.tsx for that. Both business lines are listed so local
+ * searches for either can match.
+ */
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Individual",
+  description:
+    "Custom laser engraving and 3D printing, plus AI tools and automations for local businesses and individuals. Quoted before anything is built.",
+  url: "https://www.madebyindividual.com",
+  email: "madebyindividual@gmail.com",
+  telephone: "+1-256-590-6534",
+  image: "https://www.madebyindividual.com/opengraph-image.png",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cullman",
+    addressRegion: "AL",
+    addressCountry: "US",
+  },
+  areaServed: "Cullman County, Alabama",
+  knowsAbout: ["Laser engraving", "3D printing", "AI automation"],
+};
+
 export default function HomePage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+      />
       {/* Hero — two paths, because the two audiences share nothing */}
       <section className="relative overflow-hidden">
         <HeroDecor />

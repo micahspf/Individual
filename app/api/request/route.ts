@@ -3,7 +3,8 @@ import { notifyFounder } from '@/lib/email';
 
 /**
  * POST /api/request
- * Commission and AI project requests from the site request form.
+ * Commission and AI project requests from the site request form, plus the
+ * footer's shop-reopening signup (requestType "subscribe").
  * Body: { email: string, message: string, name?: string, requestType?: string }
  */
 
@@ -11,6 +12,8 @@ const REQUEST_TYPES: Record<string, string> = {
   product: 'Personalized product',
   ai: 'AI tool or automation',
   unsure: 'Not sure yet',
+  // Footer signup (components/ui/EmailCapture.tsx) — a waitlist for the shop
+  subscribe: 'Shop reopening list',
 };
 
 const MAX_NAME = 120;

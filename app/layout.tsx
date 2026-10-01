@@ -7,6 +7,7 @@ import Header from "@/components/ui/Header";
 import BrandLogo from "@/components/ui/BrandLogo";
 import EmailCapture from "@/components/ui/EmailCapture";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 /** Elegant display + simple modern body */
 const cormorant = Cormorant({
@@ -26,20 +27,20 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.madebyindividual.com"),
   title: {
-    default: "Individual — Personalized goods, made to order in Cullman, AL",
+    default: "Individual — Custom engraving, 3D printing, AI · Cullman, AL",
     template: "%s · Individual",
   },
   description:
-    "Personalized drinkware, home gifts, and keepsakes manufactured to order in Cullman, Alabama. Names, monograms, dates — clear quotes and honest timelines.",
+    "Custom laser engraving and 3D printing, plus AI tools for local businesses and individuals. Made in Cullman, Alabama — and priced before anything is built.",
   icons: {
     icon: [{ url: "/brand/icon-32.png", sizes: "32x32", type: "image/png" }],
     apple: [{ url: "/brand/apple-icon-180.png", sizes: "180x180" }],
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Individual — Personalized goods, made to order",
+    title: "Individual — Custom-made pieces and AI tools",
     description:
-      "Personalized gifts and home goods made to order in Cullman, Alabama. Drinkware, signs, boards, and commissions.",
+      "Laser engraving, 3D printing, and AI tools for businesses and individuals in Cullman, Alabama. You see the price before anything is built.",
     url: "https://www.madebyindividual.com",
     siteName: "Individual",
     locale: "en_US",
@@ -56,8 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Individual — Personalized goods, made to order",
-    description: "Made to order in Cullman, Alabama",
+    title: "Individual — Custom-made pieces and AI tools",
+    description: "Custom-made pieces and AI tools · Cullman, Alabama",
     images: ["/opengraph-image.png"],
   },
   robots: {
@@ -100,6 +101,7 @@ export default function RootLayout({
         </Suspense>
         {children}
         <SpeedInsights />
+        <Analytics />
         <footer className="mt-20 border-t border-white/10">
           <div className="mx-auto grid max-w-7xl gap-8 px-6 py-12 text-sm sm:grid-cols-2 lg:grid-cols-4">
             <div>

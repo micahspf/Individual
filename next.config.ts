@@ -13,6 +13,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Accounts are paused until the shop reopens — see app/account/page.tsx.
+  // Temporary (307) so these paths can come back without a cached 308.
+  async redirects() {
+    return ["/login", "/register", "/forgot-password", "/reset-password"].map(
+      (source) => ({ source, destination: "/account", permanent: false })
+    );
+  },
   async headers() {
     return [
       {
