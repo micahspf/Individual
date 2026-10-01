@@ -4,4 +4,4 @@
  * schedule → Save → Share → copy the booking page link, and paste it here.
  * While this is empty the button is not rendered anywhere.
  */
-export const BOOKING_URL = "";
+export const BOOKING_URL = "https://calendar.app.google/noDZSSYpQz4kQ8P36";

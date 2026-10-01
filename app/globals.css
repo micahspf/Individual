@@ -34,7 +34,7 @@ body {
   font-feature-settings: "ss01" on, "kern" on;
 }
 
-/* Display face for headings — Bricolage Grotesque, paired with DM Sans body */
+/* Display face for headings — Bricolage Grotesque, paired with Atkinson Hyperlegible Next body */
 .font-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.01em;
