@@ -62,7 +62,8 @@ auth provider and a real database, with the shop.
 
 `RESEND_API_KEY` was set in Vercel Production on 2026-10-01 (Resend sandbox, sender
 `onboarding@resend.dev`). A test enquiry through the live form returned 200 and Vercel
-logged no rejection. `lib/email.ts` treats Resend's *returned* errors as failures —
+logged no rejection, and Micah confirmed it landed in the madebyindividual@gmail.com
+inbox (not spam) — delivery is verified end to end. `lib/email.ts` treats Resend's *returned* errors as failures —
 the SDK does not throw on a rejected send — so a 200 from `/api/request` now really
 means Resend accepted it.
 
