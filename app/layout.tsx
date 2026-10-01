@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import BrandLogo from "@/components/ui/BrandLogo";
@@ -13,7 +14,6 @@ import { Analytics } from "@vercel/analytics/next";
  * Display: Bricolage Grotesque, variable, with optical sizing so large
  * headlines get more character. Replaced Cormorant, whose 1.5px hairlines
  * faded out on the dark default theme. Weights are set in globals.css.
- * Body stays DM Sans.
  */
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -22,11 +22,23 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-display",
 });
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
+/**
+ * Body: Atkinson Hyperlegible Next (Braille Institute), variable. Replaced
+ * DM Sans, whose capital I and lowercase l are identical, so "AI" could read
+ * as "Al". Measured against DM Sans, Inter and Source Sans 3 on the real
+ * pages: least character confusion, strokes as sturdy on the dark theme,
+ * half the download. No italics are used on the site, so none are loaded.
+ *
+ * Self-hosted (the Google Fonts latin file, SIL OFL — license alongside) because
+ * next/font/google has no fallback metrics for this family, so text jumped when
+ * the font arrived on a slow connection. next/font/local computes them from the
+ * file and sizes the Arial fallback to match.
+ */
+const atkinson = localFont({
+  src: [{ path: "./fonts/AtkinsonHyperlegibleNext-latin.woff2", weight: "200 800", style: "normal" }],
   display: "swap",
-  weight: ["400", "500", "600"],
   variable: "--font-sans",
+  adjustFontFallback: "Arial",
 });
 
 export const metadata: Metadata = {
@@ -74,7 +86,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${bricolage.variable} ${dmSans.variable}`}
+      className={`${bricolage.variable} ${atkinson.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -89,7 +101,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${dmSans.className} min-h-screen text-zinc-100 antialiased`}>
+      <body className={`${atkinson.className} min-h-screen text-zinc-100 antialiased`}>
         <Suspense
           fallback={
             <div className="h-16 border-b border-white/10 bg-[#0a0a12]/85" aria-hidden />
