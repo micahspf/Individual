@@ -29,15 +29,13 @@ These prices appear in four places and must stay in sync:
 ## Files
 
 - [`prospects-cullman.md`](prospects-cullman.md) — how to build and work the 30-name list
-- [`templates/prospect-tracker.csv`](templates/prospect-tracker.csv) — the list itself
-- [`templates/daily-scoreboard.csv`](templates/daily-scoreboard.csv) — daily activity log
-- [`templates/client-report.csv`](templates/client-report.csv) — monthly summary per client
+- **[Cullman Pipeline](https://claude.ai/artifact/6EJGyZVdxUm4sVM28bksJJ)** — the list itself: who to approach next, daily minimums,
+  the 4–6 client cap, and monthly recurring. Private to Micah's Claude account; Claude can
+  add or read prospects there in any session.
 - [`../docs/ai-build-tutor-prompt.md`](../docs/ai-build-tutor-prompt.md) — copy-paste
   prompt for a dedicated chat that teaches building and running the AI services
 - [`manufacturing-catalog.md`](manufacturing-catalog.md) — what custom manufacturing work
   we take, by process and material; doubles as a quoting intake checklist
-
-Import the CSVs into Google Sheets with **File → Import → Upload**.
 
 ## Print assets
 
